@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Hospital, type: :model do
-  # it{ is_expected.to have_and_belong_to_many(:doctors)}
-
+  it { should have_many(:doctors) }
   it { should validate_presence_of :name }
   it { should have_db_column :name }
   it { should have_db_column :phone }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213082535) do
+ActiveRecord::Schema.define(version: 20151213092712) do
 
   create_table "doctors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20151213082535) do
   add_index "doctors", ["bUrl"], name: "index_doctors_on_bUrl", using: :btree
   add_index "doctors", ["coUrl"], name: "index_doctors_on_coUrl", using: :btree
   add_index "doctors", ["name"], name: "index_doctors_on_name", using: :btree
+
+  create_table "hospital_doctorships", force: :cascade do |t|
+    t.integer  "doctor_id",   limit: 4
+    t.integer  "hospital_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "hospitals", force: :cascade do |t|
     t.string   "name",       limit: 255
