@@ -105,9 +105,8 @@ class Crawler::Businessweekly
     end
 
     doctor.hospitals << hospital
-
+    
     doctor.div = div
-    doctor.hosp = hosp
     doctor.address = addr
     doctor.phone = phone
     doctor.name = name

@@ -133,7 +133,6 @@ class Crawler::Commonhealth
     doctor.div = div
     doctor.exp = exp
     doctor.spe = specialty
-    doctor.hosp = hosp
     doctor.address = address
     doctor.phone = phone
     doctor.save

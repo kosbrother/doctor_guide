@@ -28,7 +28,7 @@ describe "commonhealth_doctor_crawler" do
   end
 
   it "crawl doctor's hospital" do
-    expect(@doc.hosp).to eq("衛生福利部雙和醫院")
+    expect(@doc.hospitals[0].name).to eq("衛生福利部雙和醫院")
     # expect(@doc.hospitals.count).to be > 0
   end
 

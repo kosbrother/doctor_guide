@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20151216030123) do
 
   create_table "doctors", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.string   "hosp",       limit: 255
     t.string   "phone",      limit: 255
     t.string   "address",    limit: 255
     t.string   "div",        limit: 255
