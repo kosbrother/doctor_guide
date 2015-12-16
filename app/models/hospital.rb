@@ -1,6 +1,7 @@
 class Hospital < ActiveRecord::Base
-  has_many :hospital_doctorships
-  has_many :doctors, :through => :hospital_doctorships
+  has_many :divisions
+  has_many :doctors, :through => :divisions
   serialize :divs
   serialize :ss
+  serialize :cHours, Hash
 end

@@ -14,8 +14,6 @@ class CreateDoctors < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :doctors, :coUrl
-    add_index :doctors, :bUrl
     add_index :doctors, :name
   end
 end

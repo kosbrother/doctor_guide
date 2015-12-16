@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213092712) do
+ActiveRecord::Schema.define(version: 20151216030123) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "divisions", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "doctor_id",   limit: 4
+    t.integer  "hospital_id", limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "divisions", ["category_id"], name: "index_divisions_on_category_id", using: :btree
+  add_index "divisions", ["doctor_id"], name: "index_divisions_on_doctor_id", using: :btree
+  add_index "divisions", ["hospital_id"], name: "index_divisions_on_hospital_id", using: :btree
 
   create_table "doctors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -27,16 +46,7 @@ ActiveRecord::Schema.define(version: 20151213092712) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "doctors", ["bUrl"], name: "index_doctors_on_bUrl", using: :btree
-  add_index "doctors", ["coUrl"], name: "index_doctors_on_coUrl", using: :btree
   add_index "doctors", ["name"], name: "index_doctors_on_name", using: :btree
-
-  create_table "hospital_doctorships", force: :cascade do |t|
-    t.integer  "doctor_id",   limit: 4
-    t.integer  "hospital_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
 
   create_table "hospitals", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -48,11 +58,11 @@ ActiveRecord::Schema.define(version: 20151213092712) do
     t.string   "code",       limit: 255
     t.string   "coUrl",      limit: 255
     t.boolean  "on"
-    t.string   "cHours",     limit: 255
-    t.string   "divs",       limit: 255
-    t.string   "ss",         limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.text     "cHours",     limit: 65535
+    t.text     "divs",       limit: 65535
+    t.text     "ss",         limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "hospitals", ["name"], name: "index_hospitals_on_name", using: :btree

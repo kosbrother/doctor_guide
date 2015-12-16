@@ -10,7 +10,7 @@ class CreateHospitals < ActiveRecord::Migration
       t.string :code
       t.string :coUrl
       t.boolean :on
-      t.string :cHours
+      t.text :cHours
       t.text :divs
       t.text :ss
 

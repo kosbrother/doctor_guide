@@ -13,8 +13,6 @@ describe Doctor do
   it { should have_db_column :name }
   it { should have_db_column :bUrl }
 
-  it { should have_db_index :bUrl }
-  it { should have_db_index :coUrl }
   it { should have_db_index :name }
 end
 
