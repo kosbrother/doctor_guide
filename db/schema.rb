@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216030123) do
+ActiveRecord::Schema.define(version: 20151216035649) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -19,18 +19,26 @@ ActiveRecord::Schema.define(version: 20151216030123) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "divisions", force: :cascade do |t|
-    t.string   "name",        limit: 255
+  create_table "div_hosp_doc_ships", force: :cascade do |t|
     t.integer  "doctor_id",   limit: 4
     t.integer  "hospital_id", limit: 4
+    t.integer  "division_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "div_hosp_doc_ships", ["division_id"], name: "index_div_hosp_doc_ships_on_division_id", using: :btree
+  add_index "div_hosp_doc_ships", ["doctor_id"], name: "index_div_hosp_doc_ships_on_doctor_id", using: :btree
+  add_index "div_hosp_doc_ships", ["hospital_id"], name: "index_div_hosp_doc_ships_on_hospital_id", using: :btree
+
+  create_table "divisions", force: :cascade do |t|
+    t.string   "name",        limit: 255
     t.integer  "category_id", limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
   add_index "divisions", ["category_id"], name: "index_divisions_on_category_id", using: :btree
-  add_index "divisions", ["doctor_id"], name: "index_divisions_on_doctor_id", using: :btree
-  add_index "divisions", ["hospital_id"], name: "index_divisions_on_hospital_id", using: :btree
 
   create_table "doctors", force: :cascade do |t|
     t.string   "name",       limit: 255
