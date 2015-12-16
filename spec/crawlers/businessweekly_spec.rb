@@ -28,7 +28,7 @@ describe "businessweekly_crawler" do
   end
 
   it "crawl division" do
-    expect(@doc.div).to eq("眼科")
+    expect(@doc.divisions[0].name).to eq("眼科")
   end
 
   it "crawl doctor's hospital" do

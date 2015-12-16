@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20151216035649) do
     t.string   "name",       limit: 255
     t.string   "phone",      limit: 255
     t.string   "address",    limit: 255
-    t.string   "div",        limit: 255
     t.string   "exp",        limit: 255
     t.string   "spe",        limit: 255
     t.string   "coUrl",      limit: 255

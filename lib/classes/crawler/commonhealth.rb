@@ -127,15 +127,21 @@ class Crawler::Commonhealth
       end
     end
 
-    doctor.hospitals << hospital
+    division = Division.find_or_initialize_by(name: div)
+    division.save
 
     doctor.name = name
-    doctor.div = div
     doctor.exp = exp
     doctor.spe = specialty
     doctor.address = address
     doctor.phone = phone
     doctor.save
+
+    ship = DivHospDocShip.new
+    ship.hospital = hospital
+    ship.division = division
+
+    doctor.div_hosp_doc_ships << ship
 
   end
 

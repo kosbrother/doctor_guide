@@ -16,7 +16,7 @@ describe "commonhealth_doctor_crawler" do
   end
 
   it "crawl division" do
-    expect(@doc.div).to eq("復健科")
+    expect(@doc.divisions[0].name).to eq("復健科")
   end
 
   it "crawl experience" do

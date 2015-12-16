@@ -103,15 +103,22 @@ class Crawler::Businessweekly
       @c.fetch hosp_link
       @c.crawl_hosp_detail hospital
     end
-
-    doctor.hospitals << hospital
     
-    doctor.div = div
+    division = Division.find_or_initialize_by(name: div)
+    division.save
+    
     doctor.address = addr
     doctor.phone = phone
     doctor.name = name
     doctor.spe = spes.collect{|x| x.text}.join("、")
     doctor.exp = exps.collect{|x| x.text}.join("、")
     doctor.save
+
+    ship = DivHospDocShip.new
+    ship.hospital = hospital
+    ship.division = division
+
+    doctor.div_hosp_doc_ships << ship
+
   end
 end

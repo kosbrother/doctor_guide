@@ -4,7 +4,6 @@ class CreateDoctors < ActiveRecord::Migration
       t.string :name
       t.string :phone
       t.string :address
-      t.string :div
       t.string :exp
       t.string :spe
       t.string :coUrl
