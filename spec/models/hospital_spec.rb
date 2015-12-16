@@ -14,7 +14,6 @@ RSpec.describe Hospital, type: :model do
   it { should have_db_column :coUrl }
   it { should have_db_column :on }
   it { should have_db_column :cHours }
-  it { should have_db_column :divs }
   it { should have_db_column :ss }
   
   it { should have_db_index :name }

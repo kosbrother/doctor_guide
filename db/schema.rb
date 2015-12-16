@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20151216035649) do
     t.string   "coUrl",      limit: 255
     t.boolean  "on"
     t.text     "cHours",     limit: 65535
-    t.text     "divs",       limit: 65535
     t.text     "ss",         limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false

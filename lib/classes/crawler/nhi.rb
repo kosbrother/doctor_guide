@@ -27,7 +27,7 @@ class Crawler::Nhi
     address = @page_html.css("#lblAddress").text
     grade = @page_html.css("#lblSpecial").text
     services = @page_html.css("#lblService").text.split("、")
-    divisions = @page_html.css("#lblFunc").text.split("、")
+    divs = @page_html.css("#lblFunc").text.split("、")
 
     hosp.code = code
     hosp.name = name
@@ -35,7 +35,12 @@ class Crawler::Nhi
     hosp.address = address
     hosp.grade = grade
     hosp.ss = services
-    hosp.divs = divisions
+
+    divs.each do |div|
+      division = Division.find_or_initialize_by(name: div)
+      division.save
+      hosp.divisions << division
+    end
 
     hosp.save
   end

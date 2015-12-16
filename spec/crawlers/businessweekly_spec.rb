@@ -41,7 +41,7 @@ describe "businessweekly_crawler" do
     expect(@hosp.address).not_to be nil
     expect(@hosp.phone).not_to be nil
     expect(@hosp.ss).not_to be nil
-    expect(@hosp.divs).not_to be nil
+    expect(@hosp.divisions).not_to be nil
   end
 
   it "crawl doctor's phone" do

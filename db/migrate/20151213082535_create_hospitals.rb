@@ -11,7 +11,6 @@ class CreateHospitals < ActiveRecord::Migration
       t.string :coUrl
       t.boolean :on
       t.text :cHours
-      t.text :divs
       t.text :ss
 
       t.timestamps null: false

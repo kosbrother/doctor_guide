@@ -40,7 +40,8 @@ describe "nhi_crawler" do
   it "divisions" do
     s = "不分科、家醫科、內科、外科、兒科、婦產科、骨科、神經外科、泌尿科、耳鼻喉科、眼科、皮膚科、神經科、精神科、復健科、整形外科、職業醫學科、急診醫學科、牙科、齒顎矯正科、口腔顎面外科、麻醉科、放射線科、病理科、核子醫學科、放射腫瘤科"
     divisions = s.split("、")
-    expect(@hosp.divs).to match_array(divisions)
+    divs = @hosp.divisions.map{|d| d.name}
+    expect(divs).to match_array(divisions)
   end
 
 end

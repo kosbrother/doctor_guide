@@ -16,15 +16,6 @@ class Crawler::Businessweekly
 
   def crawl_hosp_detail hosp
     lis = @page_html.css(".detailinfo li")
-
-    divs = ""
-    lis.each do |li|
-      strong = li.css("strong")
-      if strong.text.match(/診療科別/)
-        li.css("strong").remove
-        divs = li.text.strip.gsub(" ","").split("、").map {|s| s.strip }
-      end
-    end
     
     phone = ""
     lis.each do |li|
@@ -56,7 +47,6 @@ class Crawler::Businessweekly
     hosp.phone = phone
     hosp.address = addr
     hosp.ss = (services.blank?)? [] : services
-    hosp.divs = (divs.blank?)? [] : divs
     hosp.save
   end
 
