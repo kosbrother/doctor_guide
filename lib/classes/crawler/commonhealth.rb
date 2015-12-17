@@ -13,18 +13,18 @@ class Crawler::Commonhealth
       h.coUrl = link
       h.save
 
-      CommonhealthHospDetailWorker.perform_async(h.id)
+      CommonhealthHospDetailWorker.perform_async(h.id) unless Rails.env.test?
     end
   end
 
   def crawl_detail hosp
     lis = @page_html.css(".commonDrContentMain li")
-    grade = ""
+    assess = ""
     lis.each do |li|
       span = li.css("span")
       if span.text == "評級 ："
         li.css("span").remove
-        grade = li.text
+        assess = li.text
       end
     end
 
@@ -63,7 +63,7 @@ class Crawler::Commonhealth
     end
     
     hosp.cHours = time
-    hosp.grade = grade
+    hosp.assess = assess
     hosp.save
   end
 

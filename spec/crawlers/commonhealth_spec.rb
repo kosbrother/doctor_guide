@@ -12,7 +12,7 @@ describe "commonhealth_crawler" do
   }
 
   it "crawl garde" do
-    expect(@hosp.grade).to eq("衛生福利部　醫院評鑑【【優等】】（醫學中心）評鑑合格效期：2013/1/1-2016/12/31")
+    expect(@hosp.assess).to eq("衛生福利部　醫院評鑑【【優等】】（醫學中心）評鑑合格效期：2013/1/1-2016/12/31")
   end
 
   it "crawl cHours" do
