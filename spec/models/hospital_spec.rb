@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Hospital, type: :model do
+  it { should belong_to(:area) }
   it { should have_many(:doctors) }
   it { should have_many(:divisions) }
   

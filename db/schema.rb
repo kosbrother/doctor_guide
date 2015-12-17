@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216035649) do
+ActiveRecord::Schema.define(version: 20151217031057) do
+
+  create_table "areas", force: :cascade do |t|
+    t.string "name", limit: 255
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -68,8 +72,10 @@ ActiveRecord::Schema.define(version: 20151216035649) do
     t.text     "ss",         limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "area_id",    limit: 4
   end
 
+  add_index "hospitals", ["area_id"], name: "index_hospitals_on_area_id", using: :btree
   add_index "hospitals", ["name"], name: "index_hospitals_on_name", using: :btree
 
 end
