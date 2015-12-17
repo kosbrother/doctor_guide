@@ -40,4 +40,13 @@ namespace :crawl do
       BusinessweeklyDocWorker.perform_async(page)
     end
   end
+
+  task :set_area => :environment do
+    setter = HospitalAreaSet.new
+    Hospital.find_in_batches.each do |hospitals|
+      hospitals.each do |hospital|
+        setter.set_hospital(hospital)
+      end
+    end
+  end
 end
