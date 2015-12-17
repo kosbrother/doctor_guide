@@ -26,6 +26,8 @@ describe "hospital_area_set" do
     expect(setter.convert("花蓮縣花蓮市中央路３段７０７號")).to eq("花蓮縣")
     expect(setter.convert("臺東縣台東市中正路３３４號")).to eq("臺東縣")
     expect(setter.convert("澎湖縣馬公市大仁街６號")).to eq("澎湖縣")
+    expect(setter.convert("金門縣金湖鎮復興路２號")).to eq("金門縣")
+    expect(setter.convert("連江縣南竿鄉復興村２１７號")).to eq("連江縣")
 
     expect(setter.convert("桃園縣中壢市中央東路23號1樓(臺北市新生南路1段161巷2號8F之1)")).to eq("桃園市")
     expect(setter.convert("屏東市大武里大武路２５號")).to eq("屏東縣")

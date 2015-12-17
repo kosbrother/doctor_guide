@@ -42,10 +42,9 @@ namespace :crawl do
   end
 
   task :set_area => :environment do
-    setter = HospitalAreaSet.new
-    Hospital.find_in_batches.each do |hospitals|
+    Hospital.where("area_id is null").find_in_batches.each do |hospitals|
       hospitals.each do |hospital|
-        setter.set_hospital(hospital)
+        SetAreaWorker.perform_async(hospital.id)
       end
     end
   end

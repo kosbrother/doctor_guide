@@ -1,7 +1,7 @@
 # encoding: utf-8
 class HospitalAreaSet
   def convert address
-    /^(.*?)(縣|市)/ =~ address
+    /^(.*?)(縣|市|巿)/ =~ address
     return "臺北市" if ["臺北","台北"].include? $1
     return "新北市" if ["新北"].include? $1
     return "桃園市" if ["桃園"].include? $1
@@ -25,6 +25,8 @@ class HospitalAreaSet
     return "花蓮縣" if ["花蓮"].include? $1
     return "臺東縣" if ["臺東","台東"].include? $1
     return "澎湖縣" if ["澎湖"].include? $1
+    return "金門縣" if ["金門"].include? $1
+    return "連江縣" if ["連江"].include? $1
   end
 
   def set_hospital hospital
