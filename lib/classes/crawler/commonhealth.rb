@@ -62,8 +62,8 @@ class Crawler::Commonhealth
       end
     end
     
-    hosp.cHours = time
-    hosp.assess = assess
+    hosp.cHours = time unless time.blank?
+    hosp.assess = assess unless time.blank?
     hosp.save
   end
 

@@ -22,7 +22,7 @@ namespace :crawl do
 
   task :crawl_commonhealth_hospitals => :environment do
     # 1..2056
-    (1..200).each do |page|
+    (1..2056).each do |page|
       CommonhealthHospWorker.perform_async(page)
     end
   end
