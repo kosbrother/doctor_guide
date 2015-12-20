@@ -86,7 +86,7 @@ class Crawler::Businessweekly
     spes = @page_html.css("li#ContentPlaceHolder1_IDoctorHead1_professional li")
     exps = @page_html.css("li#ContentPlaceHolder1_IDoctorHead1_experience li")
 
-    hospital = Hospital.find_or_initialize_by(name: hosp)
+    hospital = Hospital.find_or_initialize_by(name: hosp, address: addr)
     if hospital.new_record?
       hospital.save
       @c = Crawler::Businessweekly.new
