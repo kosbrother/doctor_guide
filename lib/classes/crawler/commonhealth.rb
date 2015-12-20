@@ -119,7 +119,7 @@ class Crawler::Commonhealth
       address = hosp_a[0].css("span")[0].text.gsub("地址：","")
       phone = hosp_a[0].css("span")[1].text.gsub("電話：","")
 
-      hospital = Hospital.find_or_initialize_by(coUrl: get_url(hosp_a[0][:href]))
+      hospital = Hospital.find_or_initialize_by(coUrl: get_url(hosp_a[0][:href])+ "&divisionType=")
       if hospital.new_record? || hospital.address.blank?
         hospital.address = address
         hospital.phone = phone
