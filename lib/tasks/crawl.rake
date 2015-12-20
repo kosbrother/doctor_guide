@@ -48,4 +48,20 @@ namespace :crawl do
       end
     end
   end
+
+  # 康健的醫師有的超過兩個 division , split it
+  # Division.where('id >= 34').each do |div|
+  #   if div.name.split('、').size > 1
+  #      divs = []
+  #      div.name.split('、').each do |d_name|
+  #        new_d = Division.find_or_initialize_by(name: d_name)
+  #        new_d.save
+  #        divs << new_d
+  #      end
+  #      div.doctors.each do |doc|
+  #        doc.divisions << divs
+  #      end
+  #      div.delete
+  #   end
+  # end
 end
