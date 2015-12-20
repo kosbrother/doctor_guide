@@ -5,11 +5,16 @@ require 'classes/crawler/commonhealth'
 describe "commonhealth_doctor_crawler" do
 
   before(:all){
+    DatabaseCleaner.start
     @doc = Doctor.create(coUrl: "http://www.commonhealth.com.tw/medical/doctorInfo.action?nid=25")
     @c = Crawler::Commonhealth.new
     @c.fetch @doc.coUrl
     @c.crawl_doctor_detail @doc
   }
+
+  after(:all) do
+    DatabaseCleaner.clean
+  end
 
   it "crawl doctor' name" do
     expect(@doc.name).to eq("劉燦宏")
@@ -56,7 +61,22 @@ describe 'crawl doctors' do
 
     expect(Doctor.count).to be > 1
 
-    doctor = Doctor.all[1]
+    doctor = Doctor.last
     expect(doctor.coUrl).not_to be nil
+  end
+end
+
+describe 'set hospital and doctor relation' do
+  it 'if hospital exist assign doctor to the hospital', :clean => true do
+    h = Hospital.new
+    h.name = '衛生福利部雙和醫院'
+    h.coUrl = 'http://www.commonhealth.com.tw/medical/hospitalInfo.action?nid=546'
+    h.save
+
+    @doc = Doctor.create(coUrl: "http://www.commonhealth.com.tw/medical/doctorInfo.action?nid=25")
+    @c = Crawler::Commonhealth.new
+    @c.fetch @doc.coUrl
+    @c.crawl_doctor_detail @doc
+    expect(@doc.hospitals.include? h).to be true
   end
 end

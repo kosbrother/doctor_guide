@@ -74,7 +74,7 @@ class Crawler::Commonhealth
       link = node[:href]
       name = node.css('img')[0][:alt]
 
-      d = Doctor.find_or_initialize_by(coUrl: link)
+      d = Doctor.find_or_initialize_by(coUrl: get_url(link))
       d.name = name
       d.save
 
@@ -119,10 +119,11 @@ class Crawler::Commonhealth
       address = hosp_a[0].css("span")[0].text.gsub("地址：","")
       phone = hosp_a[0].css("span")[1].text.gsub("電話：","")
 
-      hospital = Hospital.find_or_initialize_by(name: hosp)
-      if hospital.new_record?
+      hospital = Hospital.find_or_initialize_by(coUrl: get_url(hosp_a[0][:href]))
+      if hospital.new_record? || hospital.address.blank?
         hospital.address = address
         hospital.phone = phone
+        hospital.name = hosp
         hospital.save
       end
     end
