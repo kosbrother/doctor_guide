@@ -19,8 +19,10 @@ describe "businessweekly_crawler" do
 
     expect(Doctor.count).to be > 1
 
-    doctor = Doctor.all[1]
+    doctor = Doctor.last
     expect(doctor.bUrl).not_to be nil
+    expect(doctor.name).not_to be nil
+    expect(doctor.address).not_to be nil
   end
 
   it "crawl name" do
@@ -39,9 +41,7 @@ describe "businessweekly_crawler" do
   it "crawl hospital detail if hospital not exist" do
     @hosp = @doc.hospitals[0]
     expect(@hosp.address).not_to be nil
-    expect(@hosp.phone).not_to be nil
-    expect(@hosp.ss).not_to be nil
-    expect(@hosp.divisions).not_to be nil
+    expect(@hosp.name).not_to be nil
   end
 
   it "crawl doctor's phone" do
