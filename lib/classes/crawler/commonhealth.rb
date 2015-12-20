@@ -28,6 +28,30 @@ class Crawler::Commonhealth
       end
     end
 
+    ss = []
+    lis.each do |li|
+      span = li.css("span")
+      if span.text == "服務項目 ："
+        li.css("span").remove
+        ss = li.text.split('、')
+      end
+    end
+
+    divs = []
+    lis.each do |li|
+      span = li.css("span")
+      if span.text == "科別 ："
+        li.css("span").remove
+        div_name = li.text.split('、')
+        div_name.map!{|n| n.strip}
+        div_name.each do |n|
+          d = Division.find_or_initialize_by(name: n)
+          d.save
+          divs << d
+        end
+      end
+    end
+
     time = {}
 
     lis = @page_html.css("li#businessTimeLi ul > li")
@@ -62,8 +86,10 @@ class Crawler::Commonhealth
       end
     end
     
-    hosp.cHours = time unless time.blank?
-    hosp.assess = assess unless assess.blank?
+    hosp.cHours = time unless time.blank? if hosp.cHours.blank?
+    hosp.assess = assess unless assess.blank? if hosp.assess.blank?
+    hosp.ss = ss unless ss.blank? if hosp.ss.blank?
+    hosp.divisions << divs if hosp.divisions.blank?
     hosp.save
   end
 

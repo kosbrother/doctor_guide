@@ -19,6 +19,14 @@ describe "commonhealth_crawler" do
     expect(@hosp.cHours).not_to be(nil)
   end
 
+  it "crawl divisions" do
+    expect(@hosp.divisions.blank?).to be(false)
+  end
+
+  it "crawl services" do    
+    expect(@hosp.ss).not_to be(nil)
+  end
+
 end
 
 describe 'crawl url' do
