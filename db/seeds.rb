@@ -25,8 +25,11 @@ Category.create(name: "整形外科")
 Category.create(name: "腫瘤科")
 Category.create(name: "急診醫學科")
 Category.create(name: "職業醫學科")
-# Category.create(name: "美容門診")
-
+Category.create(name: "麻醉科")
+Category.create(name: "老人醫學科")
+Category.create(name: "美容門診")
+Category.create(name: "心理諮商")
+Category.create(name: "病理科")
 
 Area.create(name: "臺北市")
 Area.create(name: "新北市")
