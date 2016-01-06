@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :divisions,:only => [] do
         collection do
           get 'by_hospital_category'
+          get 'by_hospital'
         end
       end
     end
