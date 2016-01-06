@@ -5,7 +5,7 @@ class Api::V1::DivisionsController < Api::ApiController
     category_id = params[:category_id]
 
     hospital = Hospital.find(hospital_id)
-    divisions = hospital.divisions.where("category_id = #{category_id} and div_hosp_doc_ships.doctor_id is not null").uniq{|x| x.id}
+    divisions = hospital.divisions.where("category_id = #{category_id} and div_hosp_doc_ships.doctor_id is not null").uniq{|x| x.id}.select("divisions.id,divisions.name")
 
     render :json => divisions
   end
