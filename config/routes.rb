@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     get 'status_check' => 'api#status_check'
     namespace :v1 do
+      resources :areas, :only => [:index]
       resources :categories, :only => [:index]
       resources :hospitals,:only => [] do
         collection do
