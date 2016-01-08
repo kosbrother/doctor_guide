@@ -21,9 +21,12 @@ class Api::V1::DoctorsController < Api::ApiController
   end
 
   def show
-    doctor = Doctor.find(params[:id]).as_json(only: [:id,:name,:address,:exp,:spe], include: {
-                 hospitals: { only: [:id, :name, :address,:grade]}
-               })
+    doctor = Doctor.find(params[:id]).as_json(only: [:id,:name,:address,:exp,:spe])
+    divisions = DivHospDocShip.where("div_hosp_doc_ships.doctor_id = #{params[:id]}").uniq{|x| x.division_id}.as_json(only:[],include:{ 
+      hospital: {only: [:id, :name, :address,:grade]},
+      division: {only: [:id, :name]}
+      })
+    doctor[:divs] = divisions
     render :json => doctor
   end
 end
