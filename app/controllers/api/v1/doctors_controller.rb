@@ -26,7 +26,17 @@ class Api::V1::DoctorsController < Api::ApiController
       hospital: {only: [:id, :name, :address,:grade]},
       division: {only: [:id, :name]}
       })
-    doctor[:divs] = divisions
+    divs = []
+    divisions.each do |div|
+      d = {}
+      d[:id] = div["division"]["id"]
+      d[:name] = div["division"]["name"]
+      d[:hospital_id] = div["hospital"]["id"]
+      d[:hospital_name] = div["hospital"]["name"]
+      d[:hospital_grade] = div["hospital"]["grade"]
+      divs << d
+    end
+    doctor[:divisions] = divs
     render :json => doctor
   end
 end
