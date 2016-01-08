@@ -15,7 +15,7 @@ class Api::V1::DoctorsController < Api::ApiController
     hospital_id = params[:hospital_id]
     division_id = params[:division_id]
 
-    doctors = Doctor.joins(:div_hosp_doc_ships).where("hospital_id = #{hospital_id} and division_id = #{division_id}").select('doctors.id,doctors.name').uniq{|x| x.doctor_id}
+    doctors = Doctor.joins(:div_hosp_doc_ships).where("hospital_id = #{hospital_id} and division_id = #{division_id}").select('doctors.id,doctors.name,doctors.address').uniq{|x| x.doctor_id}
 
     render :json => doctors
   end
