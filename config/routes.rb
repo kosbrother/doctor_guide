@@ -11,7 +11,7 @@ Rails.application.routes.draw do
           get 'by_area_category'
         end
       end
-      resources :doctors,:only => [] do
+      resources :doctors,:only => [:show] do
         collection do
           get 'by_area_category'
           get 'by_hospital_division'

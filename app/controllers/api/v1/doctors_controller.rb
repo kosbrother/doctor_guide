@@ -19,4 +19,11 @@ class Api::V1::DoctorsController < Api::ApiController
 
     render :json => doctors
   end
+
+  def show
+    doctor = Doctor.find(params[:id]).as_json(only: [:id,:name,:address,:exp,:spe], include: {
+                 hospitals: { only: [:id, :name, :address,:grade]}
+               })
+    render :json => doctor
+  end
 end
