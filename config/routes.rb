@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :areas, :only => [:index]
       resources :categories, :only => [:index]
-      resources :hospitals,:only => [] do
+      resources :hospitals,:only => [:show] do
         collection do
           get 'by_area_category'
         end
