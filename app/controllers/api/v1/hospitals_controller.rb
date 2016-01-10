@@ -3,11 +3,16 @@ class Api::V1::HospitalsController < Api::ApiController
   def by_area_category
     area_id = params[:area_id]
     category_id = params[:category_id]
+    latitude = params[:latitude]
+    longitude = params[:longitude]
 
     divs = Division.joins(:div_hosp_doc_ships).where("divisions.category_id = #{category_id}").select('hospital_id').uniq{|x| x.hospital_id}
     hosp_ids = divs.map{|item| item["hospital_id"].to_i}.join(",")
-    hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select('id,name,address,grade').paginate(:page => params[:page], :per_page => 5)
-
+    if latitude && longitude
+      hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select("id,name,address,grade,latitude,longitude").order("abs(hospitals.latitude - #{latitude}) + abs(hospitals.longitude - #{longitude}) desc").paginate(:page => params[:page], :per_page => 5)
+    else
+      hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select('id,name,address,grade,latitude,longitude').paginate(:page => params[:page], :per_page => 5)
+    end
     render :json => hopitals
   end
 
