@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106065655) do
+ActiveRecord::Schema.define(version: 20160110050827) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", limit: 255
@@ -53,9 +53,11 @@ ActiveRecord::Schema.define(version: 20160106065655) do
     t.text     "spe",        limit: 65535
     t.string   "coUrl",      limit: 255
     t.string   "bUrl",       limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.integer  "area_id",    limit: 4
+    t.decimal  "latitude",                 precision: 10, scale: 6
+    t.decimal  "longitude",                precision: 10, scale: 6
   end
 
   add_index "doctors", ["area_id"], name: "index_doctors_on_area_id", using: :btree
@@ -73,9 +75,11 @@ ActiveRecord::Schema.define(version: 20160106065655) do
     t.boolean  "on"
     t.text     "cHours",     limit: 65535
     t.text     "ss",         limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.integer  "area_id",    limit: 4
+    t.decimal  "latitude",                 precision: 10, scale: 6
+    t.decimal  "longitude",                precision: 10, scale: 6
   end
 
   add_index "hospitals", ["area_id"], name: "index_hospitals_on_area_id", using: :btree

@@ -90,6 +90,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
+    geocoder (1.2.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hitimes (1.2.3)
@@ -238,6 +239,7 @@ DEPENDENCIES
   capistrano-sidekiq
   coffee-rails (~> 4.1.0)
   database_cleaner
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (~> 0.3.18)

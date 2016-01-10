@@ -7,4 +7,7 @@ class Hospital < ActiveRecord::Base
   serialize :divs
   serialize :ss
   serialize :cHours, Hash
+
+  geocoded_by :address
+  after_validation :geocode
 end
