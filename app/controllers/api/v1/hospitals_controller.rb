@@ -9,7 +9,7 @@ class Api::V1::HospitalsController < Api::ApiController
     divs = Division.joins(:div_hosp_doc_ships).where("divisions.category_id = #{category_id}").select('hospital_id').uniq{|x| x.hospital_id}
     hosp_ids = divs.map{|item| item["hospital_id"].to_i}.join(",")
     if latitude && longitude
-      hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select("id,name,address,grade,latitude,longitude").order("abs(hospitals.latitude - #{latitude}) + abs(hospitals.longitude - #{longitude}) desc").paginate(:page => params[:page], :per_page => 5)
+      hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select("id,name,address,grade,latitude,longitude").by_distance(:origin => [latitude,longitude]).paginate(:page => params[:page], :per_page => 10)
     else
       hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select('id,name,address,grade,latitude,longitude').paginate(:page => params[:page], :per_page => 5)
     end
