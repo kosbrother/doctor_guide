@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(version: 20160113041644) do
     t.integer  "doctor_id",       limit: 4
     t.integer  "hospital_id",     limit: 4
     t.integer  "division_id",     limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.text     "div_comment",     limit: 65535
+    t.text     "dr_comment",      limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "comments", ["division_id"], name: "index_comments_on_division_id", using: :btree

@@ -45,11 +45,11 @@ describe "businessweekly_crawler" do
   end
 
   it "crawl doctor's phone" do
-    expect(@doc.phone).to eq("07-2213933")
+    expect(@doc.phone).to eq("03-9542344")
   end
 
   it "crawl doctor's address" do
-    expect(@doc.address).to eq("高雄市前金區中華四路318號1至4樓")
+    expect(@doc.address).to eq("宜蘭縣羅東鎮中正路108號")
   end
 
   it "crawl specialty" do

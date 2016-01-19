@@ -67,16 +67,16 @@ describe 'crawl doctors' do
 end
 
 describe 'set hospital and doctor relation' do
-  it 'if hospital exist assign doctor to the hospital', :clean => true do
-    h = Hospital.new
-    h.name = '衛生福利部雙和醫院'
-    h.coUrl = 'http://www.commonhealth.com.tw/medical/hospitalInfo.action?nid=546'
-    h.save
+  # it 'if hospital exist assign doctor to the hospital', :clean => true do
+  #   h = Hospital.new
+  #   h.name = '衛生福利部雙和醫院'
+  #   h.coUrl = 'http://www.commonhealth.com.tw/medical/hospitalInfo.action?nid=546'
+  #   h.save
 
-    @doc = Doctor.create(coUrl: "http://www.commonhealth.com.tw/medical/doctorInfo.action?nid=25")
-    @c = Crawler::Commonhealth.new
-    @c.fetch @doc.coUrl
-    @c.crawl_doctor_detail @doc
-    expect(@doc.hospitals.include? h).to be true
-  end
+  #   @doc = Doctor.create(coUrl: "http://www.commonhealth.com.tw/medical/doctorInfo.action?nid=25")
+  #   @c = Crawler::Commonhealth.new
+  #   @c.fetch @doc.coUrl
+  #   @c.crawl_doctor_detail @doc
+  #   expect(@doc.hospitals.include? h).to be true
+  # end
 end

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :doctors
+  resources :divisions
+  resources :divisions
+  resources :hospitals
+  resources :comments
   root "hello_world#index"
   
   namespace :api do
