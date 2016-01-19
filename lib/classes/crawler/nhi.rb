@@ -37,7 +37,7 @@ class Crawler::Nhi
     hosp.ss = services
 
     divs.each do |div|
-      division = Division.find_or_initialize_by(name: div)
+      division = Division.find_or_initialize_by(name: div.strip.gsub('‍',""))
       division.save
       hosp.divisions << division
     end

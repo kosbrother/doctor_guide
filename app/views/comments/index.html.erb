@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Comments</h1>
+
+<%= link_to '醫院列表', hospitals_path %>
+
+<%= will_paginate @comments %>
+<table>
+  <thead>
+    <tr>
+      <th>醫院</th>
+      <th>科別</th>
+      <th>醫師</th>
+      <th>科別評分</th>
+      <th>科別評論</th>
+      <th>醫師評分</th>
+      <th>醫師評論</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.hospital.name %></td>
+        <td><%= comment.division.name %></td>
+        <td><%= comment.doctor.name %></td>
+        <td><%= "環境衛生:#{comment.div_environment}, 醫療設備:#{comment.div_equipment},醫護專業:#{comment.div_speciality}, 服務態厲:#{comment.div_friendly}" %></td>
+        <td style="color:red;"><%= comment.div_comment %></td>
+        <td><%= "醫師態度:#{comment.dr_friendly}, 醫師專業:#{comment.dr_speciality}" %></td>
+        <td style="color:blue;"><%= comment.dr_comment %></td>
+        <td><%= link_to 'Show', comment %></td>
+        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @comments %>

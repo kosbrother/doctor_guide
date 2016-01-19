@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<dl>
+  <dt>醫師名稱</dt>
+  <dd><%= @doctor.name %></dd>
+  <dt>phone</dt>
+  <dd><%= @doctor.phone %></dd>
+  <dt>address</dt>
+  <dd><%= @doctor.address %></dd>
+  <dt>exp</dt>
+  <dd><%= @doctor.exp %></dd>
+  <dt>spe</dt>
+  <dd><%= @doctor.spe %></dd>
+</dl>
+
+<%= link_to '修改醫師', edit_doctor_path(@doctor,division_id: params[:division_id],hospital_id: params[:hospital_id]) %> |
+<%= link_to '回科別頁', division_path(params[:division_id],hospital_id: params[:hospital_id]) %>
