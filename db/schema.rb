@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110104607) do
+ActiveRecord::Schema.define(version: 20160113041644) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", limit: 255
@@ -23,6 +23,24 @@ ActiveRecord::Schema.define(version: 20160110104607) do
     t.datetime "updated_at",               null: false
     t.text     "intro",      limit: 65535
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "dr_friendly",     limit: 4
+    t.integer  "dr_speciality",   limit: 4
+    t.integer  "div_equipment",   limit: 4
+    t.integer  "div_environment", limit: 4
+    t.integer  "div_speciality",  limit: 4
+    t.integer  "div_friendly",    limit: 4
+    t.integer  "doctor_id",       limit: 4
+    t.integer  "hospital_id",     limit: 4
+    t.integer  "division_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "comments", ["division_id"], name: "index_comments_on_division_id", using: :btree
+  add_index "comments", ["doctor_id"], name: "index_comments_on_doctor_id", using: :btree
+  add_index "comments", ["hospital_id"], name: "index_comments_on_hospital_id", using: :btree
 
   create_table "div_hosp_doc_ships", force: :cascade do |t|
     t.integer  "doctor_id",   limit: 4
