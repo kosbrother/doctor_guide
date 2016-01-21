@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113041644) do
+ActiveRecord::Schema.define(version: 20160121094921) do
 
   create_table "areas", force: :cascade do |t|
     t.string "name", limit: 255
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160113041644) do
     t.text     "dr_comment",      limit: 65535
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.boolean  "is_recommend"
   end
 
   add_index "comments", ["division_id"], name: "index_comments_on_division_id", using: :btree
