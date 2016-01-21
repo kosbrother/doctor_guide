@@ -19,6 +19,14 @@
   <dd><%= @hospital.ss %></dd>
   <dt>營業時間</dt>
   <dd><%= @hospital.cHours%></dd>
+  <dl>
+  <dt>評論數</dt>
+  <dd><%= @hospital.comments.size %></dd>
+  <dt>推薦數</dt>
+  <dd><%= @hospital.comments.where(is_recommend: true).size %></dd>
+  <dt>分數平均</dt>
+  <dd><%= @hospital.avg_score %></dd>
+</dl>
 </dl>
 
 <table>

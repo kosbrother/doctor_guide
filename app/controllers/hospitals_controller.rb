@@ -4,7 +4,7 @@ class HospitalsController < ApplicationController
   # GET /hospitals
   # GET /hospitals.json
   def index
-    @hospitals = Hospital.paginate(:page => params[:page], :per_page => 10)
+    @hospitals = Hospital.paginate(:page => params[:page], :per_page => 50)
   end
 
   # GET /hospitals/1

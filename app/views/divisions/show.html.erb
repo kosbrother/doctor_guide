@@ -7,6 +7,12 @@
   <dd><%= @division.name %></dd>
   <dt>科別分類</dt>
   <dd><%= @division.category.name if @division.category %></dd>
+  <dt>評論數</dt>
+  <dd><%= @division.comments.where(hospital_id: @hospital.id).size %></dd>
+  <dt>推薦數</dt>
+  <dd><%= @division.comments.where(is_recommend: true,hospital_id: @hospital.id).size %></dd>
+  <dt>分數平均</dt>
+  <dd><%= @division.avg_score(@hospital.id) %></dd>
 </dl>
 
 <table>
