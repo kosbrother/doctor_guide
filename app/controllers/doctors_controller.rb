@@ -10,6 +10,7 @@ class DoctorsController < ApplicationController
   # GET /doctors/1
   # GET /doctors/1.json
   def show
+    @comments = Comment.where(doctor_id: params[:id])
   end
 
   # GET /doctors/new

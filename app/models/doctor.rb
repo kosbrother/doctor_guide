@@ -2,6 +2,7 @@ class Doctor < ActiveRecord::Base
   has_many :div_hosp_doc_ships
   has_many :hospitals, :through => :div_hosp_doc_ships
   has_many :divisions, :through => :div_hosp_doc_ships
+  has_many :comments
   belongs_to :area
 
   geocoded_by :address
@@ -12,4 +13,9 @@ class Doctor < ActiveRecord::Base
                    :distance_field_name => :distance,
                    :lat_column_name => :latitude,
                    :lng_column_name => :longitude
+
+  def avg_score
+    scores = comments.select("( AVG(dr_friendly) + AVG(dr_speciality) )/2 as avg_score")
+    scores[0].avg_score
+  end
 end
