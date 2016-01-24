@@ -11,6 +11,8 @@
   <dd><%= @doctor.exp %></dd>
   <dt>spe</dt>
   <dd><%= @doctor.spe %></dd>
+  <dt>Url</dt>
+  <dd><%=link_to @doctor.bUrl,@doctor.bUrl %></dd>
 </dl>
 
 <%= link_to '修改醫師', edit_doctor_path(@doctor,division_id: params[:division_id],hospital_id: params[:hospital_id]) %> |

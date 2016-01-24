@@ -13,6 +13,7 @@
       <th>科別評論</th>
       <th>醫師評分</th>
       <th>醫師評論</th>
+      <th>評論時間</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,6 +28,7 @@
         <td style="color:red;"><%= comment.div_comment %></td>
         <td><%= "醫師態度:#{comment.dr_friendly}, 醫師專業:#{comment.dr_speciality}" %></td>
         <td style="color:blue;"><%= comment.dr_comment %></td>
+        <td style="color:green;"><%= comment.updated_at.strftime("%Y/%m/%d") %></td>
         <td><%= link_to 'Show', comment %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
         <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
