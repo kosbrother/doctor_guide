@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124042654) do
+ActiveRecord::Schema.define(version: 20160124121613) do
 
   create_table "areas", force: :cascade do |t|
     t.string  "name",      limit: 255
@@ -41,11 +41,13 @@ ActiveRecord::Schema.define(version: 20160124042654) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.boolean  "is_recommend"
+    t.integer  "user_id",         limit: 4
   end
 
   add_index "comments", ["division_id"], name: "index_comments_on_division_id", using: :btree
   add_index "comments", ["doctor_id"], name: "index_comments_on_doctor_id", using: :btree
   add_index "comments", ["hospital_id"], name: "index_comments_on_hospital_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "div_hosp_doc_ships", force: :cascade do |t|
     t.integer  "doctor_id",   limit: 4
@@ -111,5 +113,15 @@ ActiveRecord::Schema.define(version: 20160124042654) do
   add_index "hospitals", ["latitude"], name: "index_hospitals_on_latitude", using: :btree
   add_index "hospitals", ["longitude"], name: "index_hospitals_on_longitude", using: :btree
   add_index "hospitals", ["name"], name: "index_hospitals_on_name", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "pic_url",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
 end

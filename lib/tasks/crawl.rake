@@ -49,6 +49,28 @@ namespace :crawl do
     end
   end
 
+  task :crawl_businessweekly_comment => :environment do
+    Doctor.where.not(bUrl: nil).each do |doctor|
+      @c = Crawler::Businessweekly.new
+      @c.fetch doctor.bUrl
+      @c.crawl_comment doctor
+    end
+  end
+
+  task :set_score => :environment do
+    Comment.all.each do |c|
+      params = {}
+      params["dr_friendly"] = 3 + Random.rand(3)
+      params["dr_speciality"] = 3 + Random.rand(3)
+      params["div_equipment"]  = 3 + Random.rand(3)
+      params["div_environment"]  = 3 + Random.rand(3)
+      params["div_speciality"]  = 3 + Random.rand(3)
+      params["div_friendly"]  = 3 + Random.rand(3)
+      params["is_recommend"] = true
+      c.update_columns(params)
+    end
+  end
+
   # 康健的醫師有的超過兩個 division , split it
   # Division.where('id >= 34').each do |div|
   #   if div.name.split('、').size > 1

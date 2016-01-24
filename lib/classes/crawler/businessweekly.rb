@@ -127,4 +127,32 @@ class Crawler::Businessweekly
     doctor.div_hosp_doc_ships << ship
 
   end
+
+  def crawl_comment doctor
+    nodes = @page_html.css(".commentbody")
+    nodes.each do |node|
+      node.css('.posttime').text =~ /(\d*\/\d*\/\d*)/
+      postTime = $1
+      next if postTime == "//"
+      next if postTime.nil?
+      puts postTime
+
+      contentNode = node.css('p[id^="response_id_"]').select{ |e| e['id'] =~ /response_id_\d/}[0]
+      if contentNode.text.blank?
+        contentNode = contentNode.previous.previous
+      end
+      comment = Comment.new
+      comment.doctor = doctor
+      comment.division = doctor.divisions[0]
+      comment.hospital = doctor.hospitals[0]
+      comment.dr_comment = contentNode.text
+      comment.save
+      update = Date.strptime(postTime, "%Y/%m/%d")
+      comment.update_column(:updated_at, update)
+      user = User.new
+      user.name = node.css('.posttime a').text
+      user.save
+      comment.update_column(:user_id, user.id)
+    end
+  end
 end
