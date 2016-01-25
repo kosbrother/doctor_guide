@@ -7,7 +7,7 @@ class Division < ActiveRecord::Base
   has_many :comments
 
   def avg_score(hospital_id)
-    scores = comments.where(hospital_id: hospital_id).select("( AVG(div_equipment) + AVG(div_environment) + AVG(div_speciality) + AVG(div_friendly) )/4 as avg_score")
-    scores[0].avg_score
+    scores = comments.where(hospital_id: hospital_id, division_id: id).select("( AVG(div_equipment) + AVG(div_environment) + AVG(div_speciality) + AVG(div_friendly) )/4 as avg_score")
+    (scores[0].avg_score.nil?) ? 0 : scores[0].avg_score
   end
 end

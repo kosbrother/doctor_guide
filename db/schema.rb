@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124121613) do
+ActiveRecord::Schema.define(version: 20160125060135) do
 
   create_table "areas", force: :cascade do |t|
     t.string  "name",      limit: 255
@@ -71,48 +71,60 @@ ActiveRecord::Schema.define(version: 20160124121613) do
   add_index "divisions", ["category_id"], name: "index_divisions_on_category_id", using: :btree
 
   create_table "doctors", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "phone",      limit: 255
-    t.string   "address",    limit: 255
-    t.text     "exp",        limit: 65535
-    t.text     "spe",        limit: 65535
-    t.string   "coUrl",      limit: 255
-    t.string   "bUrl",       limit: 255
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.integer  "area_id",    limit: 4
-    t.decimal  "latitude",                 precision: 10, scale: 6
-    t.decimal  "longitude",                precision: 10, scale: 6
+    t.string   "name",          limit: 255
+    t.string   "phone",         limit: 255
+    t.string   "address",       limit: 255
+    t.text     "exp",           limit: 65535
+    t.text     "spe",           limit: 65535
+    t.string   "coUrl",         limit: 255
+    t.string   "bUrl",          limit: 255
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "area_id",       limit: 4
+    t.decimal  "latitude",                    precision: 10, scale: 6
+    t.decimal  "longitude",                   precision: 10, scale: 6
+    t.integer  "comment_num",   limit: 4
+    t.integer  "recommend_num", limit: 4
+    t.decimal  "avg",                         precision: 10, scale: 6
   end
 
   add_index "doctors", ["area_id"], name: "index_doctors_on_area_id", using: :btree
+  add_index "doctors", ["avg"], name: "index_doctors_on_avg", using: :btree
+  add_index "doctors", ["comment_num"], name: "index_doctors_on_comment_num", using: :btree
   add_index "doctors", ["latitude"], name: "index_doctors_on_latitude", using: :btree
   add_index "doctors", ["longitude"], name: "index_doctors_on_longitude", using: :btree
   add_index "doctors", ["name"], name: "index_doctors_on_name", using: :btree
+  add_index "doctors", ["recommend_num"], name: "index_doctors_on_recommend_num", using: :btree
 
   create_table "hospitals", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "phone",      limit: 255
-    t.string   "address",    limit: 255
-    t.string   "grade",      limit: 255
-    t.string   "assess",     limit: 255
-    t.string   "nhiUrl",     limit: 255
-    t.string   "code",       limit: 255
-    t.string   "coUrl",      limit: 255
+    t.string   "name",          limit: 255
+    t.string   "phone",         limit: 255
+    t.string   "address",       limit: 255
+    t.string   "grade",         limit: 255
+    t.string   "assess",        limit: 255
+    t.string   "nhiUrl",        limit: 255
+    t.string   "code",          limit: 255
+    t.string   "coUrl",         limit: 255
     t.boolean  "on"
-    t.text     "cHours",     limit: 65535
-    t.text     "ss",         limit: 65535
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.integer  "area_id",    limit: 4
-    t.decimal  "latitude",                 precision: 10, scale: 6
-    t.decimal  "longitude",                precision: 10, scale: 6
+    t.text     "cHours",        limit: 65535
+    t.text     "ss",            limit: 65535
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "area_id",       limit: 4
+    t.decimal  "latitude",                    precision: 10, scale: 6
+    t.decimal  "longitude",                   precision: 10, scale: 6
+    t.integer  "comment_num",   limit: 4
+    t.integer  "recommend_num", limit: 4
+    t.decimal  "avg",                         precision: 10, scale: 6
   end
 
   add_index "hospitals", ["area_id"], name: "index_hospitals_on_area_id", using: :btree
+  add_index "hospitals", ["avg"], name: "index_hospitals_on_avg", using: :btree
+  add_index "hospitals", ["comment_num"], name: "index_hospitals_on_comment_num", using: :btree
   add_index "hospitals", ["latitude"], name: "index_hospitals_on_latitude", using: :btree
   add_index "hospitals", ["longitude"], name: "index_hospitals_on_longitude", using: :btree
   add_index "hospitals", ["name"], name: "index_hospitals_on_name", using: :btree
+  add_index "hospitals", ["recommend_num"], name: "index_hospitals_on_recommend_num", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",       limit: 255

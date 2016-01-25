@@ -9,9 +9,9 @@ class Api::V1::DoctorsController < Api::ApiController
     divs = Division.joins(:div_hosp_doc_ships).where("divisions.category_id = #{category_id}").select('doctor_id').uniq{|x| x.doctor_id}
     doc_ids = divs.map{|item| item["doctor_id"].to_i}.join(",")
     if latitude && longitude
-      doctors = Doctor.joins(:hospitals).where("doctors.id in (#{doc_ids}) and doctors.area_id = #{area_id}").select("doctors.id,doctors.name,hospitals.name as hospital,doctors.latitude,doctors.longitude").uniq{|x| x.doctor_id}.by_distance(:origin => [latitude,longitude]).paginate(:page => params[:page], :per_page => 10)
+      doctors = Doctor.joins(:hospitals).where("doctors.id in (#{doc_ids}) and doctors.area_id = #{area_id}").select("doctors.id,doctors.name,hospitals.name as hospital,doctors.latitude,doctors.longitude,doctors.comment_num,doctors.recommend_num,doctors.avg").uniq{|x| x.doctor_id}.by_distance(:origin => [latitude,longitude]).paginate(:page => params[:page], :per_page => 10)
     else
-      doctors = Doctor.joins(:hospitals).where("doctors.id in (#{doc_ids}) and doctors.area_id = #{area_id}").select('doctors.id,doctors.name,hospitals.name as hospital,doctors.latitude,doctors.longitude').uniq{|x| x.doctor_id}.paginate(:page => params[:page], :per_page => 5)
+      doctors = Doctor.joins(:hospitals).where("doctors.id in (#{doc_ids}) and doctors.area_id = #{area_id}").select('doctors.id,doctors.name,hospitals.name as hospital,doctors.latitude,doctors.longitude,doctors.comment_num,doctors.recommend_num,doctors.avg').uniq{|x| x.doctor_id}.paginate(:page => params[:page], :per_page => 5)
     end
     render :json => doctors
   end

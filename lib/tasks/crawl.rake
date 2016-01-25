@@ -71,6 +71,28 @@ namespace :crawl do
     end
   end
 
+  task :set_model_score => :environment do
+    Hospital.find_in_batches.each do |hospitals|
+      hospitals.each do |hospital|
+        params = {}
+        params["comment_num"] = hospital.comments.size
+        params["recommend_num"] = hospital.comments.where(is_recommend: true).size
+        params["avg"] = hospital.avg_score
+        hospital.update_columns(params)
+      end
+    end
+
+    Doctor.find_in_batches.each do |doctors|
+      doctors.each do |doctor|
+        params = {}
+        params["comment_num"] = doctor.comments.size
+        params["recommend_num"] = doctor.comments.where(is_recommend: true).size
+        params["avg"] = doctor.avg_score
+        doctor.update_columns(params)
+      end
+    end
+  end
+
   # 康健的醫師有的超過兩個 division , split it
   # Division.where('id >= 34').each do |div|
   #   if div.name.split('、').size > 1

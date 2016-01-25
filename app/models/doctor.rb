@@ -16,6 +16,6 @@ class Doctor < ActiveRecord::Base
 
   def avg_score
     scores = comments.select("( AVG(dr_friendly) + AVG(dr_speciality) )/2 as avg_score")
-    scores[0].avg_score
+    (scores[0].avg_score.nil?) ? 0 : scores[0].avg_score
   end
 end
