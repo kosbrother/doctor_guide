@@ -5,13 +5,14 @@ class Api::V1::HospitalsController < Api::ApiController
     category_id = params[:category_id]
     latitude = params[:latitude]
     longitude = params[:longitude]
+    order = params[:order]
 
     divs = Division.joins(:div_hosp_doc_ships).where("divisions.category_id = #{category_id}").select('hospital_id').uniq{|x| x.hospital_id}
     hosp_ids = divs.map{|item| item["hospital_id"].to_i}.join(",")
-    if latitude && longitude
+    if order == 'distance'
       hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select("id,name,address,grade,latitude,longitude,comment_num,recommend_num,avg").by_distance(:origin => [latitude,longitude]).paginate(:page => params[:page], :per_page => 10)
     else
-      hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select('id,name,address,grade,latitude,longitude,comment_num,recommend_num,avg').paginate(:page => params[:page], :per_page => 5)
+      hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select('id,name,address,grade,latitude,longitude,comment_num,recommend_num,avg').order("#{order} desc").paginate(:page => params[:page], :per_page => 5)
     end
     render :json => hopitals
   end
