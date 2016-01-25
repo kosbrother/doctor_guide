@@ -17,6 +17,9 @@ Rails.application.routes.draw do
         end
       end
       resources :doctors,:only => [:show] do
+        member do
+          get 'score'
+        end 
         collection do
           get 'by_area_category'
           get 'by_hospital_division'

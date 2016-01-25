@@ -45,4 +45,12 @@ class Api::V1::DoctorsController < Api::ApiController
     doctor[:divisions] = divs
     render :json => doctor
   end
+
+  def score
+    doctor = Doctor.find(params[:id])
+    d_json = doctor.as_json(only: [:id,:name,:comment_num,:recommend_num,:avg])
+    d_json[:avg_friendly] = doctor.avg_friendly
+    d_json[:avg_speciality] = doctor.avg_speciality
+    render :json => d_json
+  end
 end
