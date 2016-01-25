@@ -12,7 +12,7 @@ class Api::V1::HospitalsController < Api::ApiController
     if order == 'distance'
       hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select("id,name,address,grade,latitude,longitude,comment_num,recommend_num,avg").by_distance(:origin => [latitude,longitude]).paginate(:page => params[:page], :per_page => 10)
     else
-      hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select('id,name,address,grade,latitude,longitude,comment_num,recommend_num,avg').order("#{order} desc").paginate(:page => params[:page], :per_page => 5)
+      hopitals = Hospital.where("id in (#{hosp_ids}) and area_id = #{area_id}").select('id,name,address,grade,latitude,longitude,comment_num,recommend_num,avg').order("#{order} desc").paginate(:page => params[:page], :per_page => 10)
     end
     render :json => hopitals
   end
