@@ -18,8 +18,11 @@ class Division < ActiveRecord::Base
       AVG(div_equipment) as avg_equipment,
       AVG(div_environment) as avg_environment,
       AVG(div_speciality) as avg_speciality,
-      AVG(div_friendly) as avg_friendly")
-    score = scores[0].as_json(only: [:avg,:comment_num,:avg_equipment,:avg_environment,:avg_speciality,:avg_friendly])
+      AVG(div_friendly) as avg_friendly,
+      ( AVG(dr_friendly) + AVG(dr_speciality) )/2 as dr_avg_score,
+      AVG(dr_friendly) as dr_avg_friendly,
+      AVG(dr_speciality) as dr_avg_speciality")
+    score = scores[0].as_json(only: [:avg,:comment_num,:avg_equipment,:avg_environment,:avg_speciality,:avg_friendly,:dr_avg_score,:dr_avg_friendly,:dr_avg_speciality])
     score["avg"] = 0 if score["avg"].nil?
     score["avg_equipment"] = 0 if score["avg_equipment"].nil? 
     score["avg_environment"] = 0 if score["avg_environment"].nil? 
