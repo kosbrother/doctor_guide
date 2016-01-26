@@ -26,6 +26,7 @@ class Division < ActiveRecord::Base
     score["avg_speciality"] = 0 if score["avg_speciality"].nil? 
     score["avg_friendly"] = 0 if score["avg_friendly"].nil? 
     score["recommend_num"] = comments.where(hospital_id: hospital_id, division_id: id, is_recommend: true).size
+    score["id"] = id
     score
   end
 end
