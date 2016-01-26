@@ -20,4 +20,10 @@ class Api::V1::DivisionsController < Api::ApiController
     end
     render :json => divisions
   end
+
+  def score
+    hospital_id = params[:hospital_id]
+    division = Division.find(params[:id])
+    render :json => division.score_json(hospital_id)
+  end
 end

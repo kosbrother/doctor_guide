@@ -26,6 +26,9 @@ Rails.application.routes.draw do
         end
       end
       resources :divisions,:only => [] do
+        member do
+          get 'score'
+        end
         collection do
           get 'by_hospital_category'
           get 'by_hospital'
