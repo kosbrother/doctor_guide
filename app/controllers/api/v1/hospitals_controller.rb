@@ -18,7 +18,7 @@ class Api::V1::HospitalsController < Api::ApiController
   end
 
   def show
-    hospital = Hospital.find(params[:id]).as_json(only: [:id,:name,:phone,:address,:grade,:assess,:ss,:cHours])
+    hospital = Hospital.find(params[:id]).as_json(only: [:id,:name,:phone,:address,:grade,:assess,:ss,:cHours,:recommend_num,:comment_num,:avg])
     divisions = DivHospDocShip.joins(:hospital,:division).where("div_hosp_doc_ships.hospital_id = #{params[:id]} and doctor_id is not null").select("DISTINCT(divisions.id), divisions.id,divisions.name,divisions.category_id,hospitals.id as hospital_id, hospitals.name as hospital_name, hospitals.grade as hospital_grade")
     divisions = DivHospDocShip.joins(:hospital,:division).where("div_hosp_doc_ships.hospital_id = #{params[:id]}").select("DISTINCT(divisions.id), divisions.id,divisions.name,divisions.category_id,hospitals.id as hospital_id, hospitals.name as hospital_name, hospitals.grade as hospital_grade") if divisions.length == 0
     hospital[:divisions] = divisions
