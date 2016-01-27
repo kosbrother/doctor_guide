@@ -24,4 +24,9 @@ class Api::V1::HospitalsController < Api::ApiController
     hospital[:divisions] = divisions
     render :json => hospital
   end
+
+  def score
+    hospital = Hospital.find(params[:id]).as_json(only: [:id,:name,:recommend_num,:comment_num,:avg])
+    render :json => hospital
+  end
 end

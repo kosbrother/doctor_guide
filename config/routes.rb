@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       resources :areas, :only => [:index]
       resources :categories, :only => [:index]
       resources :hospitals,:only => [:show] do
+        member do
+          get 'score'
+        end 
         collection do
           get 'by_area_category'
         end
