@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   namespace :api do
     get 'status_check' => 'api#status_check'
     namespace :v1 do
+      resources :comments,:only => [:show]
       resources :areas, :only => [:index]
       resources :categories, :only => [:index]
       resources :hospitals,:only => [:show] do
+        resources :comments,:only => [:index]
         member do
           get 'score'
         end 
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
         end
       end
       resources :doctors,:only => [:show] do
+        resources :comments,:only => [:index]
         member do
           get 'score'
         end 
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
         end
       end
       resources :divisions,:only => [] do
+        resources :comments,:only => [:index]
         member do
           get 'score'
         end
