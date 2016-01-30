@@ -38,4 +38,40 @@ class Api::V1::HospitalsController < Api::ApiController
     hospital = Hospital.find(params[:id]).as_json(only: [:id,:name,:recommend_num,:comment_num,:avg])
     render :json => hospital
   end
+
+  def divisions_with_doctors
+    ships = DivHospDocShip.joins(:doctor,:division).where("div_hosp_doc_ships.hospital_id = #{params[:id]} and doctor_id is not null").select('
+      divisions.id, divisions.name, doctors.id as doctor_id, doctors.name as doctor_name
+      ')
+    divisions = parse_division_with_doctor_json ships
+    
+    if divisions.length == 0
+      ships = DivHospDocShip.joins(:division).where("div_hosp_doc_ships.hospital_id = #{params[:id]}").select('divisions.id, divisions.name')
+      render :json => ships
+    else
+      render :json => divisions
+    end
+  end
+  
+  private
+
+  def parse_division_with_doctor_json ships
+    divisions = []
+    groups = ships.group_by{|x| x.id }
+    groups.each do |key,array|
+      division = {}
+      division[:id] = key
+      division[:name] = array.first.name
+      doctors = []
+      array.each do |v|
+        doctor = {}
+        doctor[:id] = v.doctor_id
+        doctor[:name] = v.doctor_name
+        doctors.push(doctor)
+      end
+      division[:doctors] = doctors
+      divisions.push(division)
+    end
+    divisions
+  end
 end

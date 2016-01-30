@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         resources :comments,:only => [:index]
         member do
           get 'score'
+          get 'divisions_with_doctors'
         end 
         collection do
           get 'by_area_category'

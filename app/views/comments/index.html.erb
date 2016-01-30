@@ -6,6 +6,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>醫院</th>
       <th>科別</th>
       <th>醫師</th>
@@ -21,6 +22,7 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
+        <td><%= comment.id %></td>
         <td><%= comment.hospital.name %></td>
         <td><%= comment.division.name %></td>
         <td><%= comment.doctor.name %></td>
