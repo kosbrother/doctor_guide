@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'status_check' => 'api#status_check'
     namespace :v1 do
       resources :users, :only => [:create]
-      resources :comments,:only => [:show,:create]
+      resources :comments,:only => [:show,:create,:update]
       resources :areas, :only => [:index]
       resources :categories, :only => [:index]
       resources :hospitals,:only => [:show] do
