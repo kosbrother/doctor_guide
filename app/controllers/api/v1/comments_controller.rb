@@ -47,6 +47,22 @@ class Api::V1::CommentsController < Api::ApiController
     end
   end
 
+  def user_comments
+    user = User.find_by(email: params[:user])
+    comments = user.comments.includes(:doctor,:hospital,:division,:commentor).select('
+        comments.id,dr_friendly,dr_speciality,div_equipment,div_environment,div_speciality,div_friendly,doctor_id,hospital_id,division_id,div_comment,dr_comment,is_recommend,user_id,updated_at')
+    comments_json = []
+    comments.each do |comment|
+      c_hash = comment.attributes
+      (comment.commentor) ? c_hash[:user_name] = comment.commentor.name : c_hash[:user_name] = nil
+      (comment.hospital) ? c_hash[:hospital_name] = comment.hospital.name : c_hash[:hospital_name] = nil
+      (comment.division) ? c_hash[:division_name] = comment.division.name : c_hash[:division_name] = nil
+      (comment.doctor) ? c_hash[:doctor_name] = comment.doctor.name : c_hash[:doctor_name] = nil
+      comments_json.push(c_hash)
+    end
+    render :json => comments_json
+  end
+
   private
 
   def set_comment_params comment,params
