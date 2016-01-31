@@ -15,4 +15,32 @@ class Api::V1::CommentsController < Api::ApiController
     comment = Comment.select_comment.find(params[:id])
     render :json => comment
   end
+
+  def create
+    user = User.find_by(email: params[:user])
+
+    if user.present?
+      comment = user.comments.new
+      comment.dr_speciality = params[:dr_speciality]
+      comment.dr_friendly = params[:dr_friendly]
+      comment.div_equipment = params[:div_equipment]
+      comment.div_environment = params[:div_environment]
+      comment.div_speciality = params[:div_speciality]
+      comment.div_friendly = params[:div_friendly]
+      comment.doctor_id = params[:doctor_id]
+      comment.hospital_id = params[:hospital_id]
+      comment.division_id = params[:division_id]
+      comment.div_comment = params[:div_comment]
+      comment.dr_comment = params[:dr_comment]
+      comment.is_recommend = params[:is_recommend]
+
+      if comment.save
+        render :status=>200, :json => {"message" => "success"}
+      else
+        render :status=>404, :json => {"message" => "fail"}
+      end
+    else
+      render :status=>404, :json => {"message" => "not find user"}
+    end
+  end
 end
