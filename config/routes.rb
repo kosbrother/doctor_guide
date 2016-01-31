@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace :api do
     get 'status_check' => 'api#status_check'
     namespace :v1 do
+      resources :users, :only => [:create]
       resources :comments,:only => [:show]
       resources :areas, :only => [:index]
       resources :categories, :only => [:index]
