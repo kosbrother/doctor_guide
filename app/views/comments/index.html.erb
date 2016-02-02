@@ -22,18 +22,23 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.id %></td>
-        <td><%= comment.hospital.name %></td>
-        <td><%= comment.division.name %></td>
-        <td><%= comment.doctor.name %></td>
-        <td><%= "環境衛生:#{comment.div_environment}, 醫療設備:#{comment.div_equipment},醫護專業:#{comment.div_speciality}, 服務態厲:#{comment.div_friendly}" %></td>
+        <td style="width:10px"><%= comment.id %></td>
+        <td style="width:80px"><%= comment.hospital.name %></td>
+        <td style="width:80px"><%= comment.division.name %></td>
+        <td style="width:80px"><%= comment.doctor.name %></td>
+        <td style="width:100px"><%= "環境衛生:#{comment.div_environment}"%><br>
+                                <%= "醫療設備:#{comment.div_equipment}"%><br>
+                                <%= "醫護專業:#{comment.div_speciality}"%><br>
+                                <%= "服務態厲:#{comment.div_friendly}"%><br>
+        </td>
         <td style="color:red;"><%= comment.div_comment %></td>
-        <td><%= "醫師態度:#{comment.dr_friendly}, 醫師專業:#{comment.dr_speciality}" %></td>
+        <td style="width:100px">
+          <%= "醫師態度:#{comment.dr_friendly}"%><br>
+          <%= "醫師專業:#{comment.dr_speciality}"%><br>
         <td style="color:blue;"><%= comment.dr_comment %></td>
         <td style="color:green;"><%= comment.updated_at.strftime("%Y/%m/%d") %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_comment_path(comment,page: params[:page]) %></td>
+        <td><%= link_to 'Destroy', comment_path(comment,page: params[:page]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

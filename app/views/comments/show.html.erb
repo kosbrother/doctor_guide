@@ -27,5 +27,5 @@
   <dd><%= @comment.dr_comment %></dd>
 </dl>
 
-<%= link_to '修改', edit_comment_path(@comment) %> |
+<%= link_to '修改', edit_comment_path(@comment,page: params[:page]) %> |
 <%= link_to '回醫師頁', doctor_path(@comment.doctor_id,hospital_id: @comment.hospital_id,division_id: @comment.division_id) %>

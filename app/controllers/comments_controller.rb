@@ -47,7 +47,13 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update_columns(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html {
+          if(params[:page].present?)
+            redirect_to comments_path(page: params[:page]),notice: 'Comment was successfully updated.'
+          else
+            redirect_to @comment, notice: 'Comment was successfully updated.'
+          end
+        }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -61,7 +67,13 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to doctor_path(@comment.doctor_id,hospital_id: @comment.hospital_id,division_id: @comment.division_id), notice: 'Comment was successfully destroyed.' }
+      format.html { 
+        if(params[:page].present?)
+          redirect_to comments_path(page: params[:page]), notice: 'Comment was successfully destroyed.'
+        else
+          redirect_to doctor_path(@comment.doctor_id,hospital_id: @comment.hospital_id,division_id: @comment.division_id), notice: 'Comment was successfully destroyed.' 
+        end
+      }
       format.json { head :no_content }
     end
   end

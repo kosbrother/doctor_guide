@@ -11,6 +11,9 @@
     </div>
   <% end %>
   <div class="field">
+    <%= text_field "", :page, :value => params[:page], :style => "display:none" %>
+  </div>
+  <div class="field">
     <%= f.label :doctor_id %><br>
     <%= f.text_field :doctor_id,:value => @doctor.id %>
     <%= @doctor.name %>
