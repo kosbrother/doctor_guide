@@ -19,7 +19,7 @@ class Api::V1::CommentsController < Api::ApiController
   def create
     user = User.find_by(email: params[:user])
 
-    if params[:user] != null && user.present?
+    if (params[:user] != nil && user.present?)
       comment = user.comments.new
       set_comment_params comment,params
 
