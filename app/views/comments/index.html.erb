@@ -15,6 +15,7 @@
       <th>醫師評分</th>
       <th>醫師評論</th>
       <th>評論時間</th>
+      <th>評論人</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,18 +26,23 @@
         <td style="width:10px"><%= comment.id %></td>
         <td style="width:80px"><%= comment.hospital.name %></td>
         <td style="width:80px"><%= comment.division.name %></td>
-        <td style="width:80px"><%= comment.doctor.name %></td>
+        <% if comment.doctor %>
+          <td style="width:80px"><%= comment.doctor.name %></td>
+        <% else %>
+          <td style="width:80px; color:red;">未評論醫生</td>
+        <% end %>
         <td style="width:100px"><%= "環境衛生:#{comment.div_environment}"%><br>
                                 <%= "醫療設備:#{comment.div_equipment}"%><br>
                                 <%= "醫護專業:#{comment.div_speciality}"%><br>
                                 <%= "服務態厲:#{comment.div_friendly}"%><br>
         </td>
-        <td style="color:red;"><%= comment.div_comment %></td>
+        <td style="color:blue;"><%= comment.div_comment %></td>
         <td style="width:100px">
           <%= "醫師態度:#{comment.dr_friendly}"%><br>
           <%= "醫師專業:#{comment.dr_speciality}"%><br>
         <td style="color:blue;"><%= comment.dr_comment %></td>
         <td style="color:green;"><%= comment.updated_at.strftime("%Y/%m/%d") %></td>
+        <td style="width:80px;color:orange;"><%= comment.commentor.name %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment,page: params[:page]) %></td>
         <td><%= link_to 'Destroy', comment_path(comment,page: params[:page]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
