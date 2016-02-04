@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   resources :divisions
   resources :hospitals
   resources :comments
+  resources :feedbacks
   root "hello_world#index"
   
   namespace :api do
     get 'status_check' => 'api#status_check'
     namespace :v1 do
+      resources :feedbacks, :only => [:create]
       resources :users, :only => [:create]
       resources :comments,:only => [:show,:create,:update] do
         collection do
