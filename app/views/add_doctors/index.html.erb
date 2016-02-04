@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing 新增醫師</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>醫師名</th>
+      <th>醫院名</th>
+      <th>科別名</th>
+      <th>專長</th>
+      <th>經驗</th>
+      <th>醫院id</th>
+      <th>科別id</th>
+      <th>checked</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doctors.each do |doctor| %>
+      <tr>
+        <td><%= doctor.name %></td>
+        <td><%= doctor.hospital_name %></td>
+        <td><%= doctor.division_name %></td>
+        <td><%= doctor.spe %></td>
+        <td><%= doctor.exp %></td>
+        <td><%= doctor.hospital_id %></td>
+        <td><%= doctor.division_id %></td>
+        <td><%= doctor.is_checked %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

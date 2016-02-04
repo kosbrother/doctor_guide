@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   resources :comments
   resources :feedbacks
   resources :problems
+  resources :add_doctors
   root "hello_world#index"
   
   namespace :api do
     get 'status_check' => 'api#status_check'
     namespace :v1 do
+      resources :add_doctors, :only => [:create]
       resources :feedbacks, :only => [:create]
       resources :problems, :only => [:create]
       resources :users, :only => [:create]
