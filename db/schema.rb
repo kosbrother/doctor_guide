@@ -111,9 +111,9 @@ ActiveRecord::Schema.define(version: 20160204120905) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "subject",    limit: 255
-    t.string   "content",    limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "hospitals", force: :cascade do |t|

@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   resources :problems
   resources :add_doctors
   root "hello_world#index"
-  
+
+  get 'search_doctors', to: 'search#search_doctors'
+  get 'search_hospitals', to: 'search#search_hospitals'
+
   namespace :api do
     get 'status_check' => 'api#status_check'
     namespace :v1 do

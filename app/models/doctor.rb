@@ -1,4 +1,9 @@
+require 'elasticsearch/model'
+
 class Doctor < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   has_many :div_hosp_doc_ships
   has_many :hospitals, :through => :div_hosp_doc_ships
   has_many :divisions, :through => :div_hosp_doc_ships
@@ -28,3 +33,5 @@ class Doctor < ActiveRecord::Base
     (scores[0].avg_score.nil?) ? 0 : scores[0].avg_score
   end
 end
+
+Doctor.import force: true
