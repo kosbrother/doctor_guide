@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   namespace :api do
     get 'status_check' => 'api#status_check'
     namespace :v1 do
+      get 'search_doctors/:q' => 'search#search_doctors'      
+      get 'search_hospitals/:q' => 'search#search_hospitals'
       resources :add_doctors, :only => [:create]
       resources :feedbacks, :only => [:create]
       resources :problems, :only => [:create]
