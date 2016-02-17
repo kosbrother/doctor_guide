@@ -47,7 +47,7 @@
   </div>
   <div class="field">
     <%= f.label :div_comment,"科別評論" %><br>
-    <%= f.text_area :div_comment %>
+    <%= f.text_area :div_comment, cols: "30", rows: "10" %>
   </div>
 ########################## 醫師評論  ############################
   <div class="field">
@@ -60,7 +60,7 @@
   </div>
   <div class="field">
     <%= f.label :dr_comment,"醫師評論" %><br>
-    <%= f.text_area :dr_comment %>
+    <%= f.text_area :dr_comment, cols: "30", rows: "10" %>
   </div>
   <div class="actions">
     <%= f.submit %>
