@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  after_save :update_score
+
   belongs_to :doctor
   belongs_to :hospital
   belongs_to :division
@@ -11,5 +13,22 @@ class Comment < ActiveRecord::Base
 
   def comment_date
     updated_at.localtime.strftime("%Y/%m/%d")
+  end
+
+  def update_score
+    if doctor_id != nil
+      params = {}
+      params["comment_num"] = doctor.comments.size
+      params["recommend_num"] = doctor.comments.where(is_recommend: true).size
+      params["avg"] = doctor.avg_score
+      doctor.update_columns(params)
+    end
+    if hospital_id != nil
+      params = {}
+      params["comment_num"] = hospital.comments.size
+      params["recommend_num"] = hospital.comments.where(is_recommend: true).size
+      params["avg"] = hospital.avg_score
+      hospital.update_columns(params)
+    end
   end
 end
