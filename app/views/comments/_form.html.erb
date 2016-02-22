@@ -63,8 +63,8 @@
     <%= f.text_area :dr_comment, cols: "30", rows: "10" %>
   </div>
   <div class="field">
-    <%= f.label :is_recommend,"推薦" %><br>
-    <%= f.text_field :is_recommend%>
+    <%= f.label :is_recommend,"是否推薦醫師" %>
+    <%= f.check_box :is_recommend%>
   </div>
   <div class="actions">
     <%= f.submit %>
