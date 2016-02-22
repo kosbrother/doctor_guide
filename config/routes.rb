@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'search_doctors', to: 'search#search_doctors'
   get 'search_hospitals', to: 'search#search_hospitals'
+  get 'import_doctors', to: 'import_data#import_doctors'
+  get 'import_hospitals', to: 'import_data#import_hospitals'
 
   namespace :api do
     get 'status_check' => 'api#status_check'

@@ -28,4 +28,4 @@ class Hospital < ActiveRecord::Base
   end
 end
 
-Hospital.import force: true
+#Hospital.import force: true
