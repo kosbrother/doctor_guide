@@ -16,6 +16,7 @@
       <th>醫師評論</th>
       <th>評論時間</th>
       <th>評論人</th>
+      <th>推薦</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -43,6 +44,7 @@
         <td style="color:blue;"><%= comment.dr_comment %></td>
         <td style="color:green;"><%= comment.updated_at.strftime("%Y/%m/%d") %></td>
         <td style="width:80px;color:orange;"><%= comment.commentor.name %></td>
+        <td style="width:10px;color:red;"><%= comment.is_recommend %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment,page: params[:page]) %></td>
         <td><%= link_to 'Destroy', comment_path(comment,page: params[:page]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
