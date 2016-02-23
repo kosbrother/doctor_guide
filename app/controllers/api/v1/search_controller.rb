@@ -6,7 +6,7 @@ class Api::V1::SearchController < Api::ApiController
       repository = Elasticsearch::Persistence::Repository.new
       repository.index = "doctors_index"
       repository.type = 'doctor'
-      doctors = repository.search(query: { match: { name: params[:q] } })   
+      doctors = repository.search({query: { match: { name: params[:q] } }, size: 30})   
     end
     render :json => doctors.to_json(:methods => [:hospital_name, :hospital_id]) 
   end
@@ -17,7 +17,7 @@ class Api::V1::SearchController < Api::ApiController
       repository = Elasticsearch::Persistence::Repository.new
       repository.index = "hospitals_index"
       repository.type = 'hospital'
-      hospitals = repository.search(query: { match: { name: params[:q] } })
+      hospitals = repository.search({query: { match: { name: params[:q] } }, size: 30})
     end
     render :json => hospitals
   end  

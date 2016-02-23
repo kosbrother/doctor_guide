@@ -1,18 +1,18 @@
+# encoding: utf-8
 require 'elasticsearch/persistence'
-class ImportDataController < ApplicationController
-  def import_doctors
+namespace :elasticsearch do
+  task :import_doctors => :environment do
     repository = Elasticsearch::Persistence::Repository.new
     repository.index = "doctors_index"
     repository.type = 'doctor'
     repository.create_index! force: true
-    doctors = DivHospDocShip.uniq{|x| x.doctor_id}.limit(100).joins(:doctor, :hospital).select('doctors.id,doctors.name,hospitals.name as hospital_name,hospitals.id as hospital_id,doctors.latitude,doctors.longitude,doctors.comment_num,doctors.recommend_num,doctors.avg')
+    doctors = DivHospDocShip.uniq{|x| x.doctor_id}.joins(:doctor, :hospital).select('doctors.id,doctors.name,hospitals.name as hospital_name,hospitals.id as hospital_id,doctors.latitude,doctors.longitude,doctors.comment_num,doctors.recommend_num,doctors.avg')
     doctors.each do |v|
       repository.save(v.as_json)
     end
-    render :json => "success"
+    puts "success"
   end
-  
-  def import_hospitals
+  task :import_hospitals => :environment do
     repository = Elasticsearch::Persistence::Repository.new
     repository.index = "hospitals_index"
     repository.type = 'hospital'
@@ -22,6 +22,6 @@ class ImportDataController < ApplicationController
     hospitals.each do |v|
       repository.save(v.as_json)
     end
-    render :json => "success"
-  end  
+    puts "success"
+  end
 end
