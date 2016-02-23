@@ -86,6 +86,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:doctor_id, :hospital_id, :division_id, :div_equipment, :div_environment, :div_speciality, :div_friendly, :div_comment, :dr_friendly, :dr_speciality, :dr_comment)
+      params.require(:comment).permit(:doctor_id, :hospital_id, :division_id, :div_equipment, :div_environment, :div_speciality, :div_friendly, :div_comment, :dr_friendly, :dr_speciality, :dr_comment, :is_recommend)
     end
 end
