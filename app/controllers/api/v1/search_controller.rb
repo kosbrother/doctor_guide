@@ -8,7 +8,7 @@ class Api::V1::SearchController < Api::ApiController
       repository.type = 'doctor'
       doctors = repository.search({query: { match: { name: params[:q] } }, size: 30})   
     end
-    render :json => doctors.to_json(:methods => [:hospital_name, :hospital_id]) 
+    render :json => doctors.to_json({:method => [:hospital_name, :hospital_id], :only => [:id, :name, :hospital_name, :hospital_id, :latitude, :longitude, :comment_num, :recommend_num, :avg]}) 
   end
   def search_hospitals
     if params[:q].nil?
@@ -19,6 +19,6 @@ class Api::V1::SearchController < Api::ApiController
       repository.type = 'hospital'
       hospitals = repository.search({query: { match: { name: params[:q] } }, size: 30})
     end
-    render :json => hospitals
+    render :json => hospitals.to_json(:only => [:id, :name, :address, :grade, :latitude, :longitude, :comment_num, :recommend_num, :avg])
   end  
 end

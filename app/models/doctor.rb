@@ -11,7 +11,6 @@ class Doctor < ActiveRecord::Base
   belongs_to :area
   attr_accessor :hospital_id
   attr_accessor :hospital_name
-  attr_accessor :doctor_id
 
   geocoded_by :address
   after_validation :geocode
