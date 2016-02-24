@@ -12,7 +12,7 @@
   <% @hospitals.each do |hospital| %>
     <li>
       <h3>
-        <%= link_to hospital.name, controller: "hospitals", action: "show", id: hospital._id%>
+        <%= link_to hospital.name, controller: "hospitals", action: "show", id: hospital.id%>
       </h3>
     </li>
   <% end %>

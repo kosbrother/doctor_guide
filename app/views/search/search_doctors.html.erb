@@ -12,7 +12,7 @@
   <% @doctors.each do |doctor| %>
     <li>
       <h3>
-        <%= link_to doctor.name, controller: "doctors", action: "show", id: doctor._id%>
+        <%= link_to doctor.name, controller: "doctors", action: "show", id: doctor.id%>
       </h3>
     </li>
   <% end %>
