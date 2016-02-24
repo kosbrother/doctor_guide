@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   after_save :update_score
+  after_destroy :update_score
 
   belongs_to :doctor
   belongs_to :hospital
