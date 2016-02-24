@@ -6,7 +6,7 @@ namespace :elasticsearch do
     repository.index = "doctors_index"
     repository.type = 'doctor'
     repository.create_index! force: true
-    doctors = DivHospDocShip.uniq{|x| x.doctor_id}.joins(:doctor, :hospital).select('doctors.id,doctors.name,hospitals.name as hospital_name,hospitals.id as hospital_id,doctors.latitude,doctors.longitude,doctors.comment_num,doctors.recommend_num,doctors.avg')
+    doctors = DivHospDocShip.uniq{|x| x.doctor_id}.limit(100).joins(:doctor, :hospital).select('doctors.id,doctors.name,hospitals.name as search_hospital,hospitals.id as search_hospital_id,doctors.latitude,doctors.longitude,doctors.comment_num,doctors.recommend_num,doctors.avg')
     doctors.each do |v|
       repository.save(v.as_json)
     end

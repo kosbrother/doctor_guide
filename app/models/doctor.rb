@@ -9,8 +9,8 @@ class Doctor < ActiveRecord::Base
   has_many :divisions, :through => :div_hosp_doc_ships
   has_many :comments
   belongs_to :area
-  attr_accessor :hospital_id
-  attr_accessor :hospital_name
+  attr_accessor :search_hospital_id
+  attr_accessor :search_hospital
 
   geocoded_by :address
   after_validation :geocode
