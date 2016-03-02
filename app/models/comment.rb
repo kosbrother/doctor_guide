@@ -17,11 +17,6 @@ class Comment < ActiveRecord::Base
         users.name as user_name, hospitals.name as hospital_name, divisions.name as division_name,comments.updated_at
         ') }
 
-  scope :select_hospital_comment, -> { joins(:hospital,:commentor).select('
-        comments.id,dr_friendly,dr_speciality,div_equipment,div_environment,div_speciality,div_friendly,doctor_id,hospital_id,division_id,div_comment,dr_comment,is_recommend,user_id,
-        users.name as user_name, hospitals.name as hospital_name,comments.updated_at
-        ') }
-
   def comment_date
     updated_at.localtime.strftime("%Y/%m/%d")
   end

@@ -3,7 +3,7 @@ class Api::V1::CommentsController < Api::ApiController
     if params[:hospital_id] && params[:division_id]
       comments = Comment.where(hospital_id: params[:hospital_id],division_id: params[:division_id]).select_division_comment
     elsif params[:hospital_id]
-      comments = Comment.where(hospital_id: params[:hospital_id]).select_hospital_comment
+      comments = Comment.where(hospital_id: params[:hospital_id]).select_division_comment
     elsif params[:doctor_id]
       comments = Comment.where(doctor_id: params[:doctor_id]).select_doctor_comment
     end
@@ -12,7 +12,13 @@ class Api::V1::CommentsController < Api::ApiController
   end
 
   def show
-    comment = Comment.select_comment.find(params[:id])
+    comment = Comment.find(params[:id])
+    if comment.doctor_id != nil
+      comment = Comment.select_doctor_comment.find(params[:id])
+    elsif comment.division_id != nil
+      comment = Comment.select_division_comment.find(params[:id])
+    end
+    
     render :json => comment
   end
 
