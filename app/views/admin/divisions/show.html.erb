@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<dl>
+  <dt>醫院</dt>
+  <dd><%= @hospital.name %></dd>
+  <dt>醫院科別名稱</dt>
+  <dd><%= @division.name %></dd>
+  <dt>科別分類</dt>
+  <dd><%= @division.category.name if @division.category %></dd>
+  <dt>評論數</dt>
+  <dd><%= @division.comments.where(hospital_id: @hospital.id).size %></dd>
+  <dt>推薦數</dt>
+  <dd><%= @division.comments.where(is_recommend: true,hospital_id: @hospital.id).size %></dd>
+  <dt>分數平均</dt>
+  <dd><%= @division.avg_score(@hospital.id) %></dd>
+</dl>
+
+<table>
+  <thead>
+    <tr>
+      <th>醫師編號</th>
+      <th>姓名</th>
+      <th>phone</th>
+      <th>address</th>
+      <th>exp</th>
+      <th>spe</th>
+      <th>評論數</th>
+      <th>推薦數</th>
+      <th>分數平均</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @doctors.each do |doctor| %>
+      <tr>
+        <td><%= doctor.id %></td>
+        <td><%= doctor.name %></td>
+        <td><%= doctor.phone %></td>
+        <td><%= doctor.address.truncate(10) %></td>
+        <td><%= doctor.exp.truncate(15) if doctor.exp %></td>
+        <td><%= doctor.spe.truncate(15) if doctor.spe %></td>
+        <td><%= doctor.comments.size %></td>
+        <td><%= doctor.comments.where(is_recommend: true).size %></td>
+        <td><%= doctor.avg_score %></td>
+        <td><%= link_to '醫師詳情', admin_doctor_path(doctor,hospital_id: @hospital.id,division_id: @division.id) %></td>
+        <td><%= link_to '修改醫師', edit_admin_doctor_path(doctor,hospital_id: @hospital.id,division_id: @division.id) %></td>
+        <td><%= link_to '新增評論', new_admin_comment_path(doctor_id: doctor.id,hospital_id: @hospital.id,division_id: @division.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to '新增此科別醫師', new_admin_doctor_path(hospital_id: @hospital.id,division_id: @division.id) %> |
+<%= link_to '編輯科別', edit_admin_division_path(@division) %> |
+<%= link_to '回醫院頁', admin_hospital_path(@hospital) %>

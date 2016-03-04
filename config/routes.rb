@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
-  resources :doctors
-  resources :divisions
-  resources :divisions
-  resources :hospitals
-  resources :comments
-  resources :feedbacks
-  resources :problems
-  resources :add_doctors
-  root "hello_world#index"
+  
+  namespace :admin do
+    get '/' => 'admin#index'
+    get 'search_doctors', to: 'search#search_doctors'
+    get 'search_hospitals', to: 'search#search_hospitals'
+    resources :doctors
+    resources :divisions
+    resources :divisions
+    resources :hospitals
+    resources :comments
+    resources :feedbacks, only: [:index]
+    resources :problems, only: [:index]
+    resources :add_doctors, only: [:index]
+  end
 
-  get 'search_doctors', to: 'search#search_doctors'
-  get 'search_hospitals', to: 'search#search_hospitals'
+  root "hello_world#index"
 
   namespace :api do
     get 'status_check' => 'api#status_check'
