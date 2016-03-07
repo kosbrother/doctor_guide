@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'index/index'
+
   namespace :admin do
     get '/' => 'admin#index'
     get 'search_doctors', to: 'search#search_doctors'
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
     resources :add_doctors, only: [:index]
   end
 
-  root "hello_world#index"
+  root "index#index"
 
   namespace :api do
     get 'status_check' => 'api#status_check'
