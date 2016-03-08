@@ -8,7 +8,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<header class="container">
+  <div class="col-md-4 box">
+    <span class="glyphicon glyphicon-map-marker logo-mark" aria-hidden="true"></span>
+    <span class="logo">就醫指南</span>
+    <span class="logo-desc">就醫指南幫您找到合適的醫生</span>
+  </div>
+  <div class="col-md-8 box">
+    <span class="glyphicon glyphicon-search search-icon" aria-hidden="true"></span>
+    <input class="search" type="search" name="doctorsearch" placeholder="直接搜尋醫院及醫師">
+  </div>
+</header>
 <%= yield %>
 
 </body>

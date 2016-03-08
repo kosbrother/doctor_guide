@@ -1,0 +1,87 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body{
+  font-size: 14px;
+  font-family: "Arial Black";
+}
+
+header{
+  margin-bottom: 40px;
+
+  .box{
+    padding: 10px 10px;
+    height: 100px;
+    .logo{
+      font-size: 2.5em;
+    }
+    .logo-mark{
+      font-size: 2.5em;
+      padding-right: 20px;
+      vertical-align:text-bottom;
+    }
+    .logo-desc{
+      display: block;
+      font-size: 0.8em;
+      position: relative;
+      left: 35px;
+    }
+    .search-icon{
+      position:relative;
+      left:27px;
+      z-index:999;
+    }
+    .search{
+      width: 70%;
+      margin-top: 20px;
+      border-radius: 10px;
+      padding-left: 25px;
+    }
+  }
+}
+
+.box{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title{
+  border: solid 1px black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.rank{
+  text-align: left;
+}
+
+main{
+  .division, .area, .doctor, .hospital, .comment{
+    height: auto;
+  }
+  .sub-title{
+    width: 60%;
+    margin-bottom: 10px;
+  }
+  .comment-box{
+    width: 90%;
+    border: solid 1px black;
+    margin: 10px auto;
+    height:200px;
+    text-align: left;
+    padding: 10px 10px;
+  }
+}
