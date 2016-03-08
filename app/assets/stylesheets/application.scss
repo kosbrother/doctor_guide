@@ -53,6 +53,11 @@ header{
   }
 }
 
+.breadcrumbs--hierarchy{
+  margin: 20px auto;
+  font-size: 1.5em;
+}
+
 .box{
   text-align: center;
   margin-bottom: 40px;
@@ -62,6 +67,7 @@ header{
   border: solid 1px black;
   border-radius: 5px;
   margin-bottom: 10px;
+  font-size: 1.2em;
 }
 
 .rank{
@@ -69,6 +75,11 @@ header{
 }
 
 main{
+  .division, .area{
+    .title{
+      width:30%;
+    }
+  }
   .division, .area, .doctor, .hospital, .comment{
     height: auto;
   }

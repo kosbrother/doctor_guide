@@ -36,7 +36,7 @@
             推薦醫院
           </div>
           <div class="row">
-            <% @hospitals.sort_by { |d| -d.recommend_num}.first(10).each_with_index do |hospital, index|%>
+            <% @goodHospitals.each_with_index do |hospital, index|%>
                 <div class="col-xs-12 rank">
                   <%= index + 1 %><%= hospital.name %>
                 </div>
@@ -48,7 +48,7 @@
             推薦醫院
           </div>
           <div class="row">
-            <% @hospitals.sort_by { |d| -d.recommend_num}.first(10).each_with_index do |hospital, index|%>
+            <% @goodHospitals.each_with_index do |hospital, index|%>
                 <div class="col-xs-12 rank">
                   <%= index + 1 %><%= hospital.name %>
                 </div>
@@ -67,7 +67,7 @@
             推薦醫生
           </div>
           <div class="row">
-            <% @doctors.sort_by { |d| -d.recommend_num}.first(10).each_with_index do |doctor, index|%>
+            <% @goodDoctors.each_with_index do |doctor, index|%>
                 <div class="col-xs-12 rank">
                   <%= index + 1 %><%= doctor.name %>
                 </div>
@@ -79,7 +79,7 @@
             推薦醫生
           </div>
           <div class="row">
-            <% @doctors.sort_by { |d| -d.recommend_num}.first(10).each_with_index do |doctor, index|%>
+            <% @goodDoctors.each_with_index do |doctor, index|%>
                 <div class="col-xs-12 rank">
                   <%= index + 1 %><%= doctor.name %>
                 </div>
