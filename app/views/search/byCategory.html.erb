@@ -9,27 +9,27 @@
       </div>
       <div class="row">
         <div class="col-sm-1">
-        <% @areas.each do |area|%>
-            <div class="area-tag">
-              <%= area.name %>
-            </div>
-        <% end %>
-      </div>
-      <div class="col-sm-11 hospital-list">
-        <div class="row">
-          <div class="col-md-1 title">
-            台中市醫院列表
-          </div>
-        </div>
-        <div class="row">
-          <% @hospitals.each do |hospital|%>
-              <div class="col-md-4 list">
-                <%= hospital.name %>
+          <% @areas.each do |area|%>
+              <div class="area-tag">
+                <%= area.name %>
               </div>
           <% end %>
+        </div>
+        <div class="col-sm-11 hospital-list">
+          <div class="row">
+            <div class="col-md-1 title">
+              台中市醫院列表
+            </div>
+          </div>
+          <div class="row">
+            <% @hospitals.each do |hospital|%>
+                <div class="col-md-4 list">
+                  <%= hospital.name %>
+                </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </section>
   </div>
-
 </main>
