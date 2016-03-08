@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'search/byArea'
+
+  get 'search/byCategory'
+
   get 'index/index'
 
   namespace :admin do
