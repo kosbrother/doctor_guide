@@ -1,2 +1,35 @@
-<h1>Search#byCategory</h1>
-<p>Find me in app/views/search/byCategory.html.erb</p>
+<div class="container breadcrumbs--hierarchy">
+  <div class="col-sm-12">  首頁     > 台中市</div>
+</div>
+<main>
+  <div class="container">
+    <section class="col-sm-12 box area">
+      <div class="title">
+        依地區尋找
+      </div>
+      <div class="row">
+        <div class="col-sm-1">
+        <% @areas.each do |area|%>
+            <div class="area-tag">
+              <%= area.name %>
+            </div>
+        <% end %>
+      </div>
+      <div class="col-sm-11 hospital-list">
+        <div class="row">
+          <div class="col-md-1 title">
+            台中市醫院列表
+          </div>
+        </div>
+        <div class="row">
+          <% @hospitals.each do |hospital|%>
+              <div class="col-md-4 list">
+                <%= hospital.name %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>

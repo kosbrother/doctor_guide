@@ -8,5 +8,7 @@ class SearchController < ApplicationController
   end
 
   def byCategory
+    @areas = Area.all
+    @hospitals = Hospital.where(area_id: 4).first(40)
   end
 end

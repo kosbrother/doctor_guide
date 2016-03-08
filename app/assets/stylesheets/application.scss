@@ -74,10 +74,37 @@ header{
   text-align: left;
 }
 
+
+
+.area-tag{
+  text-align: left;
+  border: solid 1px black;
+  position: relative;
+  top:20px;
+}
+
+.hospital-list{
+  border: solid 1px black;
+  padding: 30px 30px;
+}
+
 main{
   .division, .area{
     .title{
       width:30%;
+    }
+  }
+
+  .area .hospital-list{
+    position: relative;
+    left:-15px;
+    text-align: left;
+    height:505px;
+    .title{
+      width: auto;
+    }
+    .list{
+      margin-bottom: 10px;
     }
   }
   .division, .area, .doctor, .hospital, .comment{
