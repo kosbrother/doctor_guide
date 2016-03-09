@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ProjectName
+    %meta{:content => "7WXFjAVEu-LR2MuUiTq2fwKFhbRFrFOa8uLBlgoT2aM", :name => "google-site-verification"}/
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %header.container
+      .col-md-4.box
+        %span.glyphicon.glyphicon-map-marker.logo-mark{"aria-hidden" => "true"}
+        %span.logo 就醫指南
+        %span.logo-desc 就醫指南幫您找到合適的醫生
+      .col-md-8.box
+        %span.glyphicon.glyphicon-search.search-icon{"aria-hidden" => "true"}
+        %input.search{:name => "doctorsearch", :placeholder => "直接搜尋醫院及醫師", :type => "search"}/
+    = yield

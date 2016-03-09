@@ -1,0 +1,35 @@
+= form_for [:admin, @doctor] do |f|
+  - if @doctor.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@doctor.errors.count, "error")
+        prohibited this doctor from being saved:
+      %ul
+        - @doctor.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name,"醫師名稱"
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :phone,"phone"
+    %br/
+    = f.text_field :phone
+  .field
+    = f.label :address,"address"
+    %br/
+    = f.text_field :address
+  .field
+    = f.label :exp,"exp"
+    %br/
+    = f.text_area :exp, :cols => "400"
+  .field
+    = f.label :spe,"spe"
+    %br/
+    = f.text_area :spe, :cols => "400"
+  .field
+    = f.text_field :hospital_id, value: params[:hospital_id]
+  .field
+    = f.text_field :division_id, value: params[:division_id]
+  .actions
+    = f.submit

@@ -1,0 +1,12 @@
+%p#notice= notice
+%h1 Listing Feedbacks
+%table
+  %thead
+    %tr
+      %th 主旨
+      %th 意見
+  %tbody
+    - @feedbacks.each do |feedback|
+      %tr
+        %td= feedback.subject
+        %td= feedback.content

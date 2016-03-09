@@ -1,0 +1,31 @@
+%p#notice= notice
+%h1 Listing Hospitals
+= will_paginate @hospitals
+%table
+  %thead
+    %tr
+      %th 醫院
+      %th phone
+      %th address
+      %th grade
+      %th assess
+      %th 營業中
+      %th 服務
+      %th 營業時間
+      %th{:colspan => "3"}
+  %tbody
+    - @hospitals.each do |hospital|
+      %tr
+        %td= hospital.name.truncate(15)
+        %td= hospital.phone
+        %td= hospital.address.truncate(15)
+        %td= hospital.grade
+        %td= hospital.assess.truncate(15) if hospital.assess
+        %td= hospital.on ? "是" : "否"
+        %td= hospital.ss.to_s.truncate(15) if hospital.ss
+        %td= hospital.cHours.to_s.truncate(15) if hospital.cHours
+        %td= link_to 'Show', admin_hospital_path(hospital)
+        %td= link_to 'Edit', edit_admin_hospital_path(hospital)
+%br/
+= link_to 'New Hospital', new_admin_hospital_path
+= will_paginate @hospitals

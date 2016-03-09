@@ -1,0 +1,25 @@
+= form_for [:admin, @division] do |f|
+  - if @division.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@division.errors.count, "error")
+        prohibited this division from being saved:
+      %ul
+        - @division.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name,"科別名稱"
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :category_id,"類別id"
+    %br/
+    = f.text_field :category_id
+  \########### 類別id #########
+  %br/
+  - Category.all.each do |c|
+    = c.name
+    \:
+    \#{c.id} ,
+  .actions
+    = f.submit

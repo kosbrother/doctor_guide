@@ -37,6 +37,7 @@ gem 'sidekiq'
 gem 'geocoder'
 gem 'geokit-rails'
 gem 'will_paginate'
+gem "haml-rails", "~> 0.9"
 
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
@@ -52,6 +53,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
   gem 'capistrano-sidekiq'
+  gem 'guard-livereload', '~> 2.5', require: false
 end
 
 group :test do
