@@ -8,6 +8,7 @@ class InformationController < ApplicationController
   end
 
   def category
+    @categories = Category.all
   end
 
   def doctor
