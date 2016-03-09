@@ -89,12 +89,61 @@ header{
 }
 
 main{
+
+  .thumbnail{
+    border-radius: 50%;
+    border: solid 1px black;
+    width: 100px;
+    height: 100px;
+
+  }
   .division, .area{
     .title{
       width:30%;
     }
   }
+  .information{
+    border: solid 1px black;
 
+    .information-header{
+      border-bottom: solid 1px black;
+      padding: 40px;
+      text-align: left;
+      overflow: auto;
+      .thumbnail{
+        display: inline-block;
+        float: left;
+        text-align: center;
+        line-height: 90px;
+      }
+      .information-title{
+        display: inline-block;
+        text-align: left;
+        height: 100px;
+        margin-left: 30px;
+        font-size: 2em;
+        span{
+          display: block;
+          margin: 20px 0;
+          font-size: 0.8em;
+        }
+      }
+    }
+    .information-body{
+      text-align: left;
+      padding: 30px;
+      .image{
+        overflow: hidden;
+      }
+      .about{
+        padding: 0 20px;
+      }
+      .about:first-line{
+        font-size: 1.5em;
+      }
+    }
+
+  }
   .area .hospital-list{
     position: relative;
     left:-15px;
