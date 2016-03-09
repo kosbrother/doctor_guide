@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  get 'information/hospital'
+
+  get 'information/category'
+
+  get 'information/doctor'
+
   get 'search/byArea'
 
   get 'search/byCategory'
