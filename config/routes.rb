@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'comment/doctor'
+
+  get 'comment/hospital'
+
   get 'information/hospital'
 
   get 'information/category'

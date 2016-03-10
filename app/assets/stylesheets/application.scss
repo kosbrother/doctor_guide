@@ -89,7 +89,6 @@ header{
 }
 
 main{
-
   .thumbnail{
     border-radius: 50%;
     border: solid 1px black;
@@ -103,19 +102,19 @@ main{
   }
   .information{
     border: solid 1px black;
-    .information-header{
+    .information-header {
       border-bottom: solid 1px black;
       padding: 40px;
       text-align: left;
       overflow: auto;
-      .thumbnail{
+      .thumbnail {
         display: inline-block;
         float: left;
         text-align: center;
         line-height: 90px;
         margin-bottom: 0px;
       }
-      .information-title{
+      .information-title {
         display: inline-block;
         height: 100px;
         :first-child{
@@ -135,12 +134,21 @@ main{
         text-align: left;
         padding: 10px 10px;
         width: 80%;
-        .star-bar{
+        .star-bar {
           margin-bottom: 10px;
         }
-        .star-bar:before{
+        .star-bar:before {
           margin-bottom: 10px;
           font-size: 1.1em;
+          margin-left: 30px;
+          font-size: 2em;
+          text-decoration: underline;
+          span {
+            display: inline-block;
+            margin: 20px 50px;
+            font-size: 0.8em;
+            text-decoration: none;
+          }
         }
       }
     }
@@ -158,7 +166,6 @@ main{
         line-height: 50px;
       }
     }
-
   }
   .area .hospital-list{
     position: relative;
@@ -304,6 +311,24 @@ main{
   .search-result-hospital{
     .title{
       margin-bottom: 50px;
+    }
+  }
+  .comment{
+    .comment-box{
+      width:80%;
+      height:auto;
+      span{
+
+      }
+    }
+  }
+  .comment-aside{
+    .comment-aside-title{
+      text-align: center;
+      font-size: 1.3em;
+    }
+    .comment-box{
+      height: auto;
     }
   }
 }
