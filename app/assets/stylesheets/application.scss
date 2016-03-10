@@ -20,11 +20,10 @@ body{
 }
 
 header{
-  margin-bottom: 40px;
-
   .box{
     padding: 10px 10px;
     height: 100px;
+    margin-bottom: 30px;
     .logo{
       font-size: 2.5em;
     }
@@ -54,7 +53,7 @@ header{
 }
 
 .breadcrumbs--hierarchy{
-  margin: 20px auto;
+  margin: 50px auto;
   font-size: 1.5em;
 }
 
@@ -72,6 +71,7 @@ header{
 
 .rank{
   text-align: left;
+  line-height: 30px;
 }
 
 
@@ -95,7 +95,6 @@ main{
     border: solid 1px black;
     width: 100px;
     height: 100px;
-
   }
   .division, .area{
     .title{
@@ -104,7 +103,6 @@ main{
   }
   .information{
     border: solid 1px black;
-
     .information-header{
       border-bottom: solid 1px black;
       padding: 40px;
@@ -115,19 +113,34 @@ main{
         float: left;
         text-align: center;
         line-height: 90px;
+        margin-bottom: 0px;
       }
       .information-title{
         display: inline-block;
-        text-align: left;
         height: 100px;
-        margin-left: 30px;
-        font-size: 2em;
-        text-decoration: underline;
+        :first-child{
+          font-size: 2em;
+          text-decoration: underline;
+        }
         span{
-          display: inline-block;
-          margin: 20px 50px;
-          font-size: 0.8em;
+          display: block;
+          margin: 10px 20px;
+          font-size: 1.2em;
           text-decoration: none;
+        }
+      }
+      .rank-box {
+        border: solid 1px black;
+        height: 100px;
+        text-align: left;
+        padding: 10px 10px;
+        width: 80%;
+        .star-bar{
+          margin-bottom: 10px;
+        }
+        .star-bar:before{
+          margin-bottom: 10px;
+          font-size: 1.1em;
         }
       }
     }
@@ -138,10 +151,11 @@ main{
         overflow: hidden;
       }
       .about{
-        padding: 0 20px;
+        padding: 10px 20px;
       }
       .about:first-line{
         font-size: 1.5em;
+        line-height: 50px;
       }
     }
 
@@ -162,7 +176,7 @@ main{
     height: auto;
   }
   .sub-title{
-    width: 60%;
+    width: 150px;
     margin-bottom: 10px;
   }
   .comment-box{
@@ -242,6 +256,25 @@ main{
           }
         }
       }
+    }
+  }
+  .doctor-comment-box{
+    padding: 20px 40px;
+    .title{
+      margin: 20px auto;
+      border: none;
+      border-radius: 0px;
+      width:90%;
+      background-color: darkseagreen;
+      color: #fff;
+      font-size: 1.8em;
+      padding: 20px 50px;
+      text-align: center;
+    }
+    .comment-box{
+      width: 95%;
+      min-height: 150px;
+      height: auto;
     }
   }
 }
