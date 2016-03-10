@@ -38,7 +38,6 @@ gem 'geocoder'
 gem 'geokit-rails'
 gem 'will_paginate'
 gem "haml-rails", "~> 0.9"
-
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-persistence', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
