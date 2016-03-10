@@ -14,4 +14,8 @@ class SearchController < ApplicationController
     @goodHospitals = Hospital.all.sort_by { |d| -d.recommend_num}.first(10)
     @comments = Comment.where.not(div_comment: (nil || "")).paginate(:page => params[:page])
   end
+
+  def byAreaCategory
+
+  end
 end
