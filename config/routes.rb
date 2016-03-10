@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'information/doctor'
 
+  get 'search/byAreaCategory'
+
   get 'search/byArea'
 
   get 'search/byCategory'
