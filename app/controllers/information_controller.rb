@@ -12,5 +12,6 @@ class InformationController < ApplicationController
   end
 
   def doctor
+
   end
 end
