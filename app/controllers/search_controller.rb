@@ -1,4 +1,9 @@
 class SearchController < ApplicationController
+
+  def search
+
+  end
+
   def byArea
     @categories = Category.all
     @hospitals = Hospital.where(area_id: 4).paginate(:page => params[:page])
