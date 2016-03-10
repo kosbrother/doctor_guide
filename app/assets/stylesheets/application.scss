@@ -313,4 +313,22 @@ main{
       margin-bottom: 50px;
     }
   }
+  .comment{
+    .comment-box{
+      width:80%;
+      height:auto;
+      span{
+
+      }
+    }
+  }
+  .comment-aside{
+    .comment-aside-title{
+      text-align: center;
+      font-size: 1.3em;
+    }
+    .comment-box{
+      height: auto;
+    }
+  }
 }
