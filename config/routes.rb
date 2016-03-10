@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'search/byCategory'
 
+  get 'search/result', to: 'search#search'
+
   get 'index/index'
 
   namespace :admin do

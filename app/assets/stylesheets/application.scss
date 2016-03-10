@@ -277,4 +277,33 @@ main{
       height: auto;
     }
   }
+  .search-result{
+    .title{
+      border: solid 2px black;
+      border-radius: 0px;
+      padding: 5px 10px;
+      text-align: left;
+      font-size: 1.8em;
+    }
+    .result-list{
+      text-align: left;
+      .thumbnail{
+        line-height: 100px;
+        display: inline-block;
+        text-align: center;
+      }
+      .thumbnail-info {
+        display: inline-block;
+        text-align: left;
+        height: 100px;
+        margin-left: 30px;
+        font-size: 1.8em;
+      }
+    }
+  }
+  .search-result-hospital{
+    .title{
+      margin-bottom: 50px;
+    }
+  }
 }
