@@ -1,0 +1,16 @@
+%p#notice= notice
+%h1 Listing Problems
+%table
+  %thead
+    %tr
+      %th 醫院
+      %th 科別
+      %th 醫師
+      %th 問題
+  %tbody
+    - @problems.each do |problem|
+      %tr
+        %td= "#{problem.hospital_id} : #{problem.hospital.name if problem.hospital}"
+        %td= "#{problem.division_id} : #{problem.division.name if problem.division}"
+        %td= "#{problem.doctor_id} : #{problem.doctor.name if problem.doctor}"
+        %td= "#{problem.content}"

@@ -1,0 +1,52 @@
+%p#notice= notice
+%dl
+  %dt 醫師名稱
+  %dd= @doctor.name
+  %dt phone
+  %dd= @doctor.phone
+  %dt address
+  %dd= @doctor.address
+  %dt exp
+  %dd= @doctor.exp
+  %dt spe
+  %dd= @doctor.spe
+  %dt Url
+  %dd= link_to @doctor.bUrl,@doctor.bUrl
+= link_to '修改醫師', edit_admin_doctor_path(@doctor,division_id: params[:division_id],hospital_id: params[:hospital_id])
+|
+= link_to '回科別頁', admin_division_path(params[:division_id],hospital_id: params[:hospital_id])
+%br/
+%br/
+\################## 醫師評論列表 #######################
+%dl
+  %dt 評論數
+  %dd= @doctor.comments.size
+  %dt 推薦數
+  %dd= @doctor.comments.where(is_recommend: true).size
+  %dt 分數平均
+  %dd= @doctor.avg_score
+%table
+  %thead
+    %tr
+      %th 醫院
+      %th 科別
+      %th 醫師
+      %th 科別評分
+      %th 科別評論
+      %th 醫師評分
+      %th 醫師評論
+      %th{:colspan => "3"}
+  %tbody
+    - @comments.each do |comment|
+      %tr
+        %td= comment.hospital.name
+        %td= comment.division.name
+        %td= comment.doctor.name
+        %td= "環境衛生:#{comment.div_environment}, 醫療設備:#{comment.div_equipment},醫護專業:#{comment.div_speciality}, 服務態厲:#{comment.div_friendly}"
+        %td{:style => "color:red;"}= comment.div_comment
+        %td= "醫師態度:#{comment.dr_friendly}, 醫師專業:#{comment.dr_speciality}"
+        %td{:style => "color:blue;"}= comment.dr_comment
+        %td= link_to 'Show', [:admin,comment]
+        %td= link_to 'Edit', edit_admin_comment_path(comment)
+        %td= link_to 'Destroy', [:admin,comment], method: :delete, data: { confirm: 'Are you sure?' }
+= link_to '新增評論', new_admin_comment_path(doctor_id: @doctor.id,division_id: params[:division_id],hospital_id: params[:hospital_id])

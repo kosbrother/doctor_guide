@@ -1,0 +1,11 @@
+%h1 Hospitals Search
+= form_for admin_search_hospitals_path, method: :get do |f|
+  %p
+    = f.label "Search for"
+    = text_field_tag :q, params[:q]
+    = submit_tag "Go", name: nil
+%ul
+  - @hospitals.each do |hospital|
+    %li
+      %h3
+        = link_to hospital.name, controller: "hospitals", action: "show", id: hospital.id

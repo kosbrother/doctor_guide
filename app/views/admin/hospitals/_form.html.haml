@@ -1,0 +1,45 @@
+= form_for [:admin, @hospital] do |f|
+  - if @hospital.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@hospital.errors.count, "error")
+        prohibited this hospital from being saved:
+      %ul
+        - @hospital.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :name,"醫院名稱"
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :phone,"phone"
+    %br/
+    = f.text_field :phone
+  .field
+    = f.label :address,"address"
+    %br/
+    = f.text_field :address
+  .field
+    = f.label :grade,"grade"
+    %br/
+    = f.text_field :grade
+  .field
+    = f.label :assess,"assess"
+    %br/
+    = f.text_area :assess, :cols => "400"
+  .field
+    = f.label :on,"營業中"
+    %br/
+    = f.text_field :on
+  .field
+    = f.label :ss,"服務"
+    %br/
+    = f.text_area :ss , :cols => "400"
+    範例：["婦女乳房檢查", "腹膜透析業務", "口腔黏膜檢查", "定量免疫法糞便潛血檢查"]
+  .field
+    = f.label :cHours,"營業時間"
+    %br/
+    = f.text_area :cHours , :cols => "400"
+    範例：{"weekday"=&gt;["上午8:30-12:0", "下午1:30-5:0"], "night"=&gt;["下午6:30-9:0"], "holiday"=&gt;["週六 / 上午8:30-12:0"], "special"=&gt;"24小時急診"}
+  .actions
+    = f.submit

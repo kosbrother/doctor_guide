@@ -6,6 +6,7 @@ gem 'rails', '4.2.4'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -36,6 +37,7 @@ gem 'sidekiq'
 gem 'geocoder'
 gem 'geokit-rails'
 gem 'will_paginate'
+gem "haml-rails", "~> 0.9"
 
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
@@ -51,6 +53,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
   gem 'capistrano-sidekiq'
+  gem 'guard-livereload', '~> 2.5', require: false
 end
 
 group :test do

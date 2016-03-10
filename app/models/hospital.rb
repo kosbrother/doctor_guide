@@ -16,6 +16,8 @@ class Hospital < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode
 
+  self.per_page = 24
+
   acts_as_mappable :default_units => :miles,
                    :default_formula => :sphere,
                    :distance_field_name => :distance,

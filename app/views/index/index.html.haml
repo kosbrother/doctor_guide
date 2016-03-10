@@ -1,0 +1,90 @@
+%main
+  .container
+    %section.col-md-5.col-md-offset-1.col-sm-12.box.area
+      .title
+        依地區尋找
+      .row
+        - @areas.each do |area|
+          .col-md-3.col-xs-6
+            = area.name
+    %section.col-md-5.col-sm-12.box.division
+      .title
+        依科別尋找
+      .row
+        - @categories.each do |category|
+          .col-md-4.col-xs-6
+            = category.name
+  .container
+    %section.col-md-6.box.hospital
+      .title
+        好醫院
+      .row
+        .col-md-6
+          .title.sub-title
+            推薦醫院
+          .row
+            - @goodHospitals.each_with_index do |hospital, index|
+              .col-xs-12.rank
+                = index + 1
+                = hospital.name
+        .col-md-6
+          .title.sub-title
+            推薦醫院
+          .row
+            - @goodHospitals.each_with_index do |hospital, index|
+              .col-xs-12.rank
+                = index + 1
+                = hospital.name
+    %section.col-md-6.box.doctor
+      .title
+        好醫生
+      .row
+        .col-md-6
+          .title.sub-title
+            推薦醫生
+          .row
+            - @goodDoctors.each_with_index do |doctor, index|
+              .col-xs-12.rank
+                = index + 1
+                = doctor.name
+        .col-md-6
+          .title.sub-title
+            推薦醫生
+          .row
+            - @goodDoctors.each_with_index do |doctor, index|
+              .col-xs-12.rank
+                = index + 1
+                = doctor.name
+  .container
+    %section.col-md-12.box.comment
+      .title
+        最新科別評論
+      .row
+        - @comments.each do |comment|
+          - unless comment.div_comment.nil? || comment.div_comment.empty?
+            .col-xs-4
+              .comment-box
+                %p 評論者: user
+                %p 對象： doctor
+                %p 科別滿意度： 2.0
+                %p 醫師滿意度： 4.0
+                %p
+                  科別評論：
+                  \#{comment.div_comment}
+      = will_paginate @comments
+    %section.col-md-12.box.comment
+      .title
+        最新醫師評論
+      .row
+        - @comments.each do |comment|
+          - unless comment.div_comment.nil? || comment.div_comment.empty?
+            .col-xs-4
+              .comment-box
+                %p 評論者: user
+                %p 對象： doctor
+                %p 科別滿意度： 2.0
+                %p 醫師滿意度： 4.0
+                %p
+                  科別評論：
+                  \#{comment.div_comment}
+      = will_paginate @comments

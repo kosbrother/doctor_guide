@@ -1,0 +1,24 @@
+%p#notice= notice
+%h1 Listing 新增醫師
+%table
+  %thead
+    %tr
+      %th 醫師名
+      %th 醫院名
+      %th 科別名
+      %th 專長
+      %th 經驗
+      %th 醫院id
+      %th 科別id
+      %th checked
+  %tbody
+    - @doctors.each do |doctor|
+      %tr
+        %td= doctor.name
+        %td= doctor.hospital_name
+        %td= doctor.division_name
+        %td= doctor.spe
+        %td= doctor.exp
+        %td= doctor.hospital_id
+        %td= doctor.division_id
+        %td= doctor.is_checked
