@@ -102,7 +102,11 @@ main{
   }
   .information{
     border: solid 1px black;
+<<<<<<< HEAD
     .information-header {
+=======
+    .information-header{
+>>>>>>> b9d4fb85ea601b2b83fc7bfecd67df7980cec1d5
       border-bottom: solid 1px black;
       padding: 40px;
       text-align: left;
@@ -117,11 +121,11 @@ main{
       .information-title {
         display: inline-block;
         height: 100px;
-        :first-child {
+        :first-child{
           font-size: 2em;
           text-decoration: underline;
         }
-        span {
+        span{
           display: block;
           margin: 10px 20px;
           font-size: 1.2em;
