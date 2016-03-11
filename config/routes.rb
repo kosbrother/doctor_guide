@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   get 'comment/doctor'
 
-  get 'comment/hospital'
+  get 'comment/category'
 
   get 'information/hospital'
 

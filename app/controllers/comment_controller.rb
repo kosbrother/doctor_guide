@@ -2,6 +2,6 @@ class CommentController < ApplicationController
   def doctor
   end
 
-  def hospital
+  def category
   end
 end
