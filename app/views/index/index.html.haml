@@ -9,7 +9,67 @@
             = area.name
       .aside-title
         依科別尋找
-    .col-md-9
+    .col-md-6
+      .recommend-lists
+        .recommend-lists-title
+          .recommend-lists-tag
+            推薦醫院
+          .recommend-lists-tag
+            熱門醫院
+          .recommend-lists-more
+            觀看更多
+        .recommend-lists-content.row
+          .col-md-6
+            - @goodHospitals.each_with_index do |hospital, index|
+              -if index < 5
+                .recommend-lists-ranknum
+                  = "0" + (index + 1).to_s
+                .recommend-lists-list
+                  = hospital.name
+                  %li.glyphicon.glyphicon-thumbs-up
+                    1,240
+          .col-md-6
+            - @goodHospitals.each_with_index do |hospital, index|
+              -if index > 4
+                .recommend-lists-ranknum
+                  -if index == 9
+                    = index + 1
+                  -else
+                    = "0" + (index + 1).to_s
+                .recommend-lists-list
+                  = hospital.name
+                  %li.glyphicon.glyphicon-thumbs-up
+                    1,240
+      .recommend-lists.recommend-doctors
+        .recommend-lists-title
+          .recommend-lists-tag
+            推薦醫院
+          .recommend-lists-tag
+            熱門醫院
+          .recommend-lists-more
+            觀看更多
+        .recommend-lists-content.row
+          .col-md-6
+            - @goodHospitals.each_with_index do |hospital, index|
+              -if index < 5
+                .recommend-lists-ranknum
+                  = "0" + (index + 1).to_s
+                .recommend-lists-list
+                  = hospital.name
+                  %li.glyphicon.glyphicon-thumbs-up
+                    1,240
+          .col-md-6
+            - @goodHospitals.each_with_index do |hospital, index|
+              -if index > 4
+                .recommend-lists-ranknum
+                  -if index == 9
+                    = index + 1
+                  -else
+                    = "0" + (index + 1).to_s
+                .recommend-lists-list
+                  = hospital.name
+                  %li.glyphicon.glyphicon-thumbs-up
+                    1,240
 
 
   .container
