@@ -1,4 +1,17 @@
 %main
+  .row
+    %aside.col-md-2.col-md-offset-2
+      .aside-title
+        依地區尋找
+      .aside-content.row
+        - @areas.each do |area|
+          .col-md-6.aside-list
+            = area.name
+      .aside-title
+        依科別尋找
+    .col-md-9
+
+
   .container
     %section.col-md-5.col-md-offset-1.col-sm-12.box.area
       .title

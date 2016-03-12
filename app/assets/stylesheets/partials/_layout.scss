@@ -8,3 +8,21 @@ header{
   background-color: #f2f2f2;
   margin-bottom: 15px;
 }
+
+aside{
+  background-color: #e9e9e9;
+  height: 500px;
+  .aside-title{
+    color: #66b068;
+    border-bottom: solid 2px #75ce14;
+    padding: 8px 0px;
+  }
+  .aside-content{
+    width: 80%;
+    margin: 15px auto;
+    .aside-list {
+      padding: 3% 1%;
+      text-align: center
+    }
+  }
+}
