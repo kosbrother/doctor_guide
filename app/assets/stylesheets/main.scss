@@ -2,48 +2,11 @@
 @import "partials/base";
 
 // Partials
+@import "partials/layout";
+@import "partials/logos";
+@import "partials/search-bars";
 
 // Third-party
-
-
-
-body{
-  font-size: 14px;
-  font-family: "Arial Black";
-}
-
-header{
-  .box{
-    padding: 10px 10px;
-    height: 100px;
-    margin-bottom: 30px;
-    .logo{
-      font-size: 2.5em;
-    }
-    .logo-mark{
-      font-size: 2.5em;
-      padding-right: 20px;
-      vertical-align:text-bottom;
-    }
-    .logo-desc{
-      display: block;
-      font-size: 0.8em;
-      position: relative;
-      left: 35px;
-    }
-    .search-icon{
-      position:relative;
-      left:27px;
-      z-index:999;
-    }
-    .search{
-      width: 70%;
-      margin-top: 20px;
-      border-radius: 10px;
-      padding-left: 25px;
-    }
-  }
-}
 
 .breadcrumbs--hierarchy{
   margin: 50px auto;
