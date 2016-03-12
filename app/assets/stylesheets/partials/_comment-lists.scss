@@ -1,0 +1,32 @@
+.comment-lists{
+  .comment-lists-title {
+    border-bottom: solid 2px orange;
+    text-align: center;
+    font-size: 1.1em;
+    padding-bottom: 8px;
+  }
+  .glyphicon:before{
+    position: relative;
+    top: 230px;
+  }
+  .comment-lists-content{
+    margin:20px auto;
+    .comment-lists-comment{
+      width: 550px;
+      height: 130px;
+      border: solid 1px #b1b1b1;
+      margin:20px auto;
+      padding: 10px 0;
+      .comment-lists-rank{
+        color: grey;
+      }
+      .comment-lists-comment-content{
+        color: #b1b1b1;
+      }
+      .comment-lists-comment-content:first-line{
+        line-height: 30px;
+
+      }
+    }
+  }
+}
