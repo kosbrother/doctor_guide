@@ -78,7 +78,7 @@
           %li.glyphicon.glyphicon-chevron-left
         .col-md-10
           .comment-lists-content
-            - @comments.each do |comment|
+            - @divisionComments.each do |comment|
               - unless comment.div_comment.nil? || comment.div_comment.empty?
                 .comment-lists-comment.row
                   .col-md-6
@@ -101,7 +101,7 @@
           %li.glyphicon.glyphicon-chevron-left
         .col-md-10
           .comment-lists-content
-            - @comments.each do |comment|
+            - @doctorComments.each do |comment|
               - unless comment.div_comment.nil? || comment.div_comment.empty?
                 .comment-lists-comment.row
                   .col-md-6
