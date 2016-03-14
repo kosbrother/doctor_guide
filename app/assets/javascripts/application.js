@@ -16,27 +16,35 @@
 //= require turbolinks
 //= require_tree .
 
-var make_button_active = function()
-{
-    //Get item siblings
-    var siblings =($(this).siblings());
 
-    //Remove active class on all buttons
-    siblings.each(function (index)
-        {
-            $(this).removeClass('active');
-        }
-    );
-
-
-    //Add the clicked button class
-    $(this).addClass('active');
-};
-
-//Attach events to menu
 $(document).ready(
     function()
     {
+    //Attach events to menu
+        var make_button_active = function()
+        {
+            //Get item siblings
+            var siblings =($(this).siblings());
+
+            //Remove active class on all buttons
+            siblings.each(function (index)
+                {
+                    $(this).removeClass('active');
+                }
+            );
+
+
+            //Add the clicked button class
+            $(this).addClass('active');
+        };
+
         $(".recommend-lists-tag").click(make_button_active);
+
+    //Aside toggle
+        $(".aside-chevron").click( function(){
+            $(this).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+            $(this).next().slideToggle("fast", function(){
+            })
+        })
     }
 );
