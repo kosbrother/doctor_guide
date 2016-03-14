@@ -1,26 +1,31 @@
 .recommend-lists{
   margin-bottom: 50px;
-  width: 96%;
   .recommend-lists-title{
     color: #808080;
     border-bottom: solid 2px #75ce14;
     padding: 8px 0px;
     font-size: 1.1em;
+    color: #000;
     position: relative;
-    :first-child{
-      color: #66b068;
-    }
-    :last-child{
-      color: #000;
-    }
     .recommend-lists-tag{
-      display: inline-block;
       margin-right: 10px;
     }
-    .recommend-lists-more{
+    .recommend-lists-tag.active a{
+      color: #66b068;
+    }
+
+    .recommend-lists-tag, .recommend-lists-more{
       display: inline-block;
+      a:hover, a:focus{
+        text-decoration: none;
+      }
+    }
+    .recommend-lists-more{
       position: absolute;
       right: 0px;
+      a:focus{
+        color: #000;
+      }
     }
   }
   .recommend-lists-content{
@@ -45,10 +50,10 @@
   }
 }
 
-.recommend-doctors{
+.recommend-lists.recommend-doctors{
   .recommend-lists-title{
     border-bottom: solid 2px #f76489;
-    :first-child{
+    .recommend-lists-tag.active a{
       color: #f76489;
     }
   }

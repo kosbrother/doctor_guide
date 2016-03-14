@@ -8,76 +8,72 @@
         .aside-content.row
           - @areas.each do |area|
             .col-md-6.aside-list
-              = link_to area.name, "#"
+              = link_to area.name, ''
         .aside-title
           依科別尋找
         .aside-chevron.glyphicon.glyphicon-chevron-up
         .aside-content.row
           - @categories.each do |category|
             .col-md-6.aside-list
-              = link_to category.name, "#"
+              = link_to category.name, ''
     .col-md-8.box
       .recommend-lists
         .recommend-lists-title
+          .recommend-lists-tag.active
+            = link_to '推薦醫院', '', :remote => true
           .recommend-lists-tag
-            推薦醫院
-          .recommend-lists-tag
-            熱門醫院
+            = link_to '熱門醫院', '', :remote => true
           .recommend-lists-more
-            觀看更多
+            = link_to '觀看更多', ''
         .recommend-lists-content.row
-          .col-md-6.box
-            - @goodHospitals.each_with_index do |hospital, index|
-              -if index < 5
+          - @goodHospitals.each_with_index do |hospital, index|
+            -if index < 5
+              .col-md-6.box
                 .recommend-lists-ranknum
                   = "0" + (index + 1).to_s
                 .recommend-lists-list
                   = link_to hospital.name, ""
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
-          .col-md-6.box
-            - @goodHospitals.each_with_index do |hospital, index|
-              -if index > 4
+              .col-md-6.box
                 .recommend-lists-ranknum
-                  -if index == 9
-                    = index + 1
+                  -if index + 6 < 10
+                    = "0" + (index + 6).to_s
                   -else
-                    = "0" + (index + 1).to_s
+                    = (index + 6).to_s
                 .recommend-lists-list
-                  = link_to hospital.name, "#"
+                  = link_to @goodHospitals[5+index].name, ""
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
       .recommend-lists.recommend-doctors
         .recommend-lists-title
+          .recommend-lists-tag.active
+            = link_to '推薦醫生','', :remote => true
           .recommend-lists-tag
-            推薦醫院
-          .recommend-lists-tag
-            熱門醫院
+            = link_to '熱門醫生', '', :remote => true
           .recommend-lists-more
-            觀看更多
+            = link_to '觀看更多', ''
         .recommend-lists-content.row
-          .col-md-6.box
-            - @goodHospitals.each_with_index do |hospital, index|
-              -if index < 5
+          - @goodHospitals.each_with_index do |hospital, index|
+            -if index < 5
+              .col-md-6.box
                 .recommend-lists-ranknum
                   = "0" + (index + 1).to_s
                 .recommend-lists-list
-                  = hospital.name
+                  = link_to hospital.name, ""
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
-          .col-md-6.box
-            - @goodHospitals.each_with_index do |hospital, index|
-              -if index > 4
+              .col-md-6.box
                 .recommend-lists-ranknum
-                  -if index == 9
-                    = index + 1
+                  -if index + 6 < 10
+                    = "0" + (index + 6).to_s
                   -else
-                    = "0" + (index + 1).to_s
+                    = (index + 6).to_s
                 .recommend-lists-list
-                  = hospital.name
+                  = link_to @goodHospitals[5+index].name, ""
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
-    .col-md-8.col-md-offset-3
+    .col-md-8.col-md-offset-3.box
       .comment-lists.row
         .comment-lists-title
           最新科別評論
