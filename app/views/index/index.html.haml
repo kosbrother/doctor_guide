@@ -74,15 +74,16 @@
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
     .col-md-8.col-md-offset-3.box
-      .comment-lists.row
+      .comment-lists
         .comment-lists-title
           最新科別評論
-        .col-md-1
-          %li.glyphicon.glyphicon-chevron-left
-        .col-md-10
-          .comment-lists-content
-            - @divisionComments.each do |comment|
-              - unless comment.div_comment.nil? || comment.div_comment.empty?
+        .row
+          .comment-lists-chevron.col-md-1.box
+            = link_to '', {:remote => true} do
+              %li.glyphicon.glyphicon-chevron-left
+          .col-md-10.box
+            .comment-lists-content
+              - @divisionComments.each do |comment|
                 .comment-lists-comment.row
                   .col-md-6
                     %p 評論者: user
@@ -94,18 +95,22 @@
                     科別評論：
                     %br>/
                     \#{comment.div_comment}
-        .col-md-1
-          %li.glyphicon.glyphicon-chevron-right
-    .col-md-8.col-md-offset-3
-      .comment-lists.row
-        .comment-lists-title
-          最新醫師評論
-        .col-md-1
-          %li.glyphicon.glyphicon-chevron-left
-        .col-md-10
-          .comment-lists-content
-            - @doctorComments.each do |comment|
-              - unless comment.div_comment.nil? || comment.div_comment.empty?
+            .comment-lists-paginate
+              = will_paginate @divisionComments
+          .comment-lists-chevron.col-md-1.box
+            = link_to '', {:remote => true} do
+              %li.glyphicon.glyphicon-chevron-right
+    .col-md-8.col-md-offset-3.box
+      .comment-lists
+        .row
+          .comment-lists-title
+            最新醫師評論
+          .comment-lists-chevron.col-md-1.box
+            = link_to '', {:remote => true} do
+              %li.glyphicon.glyphicon-chevron-left
+          .col-md-10
+            .comment-lists-content
+              - @doctorComments.each do |comment|
                 .comment-lists-comment.row
                   .col-md-6
                     %p 評論者: user
@@ -116,6 +121,9 @@
                   .col-md-6.comment-lists-comment-content
                     科別評論：
                     %br>/
-                    \#{comment.div_comment}
-        .col-md-1
-          %li.glyphicon.glyphicon-chevron-right
+                    \#{comment.dr_comment}
+            .comment-lists-paginate
+              = will_paginate @divisionComments
+          .comment-lists-chevron.col-md-1.box
+            = link_to '', {:remote => true} do
+              %li.glyphicon.glyphicon-chevron-right

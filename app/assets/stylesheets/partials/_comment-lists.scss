@@ -5,14 +5,19 @@
     font-size: 1.1em;
     padding-bottom: 8px;
   }
-  .glyphicon:before{
-    position: relative;
-    top: 230px;
+  .comment-lists-chevron{
+    text-align: center;
+    li.glyphicon{
+      position: relative;
+      top: 230px;
+    }
+  }
+  .comment-lists-paginate{
+    text-align: center;
   }
   .comment-lists-content{
     margin:20px auto;
     .comment-lists-comment{
-      width: 550px;
       height: 130px;
       border: solid 1px #b1b1b1;
       margin:20px auto;
@@ -25,7 +30,6 @@
       }
       .comment-lists-comment-content:first-line{
         line-height: 30px;
-
       }
     }
   }
