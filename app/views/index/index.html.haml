@@ -1,15 +1,22 @@
 %main
-  .row
-    %aside.col-md-2.col-md-offset-2
-      .aside-title
-        依地區尋找
-      .aside-content.row
-        - @areas.each do |area|
-          .col-md-6.aside-list
-            = area.name
-      .aside-title
-        依科別尋找
-    .col-md-6
+  .main.row
+    %aside.col-md-3.box
+      .aside
+        .aside-title
+          依地區尋找
+        .aside-chevron.glyphicon.glyphicon-chevron-up
+        .aside-content.row
+          - @areas.each do |area|
+            .col-md-6.aside-list
+              = link_to area.name, "#"
+        .aside-title
+          依科別尋找
+        .aside-chevron.glyphicon.glyphicon-chevron-up
+        .aside-content.row
+          - @categories.each do |category|
+            .col-md-6.aside-list
+              = link_to category.name, "#"
+    .col-md-8.box
       .recommend-lists
         .recommend-lists-title
           .recommend-lists-tag
@@ -19,16 +26,16 @@
           .recommend-lists-more
             觀看更多
         .recommend-lists-content.row
-          .col-md-6
+          .col-md-6.box
             - @goodHospitals.each_with_index do |hospital, index|
               -if index < 5
                 .recommend-lists-ranknum
                   = "0" + (index + 1).to_s
                 .recommend-lists-list
-                  = hospital.name
+                  = link_to hospital.name, ""
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
-          .col-md-6
+          .col-md-6.box
             - @goodHospitals.each_with_index do |hospital, index|
               -if index > 4
                 .recommend-lists-ranknum
@@ -37,7 +44,7 @@
                   -else
                     = "0" + (index + 1).to_s
                 .recommend-lists-list
-                  = hospital.name
+                  = link_to hospital.name, "#"
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
       .recommend-lists.recommend-doctors
@@ -49,7 +56,7 @@
           .recommend-lists-more
             觀看更多
         .recommend-lists-content.row
-          .col-md-6
+          .col-md-6.box
             - @goodHospitals.each_with_index do |hospital, index|
               -if index < 5
                 .recommend-lists-ranknum
@@ -58,7 +65,7 @@
                   = hospital.name
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
-          .col-md-6
+          .col-md-6.box
             - @goodHospitals.each_with_index do |hospital, index|
               -if index > 4
                 .recommend-lists-ranknum
@@ -70,7 +77,7 @@
                   = hospital.name
                   %li.glyphicon.glyphicon-thumbs-up
                     1,240
-    .col-md-6.col-md-offset-4
+    .col-md-8.col-md-offset-3
       .comment-lists.row
         .comment-lists-title
           最新科別評論
@@ -93,7 +100,7 @@
                     \#{comment.div_comment}
         .col-md-1
           %li.glyphicon.glyphicon-chevron-right
-    .col-md-6.col-md-offset-4
+    .col-md-8.col-md-offset-3
       .comment-lists.row
         .comment-lists-title
           最新醫師評論

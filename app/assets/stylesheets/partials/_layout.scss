@@ -5,6 +5,9 @@
 body{
   font-size: $base-font-size;
   font-family: $base-font-family;
+  a{
+    color: #000;
+  }
 }
 
 header{
@@ -18,14 +21,26 @@ header{
   margin: 0 auto;
 }
 
-aside{
+.main{
+  width: 960px;
+  margin: 0 auto;
+}
+
+.aside{
   background-color: #e9e9e9;
-  height: 800px;
+  mini-height: 800px;
+  height: auto;
   .aside-title{
+    margin: 0 10px;
     color: #66b068;
     border-bottom: solid 2px #75ce14;
     padding: 8px 0px;
     font-size: 1.1em;
+  }
+  .aside-chevron{
+    float: right;
+    top: -25px;
+    left: -8px;
   }
   .aside-content{
     width: 80%;
