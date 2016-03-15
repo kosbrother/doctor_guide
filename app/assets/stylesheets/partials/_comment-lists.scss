@@ -14,6 +14,13 @@
   }
   .comment-lists-paginate{
     text-align: center;
+    .pagination > li a{
+      border-radius: 50%;
+      margin: 0 2px;
+    }
+    .current{
+      background-color: #8ad636;
+    }
   }
   .comment-lists-content{
     margin:20px auto;

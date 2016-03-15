@@ -121,9 +121,7 @@
         .comment-lists-title
           最新科別評論
         .row
-          .comment-lists-chevron.col-md-1.box
-            = link_to '', {:remote => true} do
-              %li.glyphicon.glyphicon-chevron-left
+          .col-md-1.box
           .col-md-10.box
             .comment-lists-content
               - @divisionComments.each do |comment|
@@ -139,18 +137,14 @@
                     %br>/
                     \#{comment.div_comment}
             .comment-lists-paginate
-              = will_paginate @divisionComments
-          .comment-lists-chevron.col-md-1.box
-            = link_to '', {:remote => true} do
-              %li.glyphicon.glyphicon-chevron-right
+              = pagination_links(@divisionComments)
+          .col-md-1.box
     .col-md-8.col-md-offset-3.box
       .comment-lists
         .row
           .comment-lists-title
             最新醫師評論
-          .comment-lists-chevron.col-md-1.box
-            = link_to '', {:remote => true} do
-              %li.glyphicon.glyphicon-chevron-left
+          .col-md-1.box
           .col-md-10
             .comment-lists-content
               - @doctorComments.each do |comment|
@@ -166,7 +160,5 @@
                     %br>/
                     \#{comment.dr_comment}
             .comment-lists-paginate
-              = will_paginate @doctorComments
-          .comment-lists-chevron.col-md-1.box
-            = link_to '', {:remote => true} do
-              %li.glyphicon.glyphicon-chevron-right
+              = pagination_links(@doctorComments)
+          .col-md-1.box
