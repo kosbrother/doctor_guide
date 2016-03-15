@@ -20,4 +20,22 @@
             %form
               %input.search{:name => "doctorsearch", :placeholder => "找醫院/找醫師", :type => "search"}/
               %span.glyphicon.glyphicon-search.search-icon{:type => "submit", value: "search", "aria-hidden" => "true"}
-    = yield
+    %main
+      .main.row
+        %aside.col-md-3.box
+          .aside
+            .aside-title
+              依地區尋找
+            .aside-chevron.glyphicon.glyphicon-chevron-up
+            .aside-content.row
+              - @areas.each do |area|
+                .col-md-6.aside-list
+                  = link_to area.name, ''
+            .aside-title
+              依科別尋找
+            .aside-chevron.glyphicon.glyphicon-chevron-up
+            .aside-content.row
+              - @categories.each do |category|
+                .col-md-6.aside-list
+                  = link_to category.name, ''
+        = yield
