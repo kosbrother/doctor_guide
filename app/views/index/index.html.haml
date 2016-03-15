@@ -20,59 +20,102 @@
       .recommend-lists
         .recommend-lists-title
           .recommend-lists-tag.active
-            = link_to '推薦醫院', '', :remote => true
-          .recommend-lists-tag
-            = link_to '熱門醫院', '', :remote => true
+            = link_to '推薦醫院', '#recommendHospitals', :remote => true, 'data-toggle' => "tab"
+          .recommend-lists-tag{ 'data-toggle' => "tab"}
+            = link_to '熱門醫院', '#popHospitals', :remote => true, 'data-toggle' => "tab"
           .recommend-lists-more
             = link_to '觀看更多', ''
         .recommend-lists-content.row
-          - @goodHospitals.each_with_index do |hospital, index|
-            -if index < 5
-              .col-md-6.box
-                .recommend-lists-ranknum
-                  = "0" + (index + 1).to_s
-                .recommend-lists-list
-                  = link_to hospital.name, ""
-                  %li.glyphicon.glyphicon-thumbs-up
-                    1,240
-              .col-md-6.box
-                .recommend-lists-ranknum
-                  -if index + 6 < 10
-                    = "0" + (index + 6).to_s
-                  -else
-                    = (index + 6).to_s
-                .recommend-lists-list
-                  = link_to @goodHospitals[5+index].name, ""
-                  %li.glyphicon.glyphicon-thumbs-up
-                    1,240
+          #recommendHospitals.tab-pane.active
+            - @goodHospitals.each_with_index do |hospital, index|
+              -if index < 5
+                .col-md-6.box
+                  .recommend-lists-ranknum
+                    = "0" + (index + 1).to_s
+                  .recommend-lists-list
+                    = link_to hospital.name, ""
+                    %li.glyphicon.glyphicon-thumbs-up
+                      1,240
+                .col-md-6.box
+                  .recommend-lists-ranknum
+                    -if index + 6 < 10
+                      = "0" + (index + 6).to_s
+                    -else
+                      = (index + 6).to_s
+                  .recommend-lists-list
+                    = link_to @goodHospitals[5+index].name, ""
+                    %li.glyphicon.glyphicon-thumbs-up
+                      1,240
+          #popHospitals.tab-pane
+            - @popHospitals.each_with_index do |hospital, index|
+              -if index < 5
+                .col-md-6.box
+                  .recommend-lists-ranknum
+                    = "0" + (index + 1).to_s
+                  .recommend-lists-list
+                    = link_to hospital.name, ""
+                    %li.glyphicon.glyphicon-thumbs-up
+                      1,240
+                .col-md-6.box
+                  .recommend-lists-ranknum
+                    -if index + 6 < 10
+                      = "0" + (index + 6).to_s
+                    -else
+                      = (index + 6).to_s
+                  .recommend-lists-list
+                    = link_to @popHospitals[5+index].name, ""
+                    %li.glyphicon.glyphicon-thumbs-up
+                      1,240
+
       .recommend-lists.recommend-doctors
         .recommend-lists-title
           .recommend-lists-tag.active
-            = link_to '推薦醫生','', :remote => true
+            = link_to '推薦醫生','#recommendDoctors', :remote => true, :remote => true, 'data-toggle' => "tab"
           .recommend-lists-tag
-            = link_to '熱門醫生', '', :remote => true
+            = link_to '熱門醫生', '#popDoctors', :remote => true,  :remote => true, 'data-toggle' => "tab"
           .recommend-lists-more
             = link_to '觀看更多', ''
         .recommend-lists-content.row
-          - @goodHospitals.each_with_index do |hospital, index|
-            -if index < 5
-              .col-md-6.box
-                .recommend-lists-ranknum
-                  = "0" + (index + 1).to_s
-                .recommend-lists-list
-                  = link_to hospital.name, ""
-                  %li.glyphicon.glyphicon-thumbs-up
-                    1,240
-              .col-md-6.box
-                .recommend-lists-ranknum
-                  -if index + 6 < 10
-                    = "0" + (index + 6).to_s
-                  -else
-                    = (index + 6).to_s
-                .recommend-lists-list
-                  = link_to @goodHospitals[5+index].name, ""
-                  %li.glyphicon.glyphicon-thumbs-up
-                    1,240
+          #recommendDoctors.tab-pane.active
+            - @goodDoctors.each_with_index do |hospital, index|
+              -if index < 5
+                .col-md-6.box
+                  .recommend-lists-ranknum
+                    = "0" + (index + 1).to_s
+                  .recommend-lists-list
+                    = link_to hospital.name, ""
+                    %li.glyphicon.glyphicon-thumbs-up
+                      1,240
+                .col-md-6.box
+                  .recommend-lists-ranknum
+                    -if index + 6 < 10
+                      = "0" + (index + 6).to_s
+                    -else
+                      = (index + 6).to_s
+                  .recommend-lists-list
+                    = link_to @goodDoctors[5+index].name, ""
+                    %li.glyphicon.glyphicon-thumbs-up
+                      1,240
+          #popDoctors.tab-pane
+            - @popDoctors.each_with_index do |doctor, index|
+              -if index < 5
+                .col-md-6.box
+                  .recommend-lists-ranknum
+                    = "0" + (index + 1).to_s
+                  .recommend-lists-list
+                    = link_to doctor.name, ""
+                    %li.glyphicon.glyphicon-thumbs-up
+                      1,240
+                .col-md-6.box
+                  .recommend-lists-ranknum
+                    -if index + 6 < 10
+                      = "0" + (index + 6).to_s
+                    -else
+                      = (index + 6).to_s
+                  .recommend-lists-list
+                    = link_to @popDoctors[5+index].name, ""
+                    %li.glyphicon.glyphicon-thumbs-up
+                      1,240
     .col-md-8.col-md-offset-3.box
       .comment-lists
         .comment-lists-title
@@ -123,7 +166,7 @@
                     %br>/
                     \#{comment.dr_comment}
             .comment-lists-paginate
-              = will_paginate @divisionComments
+              = will_paginate @doctorComments
           .comment-lists-chevron.col-md-1.box
             = link_to '', {:remote => true} do
               %li.glyphicon.glyphicon-chevron-right

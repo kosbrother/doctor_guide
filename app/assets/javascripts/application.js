@@ -46,5 +46,10 @@ $(document).ready(
             $(this).next().slideToggle("fast", function(){
             })
         })
+    //Recommend doctors tag
+        $('.recommend-lists-tag').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show')
+        })
     }
 );

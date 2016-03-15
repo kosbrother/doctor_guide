@@ -31,6 +31,12 @@
   .recommend-lists-content{
     width: 100%;
     margin: 20px auto;
+    .tab-pane{
+      display: none;
+    }
+    .active{
+      display: block;
+    }
     .recommend-lists-ranknum{
       vertical-align: top;
       font-size: 2em;
