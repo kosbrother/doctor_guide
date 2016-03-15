@@ -125,17 +125,17 @@
           .col-md-10.box
             .comment-lists-content
               - @divisionComments.each do |comment|
-                .comment-lists-comment.row
+                %a.comment-lists-comment.row{:href => ""}
                   .col-md-6
-                    %p 評論者: user
-                    %p 對象： doctor
+                    %p 評論者: #{comment.user.name}
+                    %p 對象： #{comment.doctor.name}
                     .comment-lists-rank
-                      %p 科別滿意度： 2.0
-                      %p 醫師滿意度： 4.0
+                      %p 科別滿意度： #{comment.div_speciality}
+                      %p 醫師滿意度： #{comment.dr_speciality}
                   .col-md-6.comment-lists-comment-content
                     科別評論：
                     %br>/
-                    \#{comment.div_comment}
+                    = truncate(comment.div_comment, length: 35)
             .comment-lists-paginate
               = pagination_links(@divisionComments)
           .col-md-1.box
@@ -148,17 +148,17 @@
           .col-md-10
             .comment-lists-content
               - @doctorComments.each do |comment|
-                .comment-lists-comment.row
+                %a.comment-lists-comment.row{:href => ""}
                   .col-md-6
-                    %p 評論者: user
-                    %p 對象： doctor
+                    %p 評論者: #{comment.user.name}
+                    %p 對象： #{comment.doctor.name}
                     .comment-lists-rank
-                      %p 科別滿意度： 2.0
-                      %p 醫師滿意度： 4.0
+                      %p 科別滿意度： #{comment.div_speciality}
+                      %p 醫師滿意度： #{comment.dr_speciality}
                   .col-md-6.comment-lists-comment-content
                     科別評論：
                     %br>/
-                    \#{comment.dr_comment}
+                    = truncate(comment.dr_comment, length: 35)
             .comment-lists-paginate
               = pagination_links(@doctorComments)
           .col-md-1.box
