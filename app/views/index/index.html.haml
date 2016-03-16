@@ -8,37 +8,27 @@
       = link_to '觀看更多', ''
   .recommend-lists-content.row
     #recommendHospitals.tab-pane.active
-      - @goodHospitals.each_slice(2).with_index do |hospitals, i|
+      - @goodHospitals.each_slice(5).with_index do |hospitals, i|
         .col-md-6.box
-          .recommend-lists-ranknum
-            = (i*2)+1
-          .recommend-lists-list
-            = link_to hospitals[0].name, ""
-            %li.glyphicon.glyphicon-thumbs-up
-              = hospitals[0].recommend_num
-        .col-md-6.box
-          .recommend-lists-ranknum
-            = (i*2)+2
-          .recommend-lists-list
-            = link_to hospitals[1].name, ""
-            %li.glyphicon.glyphicon-thumbs-up
-              = hospitals[1].recommend_num
+          - hospitals.each_with_index do |hospital, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                = (i*5)+ 1 + num
+              .recommend-lists-name
+                = hospital.name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = hospital.recommend_num
     #popHospitals.tab-pane
-      - @popHospitals.each_slice(2).with_index do |hospitals, i|
+      - @popHospitals.each_slice(5).with_index do |hospitals, i|
         .col-md-6.box
-          .recommend-lists-ranknum
-            = (i*2)+1
-          .recommend-lists-list
-            = link_to hospitals[0].name, ""
-            %li.glyphicon.glyphicon-thumbs-up
-              = hospitals[0].recommend_num
-        .col-md-6.box
-          .recommend-lists-ranknum
-            = (i*2)+2
-          .recommend-lists-list
-            = link_to hospitals[1].name, ""
-            %li.glyphicon.glyphicon-thumbs-up
-              = hospitals[1].recommend_num
+          - hospitals.each_with_index do |hospital, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                = (i*5)+ 1 + num
+              .recommend-lists-name
+                = hospital.name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = hospital.recommend_num
 .recommend-lists.recommend-doctors
   .recommend-lists-title
     .recommend-lists-tag.active
@@ -49,37 +39,27 @@
       = link_to '觀看更多', ''
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
-      - @goodDoctors.each_slice(2).with_index do |doctors, i|
+      - @goodDoctors.each_slice(5).with_index do |doctors, i|
         .col-md-6.box
-          .recommend-lists-ranknum
-            = (i*2)+1
-          .recommend-lists-list
-            = link_to doctors[0].name, ""
-            %li.glyphicon.glyphicon-thumbs-up
-              = doctors[0].recommend_num
-        .col-md-6.box
-          .recommend-lists-ranknum
-            = (i*2)+2
-          .recommend-lists-list
-            = link_to doctors[1].name, ""
-            %li.glyphicon.glyphicon-thumbs-up
-              = doctors[1].recommend_num
+          - doctors.each_with_index do |doctor, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                = (i*5)+ 1 + num
+              .recommend-lists-name
+                = doctor.name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.recommend_num
     #popDoctors.tab-pane
-      - @popDoctors.each_slice(2).with_index do |doctors, i|
+      - @popDoctors.each_slice(5).with_index do |doctors, i|
         .col-md-6.box
-          .recommend-lists-ranknum
-            = (i*2)+1
-          .recommend-lists-list
-            = link_to doctors[0].name, ""
-            %li.glyphicon.glyphicon-thumbs-up
-              = doctors[0].recommend_num
-        .col-md-6.box
-          .recommend-lists-ranknum
-            = (i*2)+2
-          .recommend-lists-list
-            = link_to doctors[1].name, ""
-            %li.glyphicon.glyphicon-thumbs-up
-              = doctors[1].recommend_num
+          - doctors.each_with_index do |doctor, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                = (i*5)+ 1 + num
+              .recommend-lists-name
+                = doctor.name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.recommend_num
 .col-md-8.col-md-offset-3.box
 .comment-lists
   .comment-lists-title

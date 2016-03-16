@@ -27,4 +27,65 @@
           = hospital[4].name
     .hospital-lists-paginate
       = pagination_links(@areaHospitals)
-
+.recommend-lists
+  .recommend-lists-title
+    .recommend-lists-tag.active
+      = link_to "#{@area.name}推薦醫院", '#recommendHospitals', 'data-toggle' => "tab"
+    .recommend-lists-tag{ 'data-toggle' => "tab"}
+      = link_to "#{@area.name}熱門醫院", '#popHospitals', 'data-toggle' => "tab"
+    .recommend-lists-more
+      = link_to '觀看更多', ''
+  .recommend-lists-content.row
+    #recommendHospitals.tab-pane.active
+      - @areaGoodHospitals.each_slice(5).with_index do |hospitals, i|
+        .col-md-6.box
+          - hospitals.each_with_index do |hospital, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                = (i*5)+ 1 + num
+              .recommend-lists-name
+                = hospital.name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = hospital.recommend_num
+    #popHospitals.tab-pane
+      - @areaPopHospitals.each_slice(5).with_index do |hospitals, i|
+        .col-md-6.box
+          - hospitals.each_with_index do |hospital, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                = (i*5)+ 1 + num
+              .recommend-lists-name
+                = hospital.name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = hospital.recommend_num
+.recommend-lists.recommend-doctors
+  .recommend-lists-title
+    .recommend-lists-tag.active
+      = link_to "#{@area.name}推薦醫生", '#recommendDoctors', 'data-toggle' => "tab"
+    .recommend-lists-tag{ 'data-toggle' => "tab"}
+      = link_to "#{@area.name}熱門醫生", '#popDoctors', 'data-toggle' => "tab"
+    .recommend-lists-more
+      = link_to '觀看更多', ''
+  .recommend-lists-content.row
+    #recommendDoctors.tab-pane.active
+      - @areaGoodDoctors.each_slice(5).with_index do |doctors, i|
+        .col-md-6.box
+          - doctors.each_with_index do |doctor, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                = (i*5)+ 1 + num
+              .recommend-lists-name
+                = doctor.name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.recommend_num
+    #popDoctors.tab-pane
+      - @areaPopDoctors.each_slice(5).with_index do |doctors, i|
+        .col-md-6.box
+          - doctors.each_with_index do |doctor, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                = (i*5)+ 1 + num
+              .recommend-lists-name
+                = doctor.name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.recommend_num

@@ -37,20 +37,22 @@
     .active{
       display: block;
     }
-    .recommend-lists-ranknum{
-      vertical-align: top;
-      font-size: 2em;
-      color: #66b068;
-      display: inline-block;
-    }
-    .recommend-lists-list{
-      width: 230px;
-      display: inline-block;
-      margin-left: 5px;
-      margin-bottom: 10px;
-      min-height: 50px;
-      li{
-        display: block;
+    .recommend-lists-content-list{
+      .recommend-lists-ranknum{
+        vertical-align: top;
+        font-size: 2em;
+        color: #66b068;
+        display: inline-block;
+      }
+      .recommend-lists-name{
+        width: 230px;
+        display: inline-block;
+        margin-left: 5px;
+        margin-bottom: 10px;
+        min-height: 50px;
+        li{
+          display: block;
+        }
       }
     }
   }
