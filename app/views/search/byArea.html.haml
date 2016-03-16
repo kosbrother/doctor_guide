@@ -89,3 +89,47 @@
                 = doctor.name
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.recommend_num
+.comment-lists
+  .comment-lists-title
+    = "#{@area.name}最新科別評論"
+  .row
+    .col-md-1.box
+    .col-md-10.box
+      .comment-lists-content
+        - @areaDivisionComments.each do |comment|
+          %a.comment-lists-comment.row{:href => ""}
+            .col-md-6
+              %p 評論者: #{comment.commentor.name}
+              %p 對象： #{comment.doctor.name}
+              .comment-lists-rank
+                %p 科別滿意度： #{comment.div_speciality}
+                %p 醫師滿意度： #{comment.dr_speciality}
+            .col-md-6.comment-lists-comment-content
+              科別評論：
+              %br>/
+              = truncate(comment.div_comment, length: 35)
+      .comment-lists-paginate
+        = pagination_links(@areaDivisionComments)
+    .col-md-1.box
+.comment-lists
+  .row
+    .comment-lists-title
+      = "#{@area.name}最新醫師評論"
+    .col-md-1.box
+    .col-md-10
+      .comment-lists-content
+        - @areaDoctorComments.each do |comment|
+          %a.comment-lists-comment.row{:href => ""}
+            .col-md-6
+              %p 評論者: #{comment.commentor.name}
+              %p 對象： #{comment.doctor.name}
+              .comment-lists-rank
+                %p 科別滿意度： #{comment.div_speciality}
+                %p 醫師滿意度： #{comment.dr_speciality}
+            .col-md-6.comment-lists-comment-content
+              科別評論：
+              %br>/
+              = truncate(comment.dr_comment, length: 35)
+      .comment-lists-paginate
+        = pagination_links(@areaDoctorComments)
+    .col-md-1.box
