@@ -1,129 +1,128 @@
-.col-md-8.box
-  .recommend-lists
-    .recommend-lists-title
-      .recommend-lists-tag.active
-        = link_to '推薦醫院', '#recommendHospitals', 'data-toggle' => "tab"
-      .recommend-lists-tag{ 'data-toggle' => "tab"}
-        = link_to '熱門醫院', '#popHospitals', 'data-toggle' => "tab"
-      .recommend-lists-more
-        = link_to '觀看更多', ''
-    .recommend-lists-content.row
-      #recommendHospitals.tab-pane.active
-        - @goodHospitals.each_slice(2).with_index do |hospitals, i|
-          .col-md-6.box
-            .recommend-lists-ranknum
-              = (i*2)+1
-            .recommend-lists-list
-              = link_to hospitals[0].name, ""
-              %li.glyphicon.glyphicon-thumbs-up
-                = hospitals[0].recommend_num
-          .col-md-6.box
-            .recommend-lists-ranknum
-              = (i*2)+2
-            .recommend-lists-list
-              = link_to hospitals[1].name, ""
-              %li.glyphicon.glyphicon-thumbs-up
-                = hospitals[1].recommend_num
-      #popHospitals.tab-pane
-        - @popHospitals.each_slice(2).with_index do |hospitals, i|
-          .col-md-6.box
-            .recommend-lists-ranknum
-              = (i*2)+1
-            .recommend-lists-list
-              = link_to hospitals[0].name, ""
-              %li.glyphicon.glyphicon-thumbs-up
-                = hospitals[0].recommend_num
-          .col-md-6.box
-            .recommend-lists-ranknum
-              = (i*2)+2
-            .recommend-lists-list
-              = link_to hospitals[1].name, ""
-              %li.glyphicon.glyphicon-thumbs-up
-                = hospitals[1].recommend_num
-  .recommend-lists.recommend-doctors
-    .recommend-lists-title
-      .recommend-lists-tag.active
-        = link_to '推薦醫生','#recommendDoctors', 'data-toggle' => "tab"
-      .recommend-lists-tag
-        = link_to '熱門醫生', '#popDoctors', 'data-toggle' => "tab"
-      .recommend-lists-more
-        = link_to '觀看更多', ''
-    .recommend-lists-content.row
-      #recommendDoctors.tab-pane.active
-        - @goodDoctors.each_slice(2).with_index do |doctors, i|
-          .col-md-6.box
-            .recommend-lists-ranknum
-              = (i*2)+1
-            .recommend-lists-list
-              = link_to doctors[0].name, ""
-              %li.glyphicon.glyphicon-thumbs-up
-                = doctors[0].recommend_num
-          .col-md-6.box
-            .recommend-lists-ranknum
-              = (i*2)+2
-            .recommend-lists-list
-              = link_to doctors[1].name, ""
-              %li.glyphicon.glyphicon-thumbs-up
-                = doctors[1].recommend_num
-      #popDoctors.tab-pane
-        - @popDoctors.each_slice(2).with_index do |doctors, i|
-          .col-md-6.box
-            .recommend-lists-ranknum
-              = (i*2)+1
-            .recommend-lists-list
-              = link_to doctors[0].name, ""
-              %li.glyphicon.glyphicon-thumbs-up
-                = doctors[0].recommend_num
-          .col-md-6.box
-            .recommend-lists-ranknum
-              = (i*2)+2
-            .recommend-lists-list
-              = link_to doctors[1].name, ""
-              %li.glyphicon.glyphicon-thumbs-up
-                = doctors[1].recommend_num
+.recommend-lists
+  .recommend-lists-title
+    .recommend-lists-tag.active
+      = link_to '推薦醫院', '#recommendHospitals', 'data-toggle' => "tab"
+    .recommend-lists-tag{ 'data-toggle' => "tab"}
+      = link_to '熱門醫院', '#popHospitals', 'data-toggle' => "tab"
+    .recommend-lists-more
+      = link_to '觀看更多', ''
+  .recommend-lists-content.row
+    #recommendHospitals.tab-pane.active
+      - @goodHospitals.each_slice(2).with_index do |hospitals, i|
+        .col-md-6.box
+          .recommend-lists-ranknum
+            = (i*2)+1
+          .recommend-lists-list
+            = link_to hospitals[0].name, ""
+            %li.glyphicon.glyphicon-thumbs-up
+              = hospitals[0].recommend_num
+        .col-md-6.box
+          .recommend-lists-ranknum
+            = (i*2)+2
+          .recommend-lists-list
+            = link_to hospitals[1].name, ""
+            %li.glyphicon.glyphicon-thumbs-up
+              = hospitals[1].recommend_num
+    #popHospitals.tab-pane
+      - @popHospitals.each_slice(2).with_index do |hospitals, i|
+        .col-md-6.box
+          .recommend-lists-ranknum
+            = (i*2)+1
+          .recommend-lists-list
+            = link_to hospitals[0].name, ""
+            %li.glyphicon.glyphicon-thumbs-up
+              = hospitals[0].recommend_num
+        .col-md-6.box
+          .recommend-lists-ranknum
+            = (i*2)+2
+          .recommend-lists-list
+            = link_to hospitals[1].name, ""
+            %li.glyphicon.glyphicon-thumbs-up
+              = hospitals[1].recommend_num
+.recommend-lists.recommend-doctors
+  .recommend-lists-title
+    .recommend-lists-tag.active
+      = link_to '推薦醫生','#recommendDoctors', 'data-toggle' => "tab"
+    .recommend-lists-tag
+      = link_to '熱門醫生', '#popDoctors', 'data-toggle' => "tab"
+    .recommend-lists-more
+      = link_to '觀看更多', ''
+  .recommend-lists-content.row
+    #recommendDoctors.tab-pane.active
+      - @goodDoctors.each_slice(2).with_index do |doctors, i|
+        .col-md-6.box
+          .recommend-lists-ranknum
+            = (i*2)+1
+          .recommend-lists-list
+            = link_to doctors[0].name, ""
+            %li.glyphicon.glyphicon-thumbs-up
+              = doctors[0].recommend_num
+        .col-md-6.box
+          .recommend-lists-ranknum
+            = (i*2)+2
+          .recommend-lists-list
+            = link_to doctors[1].name, ""
+            %li.glyphicon.glyphicon-thumbs-up
+              = doctors[1].recommend_num
+    #popDoctors.tab-pane
+      - @popDoctors.each_slice(2).with_index do |doctors, i|
+        .col-md-6.box
+          .recommend-lists-ranknum
+            = (i*2)+1
+          .recommend-lists-list
+            = link_to doctors[0].name, ""
+            %li.glyphicon.glyphicon-thumbs-up
+              = doctors[0].recommend_num
+        .col-md-6.box
+          .recommend-lists-ranknum
+            = (i*2)+2
+          .recommend-lists-list
+            = link_to doctors[1].name, ""
+            %li.glyphicon.glyphicon-thumbs-up
+              = doctors[1].recommend_num
 .col-md-8.col-md-offset-3.box
-  .comment-lists
+.comment-lists
+  .comment-lists-title
+    最新科別評論
+  .row
+    .col-md-1.box
+    .col-md-10.box
+      .comment-lists-content
+        - @divisionComments.each do |comment|
+          %a.comment-lists-comment.row{:href => ""}
+            .col-md-6
+              %p 評論者: #{comment.commentor.name}
+              %p 對象： #{comment.doctor.name}
+              .comment-lists-rank
+                %p 科別滿意度： #{comment.div_speciality}
+                %p 醫師滿意度： #{comment.dr_speciality}
+            .col-md-6.comment-lists-comment-content
+              科別評論：
+              %br>/
+              = truncate(comment.div_comment, length: 35)
+      .comment-lists-paginate
+        = pagination_links(@divisionComments)
+    .col-md-1.box
+.col-md-8.col-md-offset-3.box
+.comment-lists
+  .row
     .comment-lists-title
-      最新科別評論
-    .row
-      .col-md-1.box
-      .col-md-10.box
-        .comment-lists-content
-          - @divisionComments.each do |comment|
-            %a.comment-lists-comment.row{:href => ""}
-              .col-md-6
-                %p 評論者: #{comment.commentor.name}
-                %p 對象： #{comment.doctor.name}
-                .comment-lists-rank
-                  %p 科別滿意度： #{comment.div_speciality}
-                  %p 醫師滿意度： #{comment.dr_speciality}
-              .col-md-6.comment-lists-comment-content
-                科別評論：
-                %br>/
-                = truncate(comment.div_comment, length: 35)
-        .comment-lists-paginate
-          = pagination_links(@divisionComments)
-      .col-md-1.box
-.col-md-8.col-md-offset-3.box
-  .comment-lists
-    .row
-      .comment-lists-title
-        最新醫師評論
-      .col-md-1.box
-      .col-md-10
-        .comment-lists-content
-          - @doctorComments.each do |comment|
-            %a.comment-lists-comment.row{:href => ""}
-              .col-md-6
-                %p 評論者: #{comment.commentor.name}
-                %p 對象： #{comment.doctor.name}
-                .comment-lists-rank
-                  %p 科別滿意度： #{comment.div_speciality}
-                  %p 醫師滿意度： #{comment.dr_speciality}
-              .col-md-6.comment-lists-comment-content
-                科別評論：
-                %br>/
-                = truncate(comment.dr_comment, length: 35)
-        .comment-lists-paginate
-          = pagination_links(@doctorComments)
-      .col-md-1.box
+      最新醫師評論
+    .col-md-1.box
+    .col-md-10
+      .comment-lists-content
+        - @doctorComments.each do |comment|
+          %a.comment-lists-comment.row{:href => ""}
+            .col-md-6
+              %p 評論者: #{comment.commentor.name}
+              %p 對象： #{comment.doctor.name}
+              .comment-lists-rank
+                %p 科別滿意度： #{comment.div_speciality}
+                %p 醫師滿意度： #{comment.dr_speciality}
+            .col-md-6.comment-lists-comment-content
+              科別評論：
+              %br>/
+              = truncate(comment.dr_comment, length: 35)
+      .comment-lists-paginate
+        = pagination_links(@doctorComments)
+    .col-md-1.box

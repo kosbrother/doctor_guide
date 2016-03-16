@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'search/byAreaCategory'
 
-  get 'search/byArea'
+  get 'areas/:area', to: 'search#byArea', as: :area
 
   get 'search/byCategory'
 
