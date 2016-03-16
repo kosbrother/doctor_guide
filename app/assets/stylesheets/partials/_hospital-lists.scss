@@ -1,0 +1,30 @@
+.hospital-lists{
+  min-height: 400px;
+  width: 100%;
+  border: solid 1px #9b9b9b;
+  padding: 20px;
+  margin-bottom: 20px;
+  .hospital-lists-title{
+    font-size: 15px;
+    color: #329834;
+  }
+  .hospital-lists-content{
+    width: 85%;
+    margin: 0 auto;
+    .hospital-lists-content-list{
+      margin: 30px 10px;
+      height: 25px;
+    }
+  }
+  .hospital-lists-paginate{
+    text-align: center;
+    .pagination > li a{
+      border-radius: 50%;
+      margin: 0 2px;
+    }
+    .current{
+      background-color: #8ad636;
+      color: #fff;
+    }
+  }
+}

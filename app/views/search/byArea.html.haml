@@ -1,5 +1,5 @@
 - breadcrumb :area, @area
-.search-area
+.search-areas
   .search-area-title
     依科別尋找
   .search-area-content.row
@@ -9,3 +9,22 @@
           %li.glyphicon.glyphicon-record
         .text
           = category.name
+.hospital-lists
+  .hospital-lists-title
+    = @area.name + '醫院列表'
+  .hospital-lists-content.row
+    - @areaHospitals.each_slice(5) do |hospital|
+      .hospital-lists-content-column.col-md-6
+        .hospital-lists-content-list
+          = hospital[0].name
+        .hospital-lists-content-list
+          = hospital[1].name
+        .hospital-lists-content-list
+          = hospital[2].name
+        .hospital-lists-content-list
+          = hospital[3].name
+        .hospital-lists-content-list
+          = hospital[4].name
+    .hospital-lists-paginate
+      = pagination_links(@areaHospitals)
+

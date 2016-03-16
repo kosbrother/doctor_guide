@@ -7,6 +7,7 @@ class SearchController < ApplicationController
   def byArea
     area_id = params['area']
     @area = Area.find(area_id)
+    @areaHospitals = Hospital.where(area_id: area_id).paginate(:page => params[:page]).per_page(10)
   end
 
   def byCategory
