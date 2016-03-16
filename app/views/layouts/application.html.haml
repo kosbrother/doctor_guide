@@ -8,12 +8,34 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %header.container
-      .col-md-4.box
-        %span.glyphicon.glyphicon-map-marker.logo-mark{"aria-hidden" => "true"}
-        %span.logo 就醫指南
-        %span.logo-desc 就醫指南幫您找到合適的醫生
-      .col-md-8.box
-        %span.glyphicon.glyphicon-search.search-icon{"aria-hidden" => "true"}
-        %input.search{:name => "doctorsearch", :placeholder => "直接搜尋醫院及醫師", :type => "search"}/
-    = yield
+    %header
+      .header.row
+        .col-md-3.box
+          .logos{ :href => "#", :title => "Back to index" }
+            .glyphicon.glyphicon-map-marker.logo-mark{"aria-hidden" => "true"}
+            .logo-name 就醫指南
+            .logo-desc 就醫指南幫您找到好的醫生
+        .col-md-4.col-md-offset-5.box
+          .search-bars
+            %form
+              %input.search{:name => "doctorsearch", :placeholder => "找醫院/找醫師", :type => "search"}/
+              %span.glyphicon.glyphicon-search.search-icon{:type => "submit", value: "search", "aria-hidden" => "true"}
+    %main
+      .main.row
+        %aside.col-md-3.box
+          .aside
+            .aside-title
+              依地區尋找
+            .aside-chevron.glyphicon.glyphicon-chevron-up
+            .aside-content.row
+              - @areas.each do |area|
+                .col-md-6.aside-list
+                  = link_to area.name, ''
+            .aside-title
+              依科別尋找
+            .aside-chevron.glyphicon.glyphicon-chevron-up
+            .aside-content.row
+              - @categories.each do |category|
+                .col-md-6.aside-list
+                  = link_to category.name, ''
+        = yield

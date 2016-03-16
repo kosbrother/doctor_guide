@@ -1,0 +1,72 @@
+.recommend-lists{
+  margin-bottom: 50px;
+  .recommend-lists-title{
+    color: #808080;
+    border-bottom: solid 2px #75ce14;
+    padding: 8px 0px;
+    font-size: 1.1em;
+    color: #000;
+    position: relative;
+    .recommend-lists-tag{
+      margin-right: 10px;
+    }
+    .recommend-lists-tag.active a{
+      color: #66b068;
+    }
+
+    .recommend-lists-tag, .recommend-lists-more{
+      display: inline-block;
+      a:hover, a:focus{
+        text-decoration: none;
+      }
+    }
+    .recommend-lists-more{
+      position: absolute;
+      right: 0px;
+      a:focus{
+        color: #000;
+      }
+    }
+  }
+  .recommend-lists-content{
+    width: 100%;
+    margin: 20px auto;
+    .tab-pane{
+      display: none;
+    }
+    .active{
+      display: block;
+    }
+    .recommend-lists-ranknum{
+      vertical-align: top;
+      font-size: 2em;
+      color: #66b068;
+      display: inline-block;
+    }
+    .recommend-lists-list{
+      width: 230px;
+      display: inline-block;
+      margin-left: 5px;
+      margin-bottom: 10px;
+      min-height: 50px;
+      li{
+        display: block;
+      }
+    }
+  }
+}
+
+.recommend-lists.recommend-doctors{
+  .recommend-lists-title{
+    border-bottom: solid 2px #f76489;
+    .recommend-lists-tag.active a{
+      color: #f76489;
+    }
+  }
+  .recommend-lists-content{
+    .recommend-lists-ranknum{
+      color: #f76489;
+    }
+  }
+
+}
