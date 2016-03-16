@@ -1,0 +1,28 @@
+.search-area{
+  min-height: 400px;
+  width: 100%;
+  border: solid 1px #9b9b9b;
+  padding: 20px;
+  .search-area-title{
+    font-size: 15px;
+    color: #329834;
+  }
+  .search-area-content {
+    margin: 0 0;
+    .search-area-content-list {
+      padding: 0 0;
+      margin-top: 20px;
+      .icon {
+        display: inline-block;
+        font-size: 30px;
+        vertical-align:middle
+      }
+      .text {
+        display: inline-block;
+        font-size: 14px;
+        vertical-align:middle;
+        margin-left: 15px;
+      }
+    }
+  }
+}

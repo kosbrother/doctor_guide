@@ -1,1 +1,11 @@
 - breadcrumb :area, @area
+.search-area
+  .search-area-title
+    依科別尋找
+  .search-area-content.row
+    -@categories.each do |category|
+      .search-area-content-list.col-md-3
+        .icon
+          %li.glyphicon.glyphicon-record
+        .text
+          = category.name
