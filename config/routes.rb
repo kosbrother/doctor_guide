@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'comment/category'
 
-  get 'information/hospital'
+  get 'hospitals/:hospital', to: 'information#hospital', as: :hospital
 
   get 'information/category'
 

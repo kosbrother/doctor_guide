@@ -1,0 +1,16 @@
+.information-boxes{
+  max-width: 620px;
+  border: solid 2px #7055a1;
+  padding: 20px;
+  .information-boxes-title{
+    font-size: 15px;
+    color: #329834;
+    border-bottom: solid 1px #7055a1;
+    .information-boxes-title-content{
+      .icon{
+
+      }
+
+    }
+  }
+}
