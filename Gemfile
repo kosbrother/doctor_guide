@@ -33,7 +33,7 @@ gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'sidekiq'
-
+gem "gretel"
 gem 'geocoder'
 gem 'geokit-rails'
 gem 'will_paginate'
