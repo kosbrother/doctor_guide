@@ -3,5 +3,62 @@
   .information-boxes-title
     醫院資訓
     .information-boxes-title-content
-      .icon
-      .icon-content
+      .icons
+        .icon
+          = image_tag("iconsample.png")
+        .icon-content
+          .icon-content-title
+            = @hospital.name
+          .icon-content-num
+            %li.glyphicon.glyphicon-thumbs-up
+            %li
+              = @hospital.recommend_num
+          .icon-content-num
+            %li.glyphicon.glyphicon-comment
+            %li
+              = @hospital.comment_num
+  .information-boxes-content.row
+    .col-md-6
+      .information-boxes-contact
+        .icons
+          .icon
+            %li.glyphicon.glyphicon-map-marker
+          .icon-content
+            .icon-content-title
+              院址
+            .icon-content-info
+              = @hospital.address
+      .information-boxes-contact
+        .icons
+          .icon
+            %li.glyphicon.glyphicon-earphone
+          .icon-content
+            .icon-content-title
+              電話
+            .icon-content-info
+              = @hospital.phone
+      .information-boxes-contact
+        .icons
+          .icon
+            %li.glyphicon.glyphicon-time
+          .icon-content
+            .icon-content-title
+              營業時間
+            - if @hospital.cHours
+              - @hospital.cHours.each do |day, times|
+                -if day == 'weekday' && times.class == Array
+                  .icon-content-info
+                    = "平日: #{times.join(' ')}"
+    .col-md-6
+      .image-map
+        = image_tag('mapSample.png')
+  .information-boxes-content.row
+    .col-md-6
+      .info-text
+        醫療緊急分級: &nbsp&nbsp 中度級
+      .info-text
+        評鑑效期: &nbsp&nbsp 2017年12月
+      .info-textarea
+        醫院服務:
+        %p
+          = @hospital.ss.join('，')
