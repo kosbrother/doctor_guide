@@ -60,6 +60,7 @@ Rails.application.routes.draw do
         end 
         collection do
           get 'by_area_category'
+          get 'by_area'
         end
       end
       resources :doctors,:only => [:show] do
@@ -70,6 +71,7 @@ Rails.application.routes.draw do
         collection do
           get 'by_area_category'
           get 'by_hospital_division'
+          get 'by_area'
         end
       end
       resources :divisions,:only => [] do

@@ -1,5 +1,19 @@
 class Api::V1::DoctorsController < Api::ApiController
 
+  def by_area
+    area_id = params[:area_id]
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+    order = params[:order]
+
+    if order == 'distance'
+      doctors = Doctor.joins(:hospitals).where("doctors.area_id = #{area_id}").select("doctors.id,doctors.name,hospitals.name as hospital,hospitals.id as hospital_id,doctors.latitude,doctors.longitude,doctors.comment_num,doctors.recommend_num,doctors.avg").uniq{|x| x.doctor_id}.by_distance(:origin => [latitude,longitude]).paginate(:page => params[:page], :per_page => 10)
+    else
+      doctors = Doctor.joins(:hospitals).where("doctors.area_id = #{area_id}").select('doctors.id,doctors.name,hospitals.name as hospital,hospitals.id as hospital_id,doctors.latitude,doctors.longitude,doctors.comment_num,doctors.recommend_num,doctors.avg').uniq{|x| x.doctor_id}.order("#{order} desc").paginate(:page => params[:page], :per_page => 10)
+    end
+    render :json => doctors
+  end
+
   def by_area_category
     area_id = params[:area_id]
     category_id = params[:category_id]
