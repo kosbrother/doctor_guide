@@ -73,7 +73,7 @@
 
 }
 
-#recommendDivisions, #popDivisions{
+#recommendDivisions, #popDivisions, #recommendHosDoctors, #popHosDoctors{
   .recommend-lists-content-list{
 
     .icons{
@@ -82,7 +82,7 @@
       width: 150px;
     }
     .recommend-lists-name{
-      width: auto;
+      width: 75px;
     }
   }
 }
