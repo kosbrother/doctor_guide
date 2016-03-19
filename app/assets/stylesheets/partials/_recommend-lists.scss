@@ -72,3 +72,17 @@
   }
 
 }
+
+#recommendDivisions, #popDivisions{
+  .recommend-lists-content-list{
+
+    .icons{
+      margin-left: 10px;
+      display: inline-block;
+      width: 150px;
+    }
+    .recommend-lists-name{
+      width: auto;
+    }
+  }
+}

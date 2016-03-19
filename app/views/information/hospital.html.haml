@@ -5,7 +5,7 @@
     .information-boxes-title-content
       .icons
         .icon
-          = image_tag("iconsample.png")
+          = image_tag("icon_hospital.png")
         .icon-content
           .icon-content-title
             = @hospital.name
@@ -79,3 +79,47 @@
     = pagination_links_dot(@divisions)
 
 .recommend-lists
+  .recommend-lists-title
+    .recommend-lists-tag.active
+      = link_to '院內推薦科別', '#recommendDivisions', 'data-toggle' => "tab"
+    .recommend-lists-tag{ 'data-toggle' => "tab"}
+      = link_to '熱門醫院', '#popDivisions', 'data-toggle' => "tab"
+    .recommend-lists-more
+      = link_to '觀看更多', ''
+  .recommend-lists-content.row
+    #recommendDivisions.tab-pane.active
+      - @goodDivisions.each_slice(5).with_index do |divisions, i|
+        .col-md-6.box
+          - divisions.each_with_index do |division, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .icons
+                .icon
+                  = image_tag("ic/small 29/#{division.category_id}.png")
+                .icon-content
+                  = division.name
+              .recommend-lists-name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = division.total
+    #popDivisions.tab-pane
+      - @popDivisions.each_slice(5).with_index do |divisions, i|
+        .col-md-6.box
+          - divisions.each_with_index do |division, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .icons
+                .icon
+                  = image_tag("ic/small 29/#{division.category_id}.png")
+                .icon-content
+                  = division.name
+              .recommend-lists-name
+                %li.glyphicon.glyphicon-thumbs-up
+                  = division.total
