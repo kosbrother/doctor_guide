@@ -54,6 +54,14 @@
           display: block;
         }
       }
+      .recommend-lists-doctorName{
+        margin-left: 10px;
+        display: inline-block;
+        width: 100px;
+        .recommend-lists-doctor-div{
+          color: #4a4a4a;
+        }
+      }
     }
   }
 }
@@ -75,14 +83,33 @@
 
 #recommendDivisions, #popDivisions, #recommendHosDoctors, #popHosDoctors{
   .recommend-lists-content-list{
-
+    margin: 20px 0;
     .icons{
       margin-left: 10px;
       display: inline-block;
       width: 150px;
+      position: relative;
+      top: 6px;
+      .icon-content{
+        vertical-align: middle;
+      }
     }
-    .recommend-lists-name{
-      width: 75px;
-    }
+  }
+}
+#recommendDivisions, #popDivisions{
+  .recommend-lists-glyph {
+    width: 75px;
+    position: relative;
+    top: 9px;
+    display: inline-block;
+  }
+}
+
+#recommendHosDoctors, #popHosDoctors{
+  .recommend-lists-glyph {
+    width: 75px;
+    position: relative;
+    top: -15px;
+    display: inline-block;
   }
 }

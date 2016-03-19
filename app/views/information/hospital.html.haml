@@ -102,7 +102,7 @@
                   = image_tag("ic/small 29/#{division.category_id}.png")
                 .icon-content
                   = division.name
-              .recommend-lists-name
+              .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = division.total
     #popDivisions.tab-pane
@@ -120,7 +120,7 @@
                   = image_tag("ic/small 29/#{division.category_id}.png")
                 .icon-content
                   = division.name
-              .recommend-lists-name
+              .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = division.total
 .recommend-lists.recommend-doctors
@@ -142,10 +142,13 @@
                   = '0' + ((i*5)+ 1 + num).to_s
                 - else
                   = (i*5)+ 1 + num
-              .recommend-lists-name
+              .recommend-lists-doctorName
                 = doctor.name
-              %li.glyphicon.glyphicon-thumbs-up
-                = doctor.total
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.doctor_id)
+              .recommend-lists-glyph
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.total
     #popHosDoctors.tab-pane
       - @popDoctors.each_slice(5).with_index do |doctors, i|
         .col-md-6.box
@@ -156,7 +159,55 @@
                   = '0' + ((i*5)+ 1 + num).to_s
                 - else
                   = (i*5)+ 1 + num
-              .recommend-lists-name
+              .recommend-lists-doctorName
                 = doctor.name
-              %li.glyphicon.glyphicon-thumbs-up
-                = doctor.total
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.doctor_id)
+              .recommend-lists-glyph
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.total
+.comment-lists
+  .comment-lists-title
+    院內最新科別評論
+  .row
+    .col-md-1.box
+    .col-md-10.box
+      .comment-lists-content
+        - @divisionComments.each do |comment|
+          %a.comment-lists-comment.row{:href => ""}
+            .col-md-6
+              %p 評論者: #{comment.commentor.name}
+              %p 對象： #{comment.division.name}/#{comment.doctor.name}
+              .comment-lists-rank
+                %p 科別滿意度： #{comment.div_speciality}
+                %p 醫師滿意度： #{comment.dr_speciality}
+            .col-md-6.comment-lists-comment-content
+              科別評論：
+              %br>/
+              = truncate(comment.div_comment, length: 35)
+      .comment-lists-paginate
+        = pagination_links(@divisionComments)
+    .col-md-1.box
+.col-md-8.col-md-offset-3.box
+.comment-lists
+  .row
+    .comment-lists-title
+      院內最新醫師評論
+    .col-md-1.box
+    .col-md-10
+      .comment-lists-content
+        - @doctorComments.each do |comment|
+          %a.comment-lists-comment.row{:href => ""}
+            .col-md-6
+              %p 評論者: #{comment.commentor.name}
+              %p 對象： #{comment.division.name}/#{comment.doctor.name}
+              .comment-lists-rank
+                %p 科別滿意度： #{comment.div_speciality}
+                %p 醫師滿意度： #{comment.dr_speciality}
+            .col-md-6.comment-lists-comment-content
+              科別評論：
+              %br>/
+              = truncate(comment.dr_comment, length: 35)
+      .comment-lists-paginate
+        = pagination_links(@doctorComments)
+    .col-md-1.box

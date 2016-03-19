@@ -16,4 +16,8 @@ module ApplicationHelper
     options[:outer_window] ||= 1
     will_paginate(collection, options)
   end
+
+  def findDoctorDivName(dr_id)
+    Doctor.find(dr_id).divisions[0].name
+  end
 end
