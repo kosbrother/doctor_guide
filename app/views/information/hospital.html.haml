@@ -62,3 +62,20 @@
         醫院服務:
         %p
           = @hospital.ss.join('，')
+.division-lists
+  .division-lists-title
+    院內科別
+  .division-lists-content
+    - @divisions.each_slice(4) do |divs|
+      .division-lists-row
+        - divs.each do |div|
+          .division-lists-list
+            .icons
+              .icon
+                = image_tag("ic/large 36/#{div.category_id}.png")
+              .icon-content
+                = div.name
+  .division-lists-pagination
+    = pagination_links_dot(@divisions)
+
+.recommend-lists

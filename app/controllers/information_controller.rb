@@ -2,6 +2,7 @@ class InformationController < ApplicationController
   def hospital
     hospital_id = params['hospital']
     @hospital = Hospital.find(hospital_id)
+    @divisions = @hospital.divisions.paginate(:page => params[:page]).uniq{|x| x.name}.per_page(12)
   end
 
   def category
