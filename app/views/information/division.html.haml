@@ -1,0 +1,10 @@
+- content_for :aside do
+  .aside.division-aside
+    .aside-title
+      院內其他科別
+    .aside-content
+      - @otherDivisions.each do |div|
+        .icons
+          .icon
+          .icon-content
+            = div.name
