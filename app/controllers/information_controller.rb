@@ -15,7 +15,7 @@ class InformationController < ApplicationController
     @hospital = Hospital.find(params['hospital'])
     @division = @hospital.divisions.find(params['division'])
     #  TODO validate if hospital has this division
-    @otherDivisions = @hospital.divisions.where.not(id: params['division']).limit(10)
+    @otherDivisions = @hospital.divisions.where.not(id: params['division'])
     @comments = @division.comments.where.not(div_comment: (nil || "")).paginate(:page => params[:page]).per_page(3)
   end
 

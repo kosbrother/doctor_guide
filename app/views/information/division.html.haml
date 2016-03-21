@@ -6,8 +6,9 @@
       - @otherDivisions.each do |div|
         .icons
           .icon
+            = image_tag("ic/small 29/#{div.category_id}.png")
           .icon-content
-            = div.name
+            = link_to div.name, division_path(params['hospital'], div.id)
 .comment-lists
   .comment-lists-title
     = "科內最新科別評論"
