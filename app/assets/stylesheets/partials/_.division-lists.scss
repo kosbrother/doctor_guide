@@ -7,10 +7,15 @@
     margin-bottom: 25px;
   }
   .division-lists-content{
+    width: 100%;
+    height: 500px;
     display: table;
     .division-lists-row{
       display: table-row;
       height: 120px;
+      .division-lists-list:first-child{
+        width: 100px;
+      }
       .division-lists-list{
         display: table-cell;
         width: 145px;
@@ -27,24 +32,18 @@
       }
     }
   }
-  .division-lists-pagination{
-    text-align: center;
-    margin-top: 20px;
-    .division-pagination{
-      display: inline-block;
-      >li{
-        display: inline-block;
-        >a{
-          display: block;
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background-color:#cdcdcd;
-        }
-      }
-      .current>a{
-        background-color: #7ed321;
-      }
-    }
+  .carousel-control.left, .carousel-control.right {
+    background-image: none;
+    color: black;
   }
+  .carousel-control.left{
+    left: -10px;
+  }
+  .carousel-control.right{
+    right: -20px;
+  }
+  .carousel-indicators > li{
+    background-color: green;
+  }
+
 }

@@ -65,19 +65,46 @@
 .division-lists
   .division-lists-title
     院內科別
-  .division-lists-content
-    - @divisions.each_slice(4) do |divs|
-      .division-lists-row
-        - divs.each do |div|
-          .division-lists-list
-            .icons
-              .icon
-                = image_tag("ic/large 36/#{div.category_id}.png")
-              .icon-content
-                = div.name
-  .division-lists-pagination
-    = pagination_links_dot(@divisions)
+  #divisionList.division-lists-content.carousel.slide{'data-ride' => 'carousel'}
+    %ol.carousel-indicators
+      - @divisions.each_slice(12).with_index do |array, i|
+        - if i == 0
+          %li.active{"data-slide-to" => "0", "data-target" => "#divisionList"}
+        - else
+          %li{"data-slide-to" => "#{i}", "data-target" => "#divisionList"}
+    .carousel-inner{'role' => 'listbox'}
+      - @divisions.each_slice(12).with_index do |divisions, i|
 
+        - if i == 0
+          .item.active
+            - divisions.each_slice(3) do |divs|
+              .division-lists-row
+                .division-lists-list
+                - divs.each do |div|
+                  .division-lists-list
+                    .icons
+                      .icon
+                        = image_tag("ic/large 36/#{div.category_id}.png")
+                      .icon-content
+                        = div.name
+        - else
+          .item
+            - divisions.each_slice(3) do |divs|
+              .division-lists-row
+                .division-lists-list
+                - divs.each do |div|
+                  .division-lists-list
+                    .icons
+                      .icon
+                        = image_tag("ic/large 36/#{div.category_id}.png")
+                      .icon-content
+                        = div.name
+    %a.left.carousel-control{"data-slide" => "prev", :href => "#divisionList", :role => "button"}
+      %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+      %span.sr-only Previous
+    %a.right.carousel-control{"data-slide" => "next", :href => "#divisionList", :role => "button"}
+      %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+      %span.sr-only Next
 .recommend-lists
   .recommend-lists-title
     .recommend-lists-tag.active
