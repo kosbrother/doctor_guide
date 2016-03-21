@@ -17,7 +17,7 @@
       color: #000;
     }
     .icon-content-num{
-      width: 80px;
+      width: 50px;
       display: inline-block;
       li{
         display: inline-block;
@@ -29,6 +29,23 @@
       font-size: 14px;
       color: #000;
       line-height:15px;
+    }
+  }
+}
+
+.col-md-6{
+  .icons{
+    margin: 20px 0;
+    .icon-content > .icon-content-num{
+      .glyphicon-thumbs-up{
+        color: #f5a623;
+      }
+      .glyphicon-comment{
+        color: #32b9cb;
+      }
+      .glyphicon-star{
+        color: #f8e71c;
+      }
     }
   }
 }

@@ -35,6 +35,9 @@
             %li
               = @avgRate
   .information-boxes-content.row
+    .top-right-corner
+      %li.glyphicon.glyphicon-user
+        = @comments.count
     .col-md-6
       .rating-box
         .rating-box-title
@@ -72,7 +75,29 @@
             %span.stars
               = @drSpeciality
   .information-boxes-content.row
-
+    .information-boxes-title
+      科內醫師
+    - @doctors.each do |doc|
+      .col-md-6
+        .icons
+          .icon
+            -# TODO can't tell doctor gender
+            = image_tag('mDoctor.png')
+          .icon-content
+            .icon-content-title
+              = link_to doc.name, ''
+            .icon-content-num
+              %li.glyphicon.glyphicon-thumbs-up
+              %li
+                = doc.recommend_num
+            .icon-content-num
+              %li.glyphicon.glyphicon-comment
+              %li
+                = doc.comment_num
+            .icon-content-num
+              %li.glyphicon.glyphicon-star
+              %li
+                = doc.avg.round(1)
 .comment-lists
   .comment-lists-title
     = "科內最新科別評論"

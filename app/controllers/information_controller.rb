@@ -27,6 +27,8 @@ class InformationController < ApplicationController
     @drFriendly = @comments.average(:dr_friendly).to_f
     @drSpeciality = @comments.average(:dr_speciality).to_f
     @avgDocRate = (@drFriendly + @drSpeciality) / 2
+    @doctors = @hospital.doctors.limit(8)
+    # TODO need to figure out how to call divisions doctors
     @commentsPage =  @comments.where.not(div_comment: (nil || "")).paginate(:page => params[:page]).per_page(3)
   end
 

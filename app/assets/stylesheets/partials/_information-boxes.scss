@@ -9,12 +9,26 @@
     margin-bottom: 30px;
     .information-boxes-title-content{
       margin: 30px 10px;
+      .icons{
+        .icon-content-subtitle > a{
+          color: #ffa726;
+        }
+      }
     }
   }
   .information-boxes-content{
     margin: 0;
     padding: 30px 0;
     border-top: solid 1px #7055a1;
+    .top-right-corner{
+      width: 66px;
+      position: absolute;
+      right: 30px;
+      top: 220px;
+      li:before{
+        color: #329834;
+      }
+    }
     .rating-box{
       span.stars{
         margin-left: 10px;

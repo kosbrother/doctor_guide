@@ -57,7 +57,7 @@ $.fn.stars = function() {
         var size = Math.max(0, (Math.min(5, val))) * 16;
         // Create stars holder
         var $span = $('<span />').width(size);
-        $(this).before(val);
+        $(this).before(val.toFixed(1));
         // Replace the numerical value with stars
         $(this).html($span);
     });
