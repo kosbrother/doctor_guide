@@ -9,6 +9,70 @@
             = image_tag("ic/small 29/#{div.category_id}.png")
           .icon-content
             = link_to div.name, division_path(params['hospital'], div.id)
+- breadcrumb :division, @division, @hospital
+.information-boxes
+  .information-boxes-title
+    科別資訊
+    .information-boxes-title-content
+      .icons
+        .icon
+          = image_tag("ic/large 36/#{@division.category_id}.png")
+        .icon-content
+          .icon-content-title
+            = @division.name
+          .icon-content-subtitle
+            = link_to @hospital.name, hospital_path(@hospital.id)
+          .icon-content-num
+            %li.glyphicon.glyphicon-thumbs-up
+            %li
+              = @recommendNum
+          .icon-content-num
+            %li.glyphicon.glyphicon-comment
+            %li
+              = @commentNum
+          .icon-content-num
+            %li.glyphicon.glyphicon-star
+            %li
+              = @avgRate
+  .information-boxes-content.row
+    .col-md-6
+      .rating-box
+        .rating-box-title
+          科別綜合滿意度 &nbsp;&nbsp;
+          = @avgRate
+        .rating-box-lists
+          .rating-box-list
+            環境衛生&nbsp;&nbsp;
+            %span.stars
+              = @divEnvironment
+          .rating-box-list
+            醫療設備&nbsp;&nbsp;
+            %span.stars
+              = @divEquipment
+          .rating-box-list
+            醫護專業&nbsp;&nbsp;
+            %span.stars
+              = @divSpeciality
+          .rating-box-list
+            服務態度&nbsp;&nbsp;
+            %span.stars
+              = @divFriendly
+    .col-md-6
+      .rating-box
+        .rating-box-title
+          醫師綜合滿意度 &nbsp;&nbsp;
+          = @avgDocRate
+        .rating-box-lists
+          .rating-box-list
+            醫師態度 &nbsp;&nbsp;
+            %span.stars
+              = @drFriendly
+          .rating-box-list
+            醫師專業 &nbsp;&nbsp;
+            %span.stars
+              = @drSpeciality
+  .information-boxes-content.row
+
 .comment-lists
   .comment-lists-title
     = "科內最新科別評論"
@@ -16,10 +80,10 @@
     .col-md-1.box
     .col-md-10.box
       .comment-lists-content
-        - if @comments.empty?
+        - if @commentsPage.empty?
           該科別目前暫時沒有評論
         - else
-          - @comments.each do |comment|
+          - @commentsPage.each do |comment|
             %a.comment-lists-comment.row{:href => ""}
               .col-md-6
                 %p 評論者: #{comment.commentor.name}
@@ -32,5 +96,5 @@
                 %br>/
                 = truncate(comment.div_comment, length: 35)
       .comment-lists-paginate
-        = pagination_links(@comments)
+        = pagination_links(@commentsPage)
     .col-md-1.box
