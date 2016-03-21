@@ -1,13 +1,7 @@
 // Modules and Variables
-@import "partials/base";
+//@import "partials/base";
 
 // Partials
-@import "partials/layout";
-@import "partials/logos";
-@import "partials/search-bars";
-@import "partials/recommend-lists";
-@import "partials/comment-lists";
-@import "partials/breadcrumbs";
-@import "partials/search-areas";
-@import "partials/hospital-lists";
+@import "partials/*";
 // Third-party
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);

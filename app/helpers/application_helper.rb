@@ -8,4 +8,16 @@ module ApplicationHelper
     options[:next_label] = '>'
     will_paginate(collection, options)
   end
+
+  def pagination_links_dot(collection, options = {})
+    options[:renderer] ||= BootstrapPaginationHelper::DotLinkRenderer
+    options[:class] ||= 'division-pagination pagination-centered'
+    options[:inner_window] ||= 2
+    options[:outer_window] ||= 1
+    will_paginate(collection, options)
+  end
+
+  def findDoctorDivName(dr_id)
+    Doctor.find(dr_id).divisions[0].name
+  end
 end

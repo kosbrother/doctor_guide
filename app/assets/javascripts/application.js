@@ -40,12 +40,6 @@ $(document).ready(
 
         $(".recommend-lists-tag").click(make_button_active);
 
-    //Aside toggle
-        $(".aside-chevron").click( function(){
-            $(this).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
-            $(this).next().slideToggle("fast", function(){
-            })
-        })
     //Recommend doctors tag
         $('.recommend-lists-tag').click(function (e) {
             e.preventDefault();

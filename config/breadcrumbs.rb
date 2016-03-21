@@ -5,7 +5,13 @@ end
 
 # search crumb
 crumb :area do |area|
-  link area.name, area_path
+  link area.name, area_path(area.id)
+end
+
+# information crumb
+crumb :hospital do |hospital|
+  link hospital.name, hospital_path
+  parent :area, hospital.area
 end
 
 # crumb :projects do
