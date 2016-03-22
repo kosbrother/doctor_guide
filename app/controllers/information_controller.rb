@@ -36,9 +36,13 @@ class InformationController < ApplicationController
     @commentsPage =  @comments.where.not(div_comment: (nil || "")).paginate(:page => params[:page]).per_page(3)
   end
 
+  def not_found
+    render :file => 'public/404.html', :status => :not_found
+  end
+
   def doctor
-    relation = Div_hosp_doc_ships.where(doctor_id: params['doctor'], hospital_id: params['hospital'], divison_id: params['division'])
-    if relation.any?
+    relation = DivHospDocShip.find_by(doctor_id: params['doctor'], hospital_id: params['hospital'], division_id: params['division'])
+    if relation
       @doctor = relation.doctor
       @hospital = relation.hospital
       @division = relation.division
@@ -47,8 +51,9 @@ class InformationController < ApplicationController
       @drSpeciality = @comments.average(:dr_speciality).to_f
       @avgDocRate = ((@drFriendly + @drSpeciality) / 2).round(1)
     else
-      render '404.html'
+      not_found
     end
+
 
   end
 end

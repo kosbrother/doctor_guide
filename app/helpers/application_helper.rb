@@ -12,8 +12,4 @@ module ApplicationHelper
   def findDoctorDivName(dr_id)
     Doctor.find(dr_id).divisions[0].name
   end
-
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
 end
