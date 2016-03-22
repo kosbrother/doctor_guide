@@ -1,10 +1,11 @@
+- breadcrumb :doctor, @doctor, @division, @hospital
 .information-boxes
   .information-boxes-title
     醫師資訊
     .information-boxes-title-content
       .icons
         .icon
-          = image_tag("icon_hospital.png")
+          = image_tag("mDoctor.png")
         .icon-content
           .icon-content-title
             = @doctor.name + '  醫師'
@@ -38,6 +39,7 @@
             醫師專業 &nbsp;&nbsp;
             %span.stars
               = @drSpeciality
+    .col-md-6
   .information-boxes-content.row
     .col-md-6
       .information-boxes-contact
@@ -48,11 +50,10 @@
             .icon-content-title
               服務醫院
             .icon-content-info
-              - @hospitals.each do |hospital|
-                = link_to hospital.hospital.name, hospital_path(hospital.hospital_id)
-                %br>/
-                -#= link_to @division.name, division_path(hospital.division_id)
-                = link_to hospital.division.name, ''
+              = link_to @hospital.name, hospital_path(params['hospital'])
+              %br>/
+              -#= link_to @division.name, division_path(hospital.division_id)
+              = link_to @division.name, division_path(params['hospital'], params['division'])
       .information-boxes-contact
         .icons
           .icon

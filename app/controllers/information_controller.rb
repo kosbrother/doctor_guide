@@ -37,12 +37,18 @@ class InformationController < ApplicationController
   end
 
   def doctor
-    @doctor = Doctor.find(params['doctor'])
-    @hospitals = DivHospDocShip.where(doctor_id: params['doctor'])
-    @division = DivHospDocShip.find_by(doctor_id: params['doctor']).division
-    @comments = Comment.where(doctor_id: params['doctor']).paginate(:page => params[:page]).per_page(3)
-    @drFriendly = @comments.average(:dr_friendly).to_f
-    @drSpeciality = @comments.average(:dr_speciality).to_f
-    @avgDocRate = ((@drFriendly + @drSpeciality) / 2).round(1)
+    relation = Div_hosp_doc_ships.where(doctor_id: params['doctor'], hospital_id: params['hospital'], divison_id: params['division'])
+    if relation.any?
+      @doctor = relation.doctor
+      @hospital = relation.hospital
+      @division = relation.division
+      @comments = Comment.where(doctor_id: params['doctor']).paginate(:page => params[:page]).per_page(3)
+      @drFriendly = @comments.average(:dr_friendly).to_f
+      @drSpeciality = @comments.average(:dr_speciality).to_f
+      @avgDocRate = ((@drFriendly + @drSpeciality) / 2).round(1)
+    else
+      render '404.html'
+    end
+
   end
 end

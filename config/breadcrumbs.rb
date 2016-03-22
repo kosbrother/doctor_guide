@@ -19,6 +19,11 @@ crumb :division do |division, hospital|
   parent :hospital, hospital
 end
 
+crumb :doctor do |doctor, division, hospital|
+  link doctor.name, doctor_path
+  parent :division, division, hospital
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
