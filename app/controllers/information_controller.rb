@@ -14,8 +14,12 @@ class InformationController < ApplicationController
   def division
     @hospital = Hospital.find(params['hospital'])
     @division = @hospital.divisions.find(params['division'])
-    #  TODO validate if hospital has this division
-    @otherDivisions = @hospital.divisions.where.not(id: params['division'])
+
+    @otherDivisions = @hospital.divisions.where("div_hosp_doc_ships.doctor_id is not null and divisions.id != #{params['division']}").uniq{|x| x.id}
+    if @otherDivisions.size == 0
+      @otherDivisions = @hospital.divisions.where.not(id: params['division']).uniq{|x| x.id}
+    end
+
     @comments = Comment.where(hospital_id: params['hospital'], division_id: params['division'])
     @recommendNum = @comments.where(is_recommend: true).count
     @commentNum = @comments.where.not(div_comment: (nil || "")).count
