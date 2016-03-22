@@ -36,6 +36,7 @@
               - @categories.each do |category|
                 .col-md-6.aside-list
                   = link_to category.name, ''
+          = yield :aside
         .col-md-8.box
           = breadcrumbs
           = yield

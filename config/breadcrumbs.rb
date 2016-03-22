@@ -14,6 +14,11 @@ crumb :hospital do |hospital|
   parent :area, hospital.area
 end
 
+crumb :division do |division, hospital|
+  link division.name, division_path
+  parent :hospital, hospital
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

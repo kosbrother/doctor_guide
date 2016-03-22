@@ -45,5 +45,20 @@ $(document).ready(
             e.preventDefault();
             $(this).tab('show')
         })
+        $('span.stars').stars();
     }
 );
+//Show rating star
+$.fn.stars = function() {
+    return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 16;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        $(this).before(val.toFixed(1));
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+}
