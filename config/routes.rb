@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'doctors/:hospital/:division/:doctor', to: 'information#doctor', as: :doctor
 
+  get 'doctors/:doctor', to: 'information#doctorId', as: :doctor_id
+
   get 'search/byAreaCategory'
 
   get 'areas/:area', to: 'search#byArea', as: :area
