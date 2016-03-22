@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get 'hospitals/:hospital/:division', to: 'information#division', as: :division
 
-  get 'information/doctor'
+  get 'doctors/:doctor', to: 'information#doctor', as: :doctor
 
   get 'search/byAreaCategory'
 
