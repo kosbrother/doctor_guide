@@ -36,10 +36,6 @@ class InformationController < ApplicationController
     @commentsPage =  @comments.where.not(div_comment: (nil || "")).paginate(:page => params[:page]).per_page(3)
   end
 
-  def not_found
-    render :file => 'public/404.html', :status => :not_found
-  end
-
   def doctor
     relation = DivHospDocShip.find_by(doctor_id: params['doctor'], hospital_id: params['hospital'], division_id: params['division'])
     if relation

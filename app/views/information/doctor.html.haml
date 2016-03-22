@@ -74,7 +74,7 @@
             .icon-content-title
               經歷
             .icon-content-info
-              - @doctor.exp.split('、').each do |exp|
+              - @doctor.exp.split(/[\s、]/).each do |exp|
                 = exp
                 %br>/
 .col-md-8.col-md-offset-3.box

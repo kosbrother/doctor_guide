@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
     @areas = Area.all
     @categories = Category.all
   end
+
+  def not_found
+    render :file => 'public/404.html', :status => :not_found
+  end
 end
