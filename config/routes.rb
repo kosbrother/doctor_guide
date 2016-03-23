@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root "index#index"
 
   resources :areas, only: [:show]

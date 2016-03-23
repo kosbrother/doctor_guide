@@ -30,7 +30,7 @@
             .aside-content.row
               - @areas.each do |area|
                 .col-md-6.aside-list
-                  = link_to area.name, ''
+                  = link_to area.name, area_path(area.id)
             .aside-title
               依科別尋找
             .aside-content.row
