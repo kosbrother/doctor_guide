@@ -15,12 +15,12 @@ crumb :hospital do |hospital|
 end
 
 crumb :division do |division, hospital|
-  link division.name, division_path
+  link division.name, hospital_division_path
   parent :hospital, hospital
 end
 
 crumb :doctor do |doctor, division, hospital|
-  link doctor.name, doctor_path
+  link doctor.name, hospital_division_doctor_path
   parent :division, division, hospital
 end
 

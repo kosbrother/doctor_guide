@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :hospitals, only: [:show] do
     resources :divisions, only: [:show] do
       resources :comments, only: [:show]
-      resources :doctors, only: [:show,:index] do
+      resources :doctors, only: [:show] do
         resources :comments, only: [:show]
       end
     end
