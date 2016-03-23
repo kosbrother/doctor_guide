@@ -2,18 +2,7 @@
   width: 292px;
   height: 36.4px;
   margin-top: 23.3px;
-  .search-icon{
-    position:relative;
-    top: -25px;
-    left: 259px;
-    z-index:999;
-    font-size: 1.3em;
-    vertical-align: sub;
-    color: #8ad636;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
+
   .search{
     box-sizing: border-box;
     width: 100%;
@@ -22,5 +11,20 @@
     font-size: 1.3em;
     border-radius: 26px;
     padding-left: 14px;
+  }
+  .searchButton{
+    position:relative;
+    top: -29px;
+    left: 259px;
+    background-color: transparent;
+    border: none;
+    >.search-icon{
+      font-size: 1.3em;
+      vertical-align: sub;
+      color: #8ad636;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
   }
 }
