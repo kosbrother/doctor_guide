@@ -13,7 +13,10 @@
           - hospitals.each_with_index do |hospital, num|
             .recommend-lists-content-list
               .recommend-lists-ranknum
-                = (i*5)+ 1 + num
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
               .recommend-lists-name
                 = link_to hospital.name, hospital_path(hospital.id)
                 %li.glyphicon.glyphicon-thumbs-up
@@ -24,7 +27,10 @@
           - hospitals.each_with_index do |hospital, num|
             .recommend-lists-content-list
               .recommend-lists-ranknum
-                = (i*5)+ 1 + num
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
               .recommend-lists-name
                 = link_to hospital.name, hospital_path(hospital.id)
                 %li.glyphicon.glyphicon-thumbs-up

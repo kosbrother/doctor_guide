@@ -15,10 +15,10 @@ class DivisionsController < ApplicationController
     @divEnvironment = @comments.average(:div_environment).to_f.round(1)
     @divSpeciality = @comments.average(:div_speciality).to_f.round(1)
     @divFriendly = @comments.average(:div_friendly).to_f.round(1)
-    @avgRate = ( @divEquipment + @divEnvironment + @divSpeciality + @divFriendly) / 4
+    @avgRate = (( @divEquipment + @divEnvironment + @divSpeciality + @divFriendly) / 4).round(1)
     @drFriendly = @comments.average(:dr_friendly).to_f.round(1)
     @drSpeciality = @comments.average(:dr_speciality).to_f.round(1)
-    @avgDocRate = (@drFriendly + @drSpeciality) / 2
+    @avgDocRate = ((@drFriendly + @drSpeciality) / 2).round(1)
     @doctors =  DivHospDocShip.where(hospital_id: params['hospital_id'], division_id: params['id']).where.not(doctor_id: 'NULL').map{|list| list.doctor}
     @commentsPage =  @comments.where.not(div_comment: (nil || "")).paginate(:page => params[:page]).per_page(3)
   end

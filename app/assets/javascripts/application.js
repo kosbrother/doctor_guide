@@ -16,51 +16,50 @@
 //= require turbolinks
 //= require_tree .
 
-
-
-$(document).ready(
-    function()
-    {
+var ready;
+ready = function() {
     //Attach events to menu
-        var make_button_active = function()
-        {
-            //Get item siblings
-            var siblings =($(this).siblings());
+    var make_button_active = function()
+    {
+        //Get item siblings
+        var siblings =($(this).siblings());
 
-            //Remove active class on all buttons
-            siblings.each(function (index)
-                {
-                    $(this).removeClass('active');
-                }
-            );
+        //Remove active class on all buttons
+        siblings.each(function (index)
+            {
+                $(this).removeClass('active');
+            }
+        );
 
 
-            //Add the clicked button class
-            $(this).addClass('active');
-        };
+        //Add the clicked button class
+        $(this).addClass('active');
+    };
 
-        $(".recommend-lists-tag").click(make_button_active);
+    $(".recommend-lists-tag").click(make_button_active);
 
     //Recommend doctors tag
-        $('.recommend-lists-tag').click(function (e) {
-            e.preventDefault();
-            $(this).tab('show')
+    $('.recommend-lists-tag').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show')
+    });
+
+    //Show rating star
+    $.fn.stars = function() {
+        return $(this).each(function() {
+            // Get the value
+            var val = parseFloat($(this).html());
+            // Make sure that the value is in 0 - 5 range, multiply to get width
+            var size = Math.max(0, (Math.min(5, val))) * 16;
+            // Create stars holder
+            var $span = $('<span />').width(size);
+            // Replace the numerical value with stars
+            $(this).html($span);
         });
+    };
 
-        //Show rating star
-        $.fn.stars = function() {
-            return $(this).each(function() {
-                // Get the value
-                var val = parseFloat($(this).html());
-                // Make sure that the value is in 0 - 5 range, multiply to get width
-                var size = Math.max(0, (Math.min(5, val))) * 16;
-                // Create stars holder
-                var $span = $('<span />').width(size);
-                // Replace the numerical value with stars
-                $(this).html($span);
-            });
-        };
+    $('span.stars').stars();
+};
 
-        $('span.stars').stars();
-    }
-);
+$(document).ready(ready);
+$(document).on('page:load', ready);
