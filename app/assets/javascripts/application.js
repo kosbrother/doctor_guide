@@ -17,6 +17,7 @@
 //= require_tree .
 
 
+
 $(document).ready(
     function()
     {
@@ -44,20 +45,22 @@ $(document).ready(
         $('.recommend-lists-tag').click(function (e) {
             e.preventDefault();
             $(this).tab('show')
-        })
+        });
+
+        //Show rating star
+        $.fn.stars = function() {
+            return $(this).each(function() {
+                // Get the value
+                var val = parseFloat($(this).html());
+                // Make sure that the value is in 0 - 5 range, multiply to get width
+                var size = Math.max(0, (Math.min(5, val))) * 16;
+                // Create stars holder
+                var $span = $('<span />').width(size);
+                // Replace the numerical value with stars
+                $(this).html($span);
+            });
+        };
+
         $('span.stars').stars();
     }
 );
-//Show rating star
-$.fn.stars = function() {
-    return $(this).each(function() {
-        // Get the value
-        var val = parseFloat($(this).html());
-        // Make sure that the value is in 0 - 5 range, multiply to get width
-        var size = Math.max(0, (Math.min(5, val))) * 16;
-        // Create stars holder
-        var $span = $('<span />').width(size);
-        // Replace the numerical value with stars
-        $(this).html($span);
-    });
-}

@@ -56,7 +56,7 @@
             .icon-content-info
               = link_to @hospital.name, hospital_path(@hospital.id)
               %br>/
-              = link_to @division.name, ''
+              = link_to @division.name, hospital_division_path(@hospital.id, @division.id)
       .information-boxes-contact
         .icons
           .icon
