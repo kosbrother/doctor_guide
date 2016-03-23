@@ -11,10 +11,12 @@
     %header
       .header.row
         .col-md-3.box
-          .logos{ :href => "#", :title => "Back to index" }
-            .glyphicon.glyphicon-map-marker.logo-mark{"aria-hidden" => "true"}
-            .logo-name 就醫指南
-            .logo-desc 就醫指南幫您找到好的醫生
+          = link_to(:root) do
+            .logos{ :href => "#", :title => "Back to index" }
+              .glyphicon.glyphicon-map-marker.logo-mark{"aria-hidden" => "true"}
+              .logo-name 就醫指南
+              .logo-desc 就醫指南幫您找到好的醫生
+
         .col-md-4.col-md-offset-5.box
           .search-bars
             = form_tag("/search", method: "post") do

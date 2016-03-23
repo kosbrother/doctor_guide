@@ -1,6 +1,7 @@
 class AreasController < ApplicationController
   def show
-    @area = Area.find(params['id'])
+    area_id = params['id']
+    @area = Area.find(area_id)
     @areaHospitals = Hospital.where(area_id: area_id).paginate(:page => params[:page]).per_page(10)
     @areaGoodHospitals = Hospital.where(area_id: area_id).order(avg: :desc).limit(10)
     @areaPopHospitals = Hospital.where(area_id: area_id).order(avg: :desc).limit(10).offset(10)
