@@ -153,13 +153,13 @@
 .recommend-lists.recommend-doctors
   .recommend-lists-title
     .recommend-lists-tag.active
-      = link_to '院內推薦醫生','#recommendHosDoctors', 'data-toggle' => "tab"
+      = link_to '院內推薦醫生','#recommendDoctors', 'data-toggle' => "tab"
     .recommend-lists-tag
-      = link_to '院內熱門醫生', '#popHosDoctors', 'data-toggle' => "tab"
+      = link_to '院內熱門醫生', '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
       = link_to '觀看更多', ''
   .recommend-lists-content.row
-    #recommendHosDoctors.tab-pane.active
+    #recommendDoctors.tab-pane.active
       - @goodDoctors.each_slice(5).with_index do |doctors, i|
         .col-md-6.box
           - doctors.each_with_index do |doctor, num|
@@ -176,7 +176,7 @@
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.total
-    #popHosDoctors.tab-pane
+    #popDoctors.tab-pane
       - @popDoctors.each_slice(5).with_index do |doctors, i|
         .col-md-6.box
           - doctors.each_with_index do |doctor, num|

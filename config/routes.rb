@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'doctors/index'
+
+  get 'doctors/show'
+
+  get 'doctors/recommend'
+
+  get 'doctors/area_recommend'
+
   root "index#index"
+
+  get '/hospitals/recommend', to: 'hospitals#recommend'
+  get '/doctors/recommend', to: 'doctors#recommend'
 
   resources :areas, only: [:show] do
     resources :categories, only: [:show]
@@ -18,12 +29,10 @@ Rails.application.routes.draw do
 
   post 'search', to: 'search#search'
 
-  get '/hospitals/recommend', to: 'hospitals#recommend'
   get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
-
-  get '/doctors/recommend', to: 'doctors#recommend'
   get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
-  
+
+
 
   # /comments/:id
   # hosptals/:hospital_id/divisions/:division_id/comments/:id

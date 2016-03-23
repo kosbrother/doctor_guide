@@ -15,7 +15,7 @@
               .recommend-lists-ranknum
                 = (i*5)+ 1 + num
               .recommend-lists-name
-                = hospital.name
+                = link_to hospital.name, hospital_path(hospital.id)
                 %li.glyphicon.glyphicon-thumbs-up
                   = hospital.recommend_num
     #popHospitals.tab-pane
@@ -26,7 +26,7 @@
               .recommend-lists-ranknum
                 = (i*5)+ 1 + num
               .recommend-lists-name
-                = hospital.name
+                = link_to hospital.name, hospital_path(hospital.id)
                 %li.glyphicon.glyphicon-thumbs-up
                   = hospital.recommend_num
 .recommend-lists.recommend-doctors
@@ -44,9 +44,15 @@
           - doctors.each_with_index do |doctor, num|
             .recommend-lists-content-list
               .recommend-lists-ranknum
-                = (i*5)+ 1 + num
-              .recommend-lists-name
-                = doctor.name
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .recommend-lists-doctorName
+                = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.id)
+              .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.recommend_num
     #popDoctors.tab-pane
@@ -55,9 +61,15 @@
           - doctors.each_with_index do |doctor, num|
             .recommend-lists-content-list
               .recommend-lists-ranknum
-                = (i*5)+ 1 + num
-              .recommend-lists-name
-                = doctor.name
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .recommend-lists-doctorName
+                = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.id)
+              .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.recommend_num
 .comment-lists

@@ -12,6 +12,7 @@ class HospitalsController < ApplicationController
   end
 
   def recommend
+
   end
 
   def area_recommend
