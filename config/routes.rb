@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
   get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
+  get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend'
 
   namespace :admin do
     get '/' => 'admin#index'

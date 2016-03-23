@@ -124,11 +124,12 @@
                   = '0' + ((i*5)+ 1 + num).to_s
                 - else
                   = (i*5)+ 1 + num
-              .icons
-                .icon
-                  = image_tag("ic/small 29/#{division.category_id}.png")
-                .icon-content
-                  = division.name
+              = link_to hospital_division_path(@hospital.id, division.id) do
+                .icons
+                  .icon
+                    = image_tag("ic/small 29/#{division.category_id}.png")
+                  .icon-content
+                    = division.name
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = division.total
@@ -142,11 +143,12 @@
                   = '0' + ((i*5)+ 1 + num).to_s
                 - else
                   = (i*5)+ 1 + num
-              .icons
-                .icon
-                  = image_tag("ic/small 29/#{division.category_id}.png")
-                .icon-content
-                  = division.name
+              = link_to hospital_division_path(@hospital.id, division.id) do
+                .icons
+                  .icon
+                    = image_tag("ic/small 29/#{division.category_id}.png")
+                  .icon-content
+                    = division.name
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = division.total
@@ -157,7 +159,7 @@
     .recommend-lists-tag
       = link_to '院內熱門醫生', '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多', ''
+      = link_to '觀看更多', "/hospitals/#{@hospital.id}/doctors/recommend"
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
       - @goodDoctors.each_slice(5).with_index do |doctors, i|
@@ -170,9 +172,9 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-doctorName
-                = doctor.name
+                = link_to doctor.name, hospital_division_doctor_path(doctor.hospital_id, doctor.division_id, doctor.doctor_id)
                 .recommend-lists-doctor-div
-                  = findDoctorDivName(doctor.doctor_id)
+                  =  findDivName(doctor.division_id)
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.total
@@ -187,9 +189,9 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-doctorName
-                = doctor.name
+                = link_to doctor.name, hospital_division_doctor_path(doctor.hospital_id, doctor.division_id, doctor.doctor_id)
                 .recommend-lists-doctor-div
-                  = findDoctorDivName(doctor.doctor_id)
+                  =  findDivName(doctor.division_id)
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.total
@@ -201,17 +203,18 @@
     .col-md-10.box
       .comment-lists-content
         - @divisionComments.each do |comment|
-          %a.comment-lists-comment.row{:href => ""}
-            .col-md-6
-              %p 評論者: #{comment.commentor.name}
-              %p 對象： #{comment.division.name}/#{comment.doctor.name}
-              .comment-lists-rank
-                %p 科別滿意度： #{comment.div_speciality}
-                %p 醫師滿意度： #{comment.dr_speciality}
-            .col-md-6.comment-lists-comment-content
-              科別評論：
-              %br>/
-              = truncate(comment.div_comment, length: 35)
+          = link_to hospital_division_comment_path(comment.hospital_id, comment.division_id, comment.id ) do
+            .comment-lists-comment.row
+              .col-md-6
+                %p 評論者: #{comment.commentor.name}
+                %p 對象： #{comment.division.name}/#{comment.doctor.name}
+                .comment-lists-rank
+                  %p 科別滿意度： #{comment.div_speciality}
+                  %p 醫師滿意度： #{comment.dr_speciality}
+              .col-md-6.comment-lists-comment-content
+                科別評論：
+                %br>/
+                = truncate(comment.div_comment, length: 35)
       .comment-lists-paginate
         = pagination_links(@divisionComments)
     .col-md-1.box
@@ -224,17 +227,18 @@
     .col-md-10
       .comment-lists-content
         - @doctorComments.each do |comment|
-          %a.comment-lists-comment.row{:href => ""}
-            .col-md-6
-              %p 評論者: #{comment.commentor.name}
-              %p 對象： #{comment.division.name}/#{comment.doctor.name}
-              .comment-lists-rank
-                %p 科別滿意度： #{comment.div_speciality}
-                %p 醫師滿意度： #{comment.dr_speciality}
-            .col-md-6.comment-lists-comment-content
-              科別評論：
-              %br>/
-              = truncate(comment.dr_comment, length: 35)
+          = link_to hospital_division_doctor_comment_path(comment.hospital_id, comment.division_id, comment.doctor_id, comment.id) do
+            .comment-lists-comment.row{:href => ""}
+              .col-md-6
+                %p 評論者: #{comment.commentor.name}
+                %p 對象： #{comment.division.name}/#{comment.doctor.name}
+                .comment-lists-rank
+                  %p 科別滿意度： #{comment.div_speciality}
+                  %p 醫師滿意度： #{comment.dr_speciality}
+              .col-md-6.comment-lists-comment-content
+                科別評論：
+                %br>/
+                = truncate(comment.dr_comment, length: 35)
       .comment-lists-paginate
         = pagination_links(@doctorComments)
     .col-md-1.box

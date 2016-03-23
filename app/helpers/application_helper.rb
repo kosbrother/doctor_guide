@@ -9,6 +9,11 @@ module ApplicationHelper
     will_paginate(collection, options)
   end
 
+  def findDivName(div_id)
+    Division.find(div_id).name
+  end
+
+
   def findDoctorDivName(dr_id)
     Doctor.find(dr_id).divisions[0].name
   end
