@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'divisions/show'
-
   root "index#index"
 
   get '/hospitals/recommend', to: 'hospitals#recommend'
