@@ -1,124 +1,148 @@
-.container.breadcrumbs--hierarchy
-  .col-sm-12 首頁     &gt; 台中市 &gt; 澄清醫院 &gt; 家醫科
-%main
-  .container
-    %section.col-sm-12.box
-      .container
-        .information
-          .information-header
-            .col-md-5
-              .thumbnail
-                照片
-              .information-title
-                %span 醫師名
-                %span 推薦數/評論數/評分
-            .col-md-6.col-md-offset-1
-              .rank-box.row
-                .col-md-6
-                  %p 綜合滿意度: 3.0
-                  %p 環境衛生： 3.0
-                  %p 醫療設備： 3.0
-                .col-md-6
-                  .star-bar
-                    .glyphicon.glyphicon-star
-                    .glyphicon.glyphicon-star
-                    .glyphicon.glyphicon-star
-                  .star-bar
-                    .glyphicon.glyphicon-star
-                    .glyphicon.glyphicon-star
-                    .glyphicon.glyphicon-star
-                  .star-bar
-                    .glyphicon.glyphicon-star
-                    .glyphicon.glyphicon-star
-                    .glyphicon.glyphicon-star
-          .information-body.row
-            .col-md-6
-              .about
-                服務醫院
-                %br>/
-                現演一底的天做？期學這定、片金兒希，心的員起。記老所是中舞教友幾，天無局吃林，自友著有、十上建大境辦立源公紅應香來，著的燈：外別金個開長統。人戰傷你線了今護條親買故總子：專開們道甚的去引生、為著雙歌美提時全你節費友面價。重前夜少雖較北眾，家經服
-              .about
-                專長
-                %br>/
-                現演一底的天做？期學這定、片金兒希，心的員起。記老所是中舞教友幾，天無局吃林，自友著有、十上建大境辦立源公紅應香來，著的燈：外別金個開長統。人戰傷你線了今護條親買故總子：專開們道甚的去引生、為著雙歌美提時全你節費友面價。重前夜少雖較北眾，家經服
-            .col-md-6.about
-              經歷
+- breadcrumb :doctor, @doctor, @division, @hospital
+.information-boxes
+  .information-boxes-title
+    醫師資訊
+    .information-boxes-title-content
+      .icons
+        .icon
+          = image_tag("mDoctor.png")
+        .icon-content
+          .icon-content-title
+            = @doctor.name + '  醫師'
+          .icon-content-num
+            %li.glyphicon.glyphicon-thumbs-up
+            %li
+              = @doctor.recommend_num.round(1)
+          .icon-content-num
+            %li.glyphicon.glyphicon-comment
+            %li
+              = @doctor.comment_num.round(1)
+          .icon-content-num
+            %li.glyphicon.glyphicon-star
+            %li
+              = @avgDocRate
+  .information-boxes-content.row
+    .top-right-corner
+      %li.glyphicon.glyphicon-user
+        = @comments.count
+    .col-md-6
+      .rating-box
+        .rating-box-title
+          醫師綜合滿意度 &nbsp;&nbsp;
+          = @avgDocRate
+        .rating-box-lists
+          .rating-box-list
+            醫師態度 &nbsp;&nbsp;
+            %span.stars
+              = @drFriendly
+          .rating-box-list
+            醫師專業 &nbsp;&nbsp;
+            %span.stars
+              = @drSpeciality
+    .col-md-6
+  .information-boxes-content.row
+    .col-md-6
+      .information-boxes-contact
+        .icons
+          .icon
+            %li.glyphicon.glyphicon-home
+          .icon-content
+            .icon-content-title
+              服務醫院
+            .icon-content-info
+              = link_to @hospital.name, hospital_path(params['hospital'])
               %br>/
-              現演一底的天做？期學這定、片金兒希，心的員起。記老所是中舞教友幾，天無局吃林，自友著有、十上建大境辦立源公紅應香來，著的燈：外別金個開長統。人戰傷你線了今護條親買故總子：專開們道甚的去引生、為著雙歌美提時全你節費友面價。重前夜少雖較北眾，家經服
-    %section.row
-      .doctor-comment-box.col-md-6
-        .title
-          醫師推薦評論
-        .comment-box
-          %p 評論者: user
-          %p 對象： doctor
-          %p 科別滿意度： 2.0
-          %p 醫師滿意度： 4.0
-          %p 科別評論：xxxxxxx
-        .comment-box
-          %p 評論者: user
-          %p 對象： doctor
-          %p 科別滿意度： 2.0
-          %p 醫師滿意度： 4.0
-          %p 科別評論：xxxxxxx
-        .comment-box
-          %p 評論者: user
-          %p 對象： doctor
-          %p 科別滿意度： 2.0
-          %p 醫師滿意度： 4.0
-          %p 科別評論：xxxxxxx
-      .doctor-comment-box.col-md-6
-        .title
-          醫師負面評論
-        .comment-box
-          %p 評論者: user
-          %p 對象： doctor
-          %p 科別滿意度： 2.0
-          %p 醫師滿意度： 4.0
-          %p 科別評論：xxxxxxx
-        .comment-box
-          %p 評論者: user
-          %p 對象： doctor
-          %p 科別滿意度： 2.0
-          %p 醫師滿意度： 4.0
-          %p 科別評論：xxxxxxx
-        .comment-box
-          %p 評論者: user
-          %p 對象： doctor
-          %p 科別滿意度： 2.0
-          %p 醫師滿意度： 4.0
-          %p 科別評論：xxxxxxx
-    %section.col-md-12.box.doctor
-      .title
-        台中市家醫科推薦醫師
-      .row
-        .col-md-6.row
-          .title.sub-title
-            推薦排行
-          .col-md-3.rank
-            .rank 1 郭雨文
-            .rank 2 陳泰亨
-            .rank 3 羅盛典
-            .rank 4 李宗翰
-            .rank 5 吳權倫
-          .col-md-3
-            .rank 6 郭雨文
-            .rank 7 陳泰亨
-            .rank 8 羅盛典
-            .rank 9 李宗翰
-            .rank 10 吳權倫
-        .col-md-6.row
-          .title.sub-title
-            熱門醫生
-          .col-md-3.rank
-            .rank 1 郭雨文
-            .rank 2 陳泰亨
-            .rank 3 羅盛典
-            .rank 4 李宗翰
-            .rank 5 吳權倫
-          .col-md-3
-            .rank 6 郭雨文
-            .rank 7 陳泰亨
-            .rank 8 羅盛典
-            .rank 9 李宗翰
-            .rank 10 吳權倫
+              -#= link_to @division.name, division_path(hospital.division_id)
+              = link_to @division.name, division_path(params['hospital'], params['division'])
+      .information-boxes-contact
+        .icons
+          .icon
+            %li.glyphicon.glyphicon-education
+          .icon-content
+            .icon-content-title
+              專長
+            .icon-content-info
+              - @doctor.spe.split('、').each do |spe|
+                = spe
+                %br>/
+
+      .information-boxes-contact
+        .icons
+          .icon
+            %li.glyphicon.glyphicon-list-alt
+          .icon-content
+            .icon-content-title
+              經歷
+            .icon-content-info
+              - @doctor.exp.split(/[\s、]/).each do |exp|
+                = exp
+                %br>/
+.col-md-8.col-md-offset-3.box
+.comment-lists
+  .row
+    .comment-lists-title
+      醫師評論
+    .col-md-1.box
+    .col-md-10
+      .comment-lists-content
+        - if @comments.empty?
+          該科別目前暫時沒有評論
+        - else
+          - @comments.each do |comment|
+            %a.comment-lists-comment.row{:href => ""}
+              .col-md-6
+                %p 評論者: #{comment.commentor.name}
+                %p 對象： #{comment.division.name}/#{comment.doctor.name}
+                .comment-lists-rank
+                  %p 科別滿意度： #{comment.div_speciality}
+                  %p 醫師滿意度： #{comment.dr_speciality}
+              .col-md-6.comment-lists-comment-content
+                科別評論：
+                %br>/
+                = truncate(comment.dr_comment, length: 35)
+      .comment-lists-paginate
+        = pagination_links(@comments)
+    .col-md-1.box
+.recommend-lists.recommend-doctors
+  .recommend-lists-title
+    .recommend-lists-tag.active
+      = link_to "#{@area.name}#{@division.name}科推薦醫師",'#recommendHosDoctors', 'data-toggle' => "tab"
+    .recommend-lists-tag
+      = link_to "#{@area.name}#{@division.name}科熱門醫師", '#popHosDoctors', 'data-toggle' => "tab"
+    .recommend-lists-more
+      = link_to '觀看更多', ''
+  .recommend-lists-content.row
+    #recommendHosDoctors.tab-pane.active
+      - @goodDoctors.each_slice(5).with_index do |doctors, i|
+        .col-md-6.box
+          - doctors.each_with_index do |doctor, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .recommend-lists-doctorName
+                = link_to doctor.name, doctor_id_path(doctor.id)
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.id)
+              .recommend-lists-glyph
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.recommend_num
+    #popHosDoctors.tab-pane
+      - @popDoctors.each_slice(5).with_index do |doctors, i|
+        .col-md-6.box
+          - doctors.each_with_index do |doctor, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .recommend-lists-doctorName
+                = link_to doctor.name, doctor_id_path(doctor.id)
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.id)
+              .recommend-lists-glyph
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.recommend_num
