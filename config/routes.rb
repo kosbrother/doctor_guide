@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   root "index#index"
 
-  resources :areas, only: [:show]
-  resources :divisions, only: [:index]
-
-  get 'areas/:area_id/divisions', to: 'divisions#area'
+  resources :areas, only: [:show] do
+    resources :categories, only: [:show]
+  end
+  resources :categories, only: [:show]
 
   resources :hospitals, only: [:show] do
     resources :divisions, only: [:show] do
