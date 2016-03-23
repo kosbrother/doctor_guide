@@ -1,26 +1,55 @@
 Rails.application.routes.draw do
   
-  get 'comment/doctor'
+  root "index#index"
 
-  get 'comment/category'
+  resources :areas, only: [:show]
+  resources :divisions, only: [:index]
 
-  get 'hospitals/:hospital', to: 'information#hospital', as: :hospital
+  get 'areas/:area_id/divisions', to: 'divisions#area'
 
-  get 'divisions/:hospital/:division', to: 'information#division', as: :division
+  resources :hospitals, only: [:show] do
+    resources :divisions, only: [:show] do
+      resources :comments, only: [:show]
+      resources :doctors, only: [:show,:index] do
+        resources :comments, only: [:show]
+      end
+    end
+  end
 
-  get 'doctors/:hospital/:division/:doctor', to: 'information#doctor', as: :doctor
+  post 'search', to: 'search#search'
 
-  get 'doctors/:doctor', to: 'information#doctorId', as: :doctor_id
+  get '/hospitals/recommend', to: 'hospitals#recommend'
+  get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
 
-  get 'search/byAreaCategory'
+  get '/doctors/recommend', to: 'doctors#recommend'
+  get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
+  
 
-  get 'areas/:area', to: 'search#byArea', as: :area
+  # /comments/:id
+  # hosptals/:hospital_id/divisions/:division_id/comments/:id
+  # hosptals/:hospital_id/divisions/:division_id/doctors/:doctor_id/comments/:id
 
-  get 'search/byCategory'
+  # /areas/:id/hospitals/:hospital_id/divisions/:division_id/doctors/:doctor_id
 
-  get 'search/result', to: 'search#search'
+  # get 'comment/doctor'
 
-  get 'index/index'
+  # get 'comment/category'
+
+  # get 'hospitals/:hospital', to: 'information#hospital', as: :hospital
+
+  # get 'divisions/:hospital/:division', to: 'information#division', as: :division
+
+  # get 'doctors/:hospital/:division/:doctor', to: 'information#doctor', as: :doctor
+
+  # get 'doctors/:doctor', to: 'information#doctorId', as: :doctor_id
+
+  # get 'search/byAreaCategory'
+
+  # get 'areas/:area', to: 'search#byArea', as: :area
+
+  # get 'search/byCategory'
+
+  # get 'search/result', to: 'search#search'
 
   namespace :admin do
     get '/' => 'admin#index'
@@ -35,8 +64,6 @@ Rails.application.routes.draw do
     resources :problems, only: [:index]
     resources :add_doctors, only: [:index]
   end
-
-  root "index#index"
 
   namespace :api do
     get 'status_check' => 'api#status_check'
