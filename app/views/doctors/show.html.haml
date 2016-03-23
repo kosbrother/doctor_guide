@@ -92,28 +92,29 @@
           該科別目前暫時沒有評論
         - else
           - @comments.each do |comment|
-            %a.comment-lists-comment.row{:href => ""}
-              .col-md-6
-                %p 評論者: #{comment.commentor.name}
-                %p 對象： #{comment.division.name}/#{comment.doctor.name}
-                .comment-lists-rank
-                  %p 科別滿意度： #{comment.div_speciality}
-                  %p 醫師滿意度： #{comment.dr_speciality}
-              .col-md-6.comment-lists-comment-content
-                科別評論：
-                %br>/
-                = truncate(comment.dr_comment, length: 35)
+            = link_to hospital_division_doctor_comment_path(comment.hospital_id, comment.division_id, comment.doctor_id, comment.id) do
+              .comment-lists-comment.row
+                .col-md-6
+                  %p 評論者: #{comment.commentor.name}
+                  %p 對象： #{comment.division.name}/#{comment.doctor.name}
+                  .comment-lists-rank
+                    %p 科別滿意度： #{comment.div_speciality}
+                    %p 醫師滿意度： #{comment.dr_speciality}
+                .col-md-6.comment-lists-comment-content
+                  科別評論：
+                  %br>/
+                  = truncate(comment.dr_comment, length: 35)
       .comment-lists-paginate
         = pagination_links(@comments)
     .col-md-1.box
 .recommend-lists.recommend-doctors
   .recommend-lists-title
     .recommend-lists-tag.active
-      = link_to "#{@area.name}#{@division.name}科推薦醫師",'#recommendDoctors', 'data-toggle' => "tab"
+      = link_to "#{@area.name}#{@division.name}推薦醫師",'#recommendDoctors', 'data-toggle' => "tab"
     .recommend-lists-tag
-      = link_to "#{@area.name}#{@division.name}科熱門醫師", '#popDoctors', 'data-toggle' => "tab"
+      = link_to "#{@area.name}#{@division.name}熱門醫師", '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多', ''
+      = link_to '觀看更多', "/areas/#{@area.id}/divisions/#{@division.id}/doctors/recommend"
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
       - @goodDoctors.each_slice(5).with_index do |doctors, i|
