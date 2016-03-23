@@ -97,7 +97,7 @@
             = image_tag('mDoctor.png')
           .icon-content
             .icon-content-title
-              = link_to doc.name, ''
+              = link_to doc.name, hospital_division_doctor_path(params['hospital_id'], params["id"], doc.id)
             .icon-content-num
               %li.glyphicon.glyphicon-thumbs-up
               %li
@@ -121,17 +121,18 @@
           該科別目前暫時沒有評論
         - else
           - @commentsPage.each do |comment|
-            %a.comment-lists-comment.row{:href => ""}
-              .col-md-6
-                %p 評論者: #{comment.commentor.name}
-                %p 對象： #{comment.doctor.name}
-                .comment-lists-rank
-                  %p 科別滿意度： #{comment.div_speciality}
-                  %p 醫師滿意度： #{comment.dr_speciality}
-              .col-md-6.comment-lists-comment-content
-                科別評論：
-                %br>/
-                = truncate(comment.div_comment, length: 35)
+            = link_to hospital_division_comment_path(comment.hospital_id, comment.division_id, comment.id ) do
+              .comment-lists-comment.row
+                .col-md-6
+                  %p 評論者: #{comment.commentor.name}
+                  %p 對象： #{comment.doctor.name}
+                  .comment-lists-rank
+                    %p 科別滿意度： #{comment.div_speciality}
+                    %p 醫師滿意度： #{comment.dr_speciality}
+                .col-md-6.comment-lists-comment-content
+                  科別評論：
+                  %br>/
+                  = truncate(comment.div_comment, length: 35)
       .comment-lists-paginate
         = pagination_links(@commentsPage)
     .col-md-1.box
