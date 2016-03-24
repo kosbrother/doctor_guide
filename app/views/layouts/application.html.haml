@@ -13,8 +13,8 @@
       .header.row
         .col-md-3.box
           = link_to(:root) do
-            .logos{ :href => "#", :title => "Back to index" }
-              .glyphicon.glyphicon-map-marker.logo-mark{"aria-hidden" => "true"}
+            .logos
+              = image_tag('logo.png', :class => 'logo-mark')
               .logo-name 就醫指南
               .logo-desc 就醫指南幫您找到好的醫生
 
