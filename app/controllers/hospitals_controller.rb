@@ -1,7 +1,7 @@
 class HospitalsController < ApplicationController
   def show
     hospital_id = params['id']
-    @hospital = Hospital.find(hospital_id)
+    @hospital = Hospital.friendly.find(hospital_id)
     @divisions = @hospital.divisions.uniq{|x| x.id}
     @goodDivisions =  @hospital.comments.select("divisions.id, name, category_id, sum(div_friendly) as total").joins('LEFT OUTER JOIN `divisions` ON `divisions`.`id` = `comments`.`division_id`').group('division_id').order('total desc').limit(10)
     @popDivisions =  @hospital.comments.select("divisions.id, name, category_id, count(div_comment) as total").joins('LEFT OUTER JOIN `divisions` ON `divisions`.`id` = `comments`.`division_id`').group('division_id').order('total desc').limit(10)

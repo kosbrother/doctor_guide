@@ -1,3 +1,5 @@
+- content_for :head do
+  %link{:href => "android-app://kosbrother.com.doctorguide/http/doctorguide.tw", :rel => "alternate"}/
 .recommend-lists
   .recommend-lists-title
     .recommend-lists-tag.active
@@ -18,7 +20,7 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-name
-                = link_to hospital.name, hospital_path(hospital.id)
+                = link_to hospital.name, hospital_path(hospital)
                 %li.glyphicon.glyphicon-thumbs-up
                   = hospital.recommend_num
     #popHospitals.tab-pane
@@ -32,7 +34,7 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-name
-                = link_to hospital.name, hospital_path(hospital.id)
+                = link_to hospital.name, hospital_path(hospital)
                 %li.glyphicon.glyphicon-thumbs-up
                   = hospital.recommend_num
 .recommend-lists.recommend-doctors
