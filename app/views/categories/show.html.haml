@@ -1,2 +1,16 @@
-%h1 Categories#show
-%p Find me in app/views/categories/show.html.haml
+- if params['area_id']
+  - breadcrumb :areaCategory, @category, @area
+-else
+  - breadcrumb :category, @category
+
+.hospital-lists
+  .hospital-lists-title
+    = @area.name + @category.name + '醫院列表'
+  .hospital-lists-content.row
+    - @areaCateHospitals.each_slice(5) do |hospitals|
+      .hospital-lists-content-column.col-md-6
+        - hospitals.each do |hospital|
+          .hospital-lists-content-list
+            = link_to hospital.name, hospital_path(hospital.id)
+  .hospital-lists-paginate
+    = pagination_links(@areaCateHospitals)

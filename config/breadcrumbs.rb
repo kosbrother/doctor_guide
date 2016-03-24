@@ -8,6 +8,15 @@ crumb :area do |area|
   link area.name, area_path(area.id)
 end
 
+crumb :category do |category|
+  link category.name, category_path(category.id)
+end
+
+crumb :areaCategory do |category, area|
+  link category.name, category_path(category.id)
+  parent :area, area
+end
+
 # information crumb
 crumb :hospital do |hospital|
   link hospital.name, hospital_path(hospital.id)
