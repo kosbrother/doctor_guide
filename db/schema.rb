@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204120905) do
+ActiveRecord::Schema.define(version: 20160324034050) do
 
   create_table "add_doctors", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -111,10 +111,23 @@ ActiveRecord::Schema.define(version: 20160204120905) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "subject",    limit: 255
-    t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "content",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",   limit: 4,   null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope",          limit: 255
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "hospitals", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -136,6 +149,7 @@ ActiveRecord::Schema.define(version: 20160204120905) do
     t.integer  "comment_num",   limit: 4
     t.integer  "recommend_num", limit: 4
     t.decimal  "avg",                         precision: 10, scale: 6
+    t.string   "slug",          limit: 255
   end
 
   add_index "hospitals", ["area_id"], name: "index_hospitals_on_area_id", using: :btree
@@ -145,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160204120905) do
   add_index "hospitals", ["longitude"], name: "index_hospitals_on_longitude", using: :btree
   add_index "hospitals", ["name"], name: "index_hospitals_on_name", using: :btree
   add_index "hospitals", ["recommend_num"], name: "index_hospitals_on_recommend_num", using: :btree
+  add_index "hospitals", ["slug"], name: "index_hospitals_on_slug", unique: true, using: :btree
 
   create_table "problems", force: :cascade do |t|
     t.text     "content",     limit: 65535
