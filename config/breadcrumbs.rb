@@ -10,17 +10,17 @@ end
 
 # information crumb
 crumb :hospital do |hospital|
-  link hospital.name, hospital_path
+  link hospital.name, hospital_path(hospital.id)
   parent :area, hospital.area
 end
 
 crumb :division do |division, hospital|
-  link division.name, division_path
+  link division.name, hospital_division_path(hospital.id, division.id)
   parent :hospital, hospital
 end
 
 crumb :doctor do |doctor, division, hospital|
-  link doctor.name, doctor_path
+  link doctor.name, hospital_division_doctor_path(hospital.id, division.id, doctor.id)
   parent :division, division, hospital
 end
 

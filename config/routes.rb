@@ -1,26 +1,30 @@
 Rails.application.routes.draw do
-  
-  get 'comment/doctor'
 
-  get 'comment/category'
+  root "index#index"
 
-  get 'hospitals/:hospital', to: 'information#hospital', as: :hospital
+  get '/hospitals/recommend', to: 'hospitals#recommend'
+  get '/doctors/recommend', to: 'doctors#recommend'
 
-  get 'divisions/:hospital/:division', to: 'information#division', as: :division
+  resources :areas, only: [:show] do
+    resources :categories, only: [:show]
+  end
+  resources :categories, only: [:show]
 
-  get 'doctors/:hospital/:division/:doctor', to: 'information#doctor', as: :doctor
+  resources :hospitals, only: [:show] do
+    resources :divisions, only: [:show] do
+      resources :comments, only: [:show]
+      resources :doctors, only: [:show] do
+        resources :comments, only: [:show]
+      end
+    end
+  end
 
-  get 'doctors/:doctor', to: 'information#doctorId', as: :doctor_id
+  post 'search', to: 'search#search'
 
-  get 'search/byAreaCategory'
-
-  get 'areas/:area', to: 'search#byArea', as: :area
-
-  get 'search/byCategory'
-
-  get 'search/result', to: 'search#search'
-
-  get 'index/index'
+  get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
+  get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
+  get '/areas/:area_id/divisions/:id/doctors/recommend', to: 'doctors#area_division_recommend'
+  get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend'
 
   namespace :admin do
     get '/' => 'admin#index'
@@ -35,8 +39,6 @@ Rails.application.routes.draw do
     resources :problems, only: [:index]
     resources :add_doctors, only: [:index]
   end
-
-  root "index#index"
 
   namespace :api do
     get 'status_check' => 'api#status_check'

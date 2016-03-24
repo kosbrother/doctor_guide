@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CommentsController, type: :controller do
+RSpec.describe AreasController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do

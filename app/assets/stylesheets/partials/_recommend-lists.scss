@@ -47,7 +47,7 @@
       .recommend-lists-name{
         width: 230px;
         display: inline-block;
-        margin-left: 5px;
+        margin-left: 20px;
         margin-bottom: 10px;
         min-height: 50px;
         li{
@@ -55,7 +55,7 @@
         }
       }
       .recommend-lists-doctorName{
-        margin-left: 10px;
+        margin-left: 20px;
         display: inline-block;
         width: 100px;
         .recommend-lists-doctor-div{
@@ -81,7 +81,7 @@
 
 }
 
-#recommendDivisions, #popDivisions, #recommendHosDoctors, #popHosDoctors{
+#recommendDivisions, #popDivisions, #recommendDoctors, #popDoctors{
   .recommend-lists-content-list{
     margin: 20px 0;
     .icons{
@@ -105,7 +105,7 @@
   }
 }
 
-#recommendHosDoctors, #popHosDoctors{
+#recommendDoctors, #popDoctors{
   .recommend-lists-glyph {
     width: 75px;
     position: relative;
