@@ -45,6 +45,8 @@ gem 'elasticsearch-persistence', git: 'git://github.com/elasticsearch/elasticsea
 gem 'friendly_id', '~> 5.1.0'
 gem 'babosa'
 
+gem 'sitemap_generator'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
