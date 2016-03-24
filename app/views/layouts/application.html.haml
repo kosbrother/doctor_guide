@@ -39,7 +39,7 @@
             .aside-content.row
               - @categories.each do |category|
                 .col-md-6.aside-list
-                  = link_to category.name, category_path(category.id)
+                  = link_to category.name, category_path(category.id, choose_area_id: 1)
           = yield :aside
         .col-md-8.box
           = breadcrumbs

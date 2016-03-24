@@ -2,7 +2,10 @@
   - breadcrumb :areaCategory, @category, @area
 -else
   - breadcrumb :category, @category
-
+  .area_lists.row
+    - @areas.each do |area|
+      .col-md-2
+        = link_to area.name, category_path(choose_area_id: area.id)
 .hospital-lists
   .hospital-lists-title
     = @area.name + @category.name + '醫院列表'
@@ -17,9 +20,9 @@
 .recommend-lists
   .recommend-lists-title
     .recommend-lists-tag.active
-      = link_to "#{@area.name}#{@category.name}推薦醫院", '#recommendHospitals', 'data-toggle' => "tab"
+      = link_to "#{@areaName}#{@category.name}推薦醫院", '#recommendHospitals', 'data-toggle' => "tab"
     .recommend-lists-tag{ 'data-toggle' => "tab"}
-      = link_to "#{@area.name}#{@category.name}熱門醫院", '#popHospitals', 'data-toggle' => "tab"
+      = link_to "#{@areaName}#{@category.name}熱門醫院", '#popHospitals', 'data-toggle' => "tab"
   .recommend-lists-content.row
     #recommendHospitals.tab-pane.active
       - @areaCateGoodHospitals.each_slice(5).with_index do |hospitals, i|
@@ -52,11 +55,14 @@
 .recommend-lists.recommend-doctors
   .recommend-lists-title
     .recommend-lists-tag.active
-      = link_to "#{@area.name}#{@category.name}推薦醫生", '#recommendDoctors', 'data-toggle' => "tab"
+      = link_to "#{@areaName}#{@category.name}推薦醫生", '#recommendDoctors', 'data-toggle' => "tab"
     .recommend-lists-tag{ 'data-toggle' => "tab"}
-      = link_to "#{@area.name}#{@category.name}熱門醫生", '#popDoctors', 'data-toggle' => "tab"
+      = link_to "#{@areaName}#{@category.name}熱門醫生", '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多', "/areas/#{@area.id}/categories/#{@category.id}{/doctors/recommend"
+      - if params['area_id']
+        = link_to '觀看更多', "/areas/#{@area.id}/categories/#{@category.id}{/doctors/recommend"
+      - else
+        = link_to '觀看更多', "/areas/#{@category.id}/doctors/recommend"
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
       - @areaCateGoodDoctors.each_slice(5).with_index do |doctors, i|
@@ -94,7 +100,7 @@
                   = doctor.recommend_num
 .comment-lists
   .comment-lists-title
-    = "#{@area.name}#{@category.name}最新科別評論"
+    = "#{@areaName}#{@category.name}最新科別評論"
   .row
     .col-md-1.box
     .col-md-10.box
@@ -118,7 +124,7 @@
 .comment-lists
   .row
     .comment-lists-title
-      = "#{@area.name}#{@category.name}最新醫師評論"
+      = "#{@areaName}#{@category.name}最新醫師評論"
     .col-md-1.box
     .col-md-10
       .comment-lists-content
