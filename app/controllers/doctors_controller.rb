@@ -31,7 +31,7 @@ class DoctorsController < ApplicationController
 
   end
 
-  def area_division_recommend
+  def area_categories_recommend
 
   end
 end
