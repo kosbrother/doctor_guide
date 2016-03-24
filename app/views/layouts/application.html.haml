@@ -21,7 +21,7 @@
         .col-md-4.col-md-offset-5.box
           .search-bars
             = form_tag("/search", method: "post") do
-              %input.search{:name => "doctorsearch", :placeholder => "找醫院/找醫師", :type => "search"}
+              %input.search{:name => "search", :placeholder => "找醫院/找醫師", :type => "search"}
               %button.searchButton
                 %span.glyphicon.glyphicon-search.search-icon{:type => "submit", value: "search", "aria-hidden" => "true"}
     %main

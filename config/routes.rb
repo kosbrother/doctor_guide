@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   post 'search', to: 'search#search'
+  get '/search', to: 'search#search'
 
   get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
   get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'

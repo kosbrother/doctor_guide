@@ -44,6 +44,7 @@ gem 'elasticsearch-persistence', git: 'git://github.com/elasticsearch/elasticsea
 
 gem 'friendly_id', '~> 5.1.0'
 gem 'babosa'
+gem 'ransack'
 
 gem 'sitemap_generator'
 
