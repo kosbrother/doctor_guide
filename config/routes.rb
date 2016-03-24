@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
   get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
-  get '/areas/:area_id/divisions/:id/doctors/recommend', to: 'doctors#area_division_recommend'
+  get '/areas/:area_id/categories/:id/doctors/recommend', to: 'doctors#area_categories_recommend'
   get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend'
 
   namespace :admin do

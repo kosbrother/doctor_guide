@@ -14,3 +14,81 @@
             = link_to hospital.name, hospital_path(hospital.id)
   .hospital-lists-paginate
     = pagination_links(@areaCateHospitals)
+.recommend-lists
+  .recommend-lists-title
+    .recommend-lists-tag.active
+      = link_to "#{@area.name}#{@category.name}推薦醫院", '#recommendHospitals', 'data-toggle' => "tab"
+    .recommend-lists-tag{ 'data-toggle' => "tab"}
+      = link_to "#{@area.name}#{@category.name}熱門醫院", '#popHospitals', 'data-toggle' => "tab"
+  .recommend-lists-content.row
+    #recommendHospitals.tab-pane.active
+      - @areaCateGoodHospitals.each_slice(5).with_index do |hospitals, i|
+        .col-md-6.box
+          - hospitals.each_with_index do |hospital, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .recommend-lists-name
+                = link_to hospital.name, hospital_path(hospital.id)
+                %li.glyphicon.glyphicon-thumbs-up
+                  = hospital.recommend_num
+    #popHospitals.tab-pane
+      - @areaCatePopHospitals.each_slice(5).with_index do |hospitals, i|
+        .col-md-6.box
+          - hospitals.each_with_index do |hospital, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .recommend-lists-name
+                = link_to hospital.name, hospital_path(hospital.id)
+                %li.glyphicon.glyphicon-thumbs-up
+                  = hospital.recommend_num
+.recommend-lists.recommend-doctors
+  .recommend-lists-title
+    .recommend-lists-tag.active
+      = link_to "#{@area.name}#{@category.name}推薦醫生", '#recommendDoctors', 'data-toggle' => "tab"
+    .recommend-lists-tag{ 'data-toggle' => "tab"}
+      = link_to "#{@area.name}#{@category.name}熱門醫生", '#popDoctors', 'data-toggle' => "tab"
+    .recommend-lists-more
+      = link_to '觀看更多', "/areas/#{@area.id}/categories/#{@category.id}{/doctors/recommend"
+  .recommend-lists-content.row
+    #recommendDoctors.tab-pane.active
+      - @areaCateGoodDoctors.each_slice(5).with_index do |doctors, i|
+        .col-md-6.box
+          - doctors.each_with_index do |doctor, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .recommend-lists-doctorName
+                = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.id)
+              .recommend-lists-glyph
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.recommend_num
+    #popDoctors.tab-pane
+      - @areaCatePopDoctors.each_slice(5).with_index do |doctors, i|
+        .col-md-6.box
+          - doctors.each_with_index do |doctor, num|
+            .recommend-lists-content-list
+              .recommend-lists-ranknum
+                - if (i*5)+ 1 + num < 10
+                  = '0' + ((i*5)+ 1 + num).to_s
+                - else
+                  = (i*5)+ 1 + num
+              .recommend-lists-doctorName
+                = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.id)
+              .recommend-lists-glyph
+                %li.glyphicon.glyphicon-thumbs-up
+                  = doctor.recommend_num

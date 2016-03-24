@@ -77,8 +77,11 @@
                   = '0' + ((i*5)+ 1 + num).to_s
                 - else
                   = (i*5)+ 1 + num
-              .recommend-lists-name
+              .recommend-lists-doctorName
                 = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.id)
+              .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.recommend_num
     #popDoctors.tab-pane
@@ -91,8 +94,11 @@
                   = '0' + ((i*5)+ 1 + num).to_s
                 - else
                   = (i*5)+ 1 + num
-              .recommend-lists-name
+              .recommend-lists-doctorName
                 = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                .recommend-lists-doctor-div
+                  = findDoctorDivName(doctor.id)
+              .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.recommend_num
 .comment-lists
