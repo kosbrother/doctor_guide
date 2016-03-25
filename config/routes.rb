@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :feedbacks, only: [:index]
     resources :problems, only: [:index]
     resources :add_doctors, only: [:index]
+    resources :users, only: [:index]
   end
 
   namespace :api do

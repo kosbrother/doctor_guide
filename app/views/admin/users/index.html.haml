@@ -1,0 +1,23 @@
+%p#notice= notice
+%h1 Listing Users
+= will_paginate @users
+%table{:style=>"border: 1px; width: 100%"}
+  %thead
+    %tr
+      %th ID
+      %th 姓名
+      %th Email
+      %th pic_url
+      %th 登入時間
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.name
+        %td{:style => "color:green;"}= user.email
+        %td= image_tag(user.pic_url, height: '32')
+        %td= user.updated_at.strftime("%Y/%m/%d")
+
+
+%br
+= will_paginate @users
