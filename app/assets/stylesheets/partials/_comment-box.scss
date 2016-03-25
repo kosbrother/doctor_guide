@@ -1,0 +1,52 @@
+.comment-box{
+  border: solid 1px #9b9b9b;
+  padding: 20px;
+  .infoBox{
+    margin-bottom: 20px;
+    .title{
+      font-size: 15px;
+      color: #329834;
+      margin-bottom: 30px;
+    }
+    .info{
+      position: relative;
+      left: 10px;
+      .infoTitle{
+        width: 75px;
+      }
+      .infoTitle, .infoText{
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      span.stars{
+        margin-left: 10px;
+      }
+      span.stars, span.stars span {
+        display: inline-block;
+        background: image-url('stars.png') 0 -16px repeat-x;
+        width: 80px;
+        height: 16px;
+      }
+
+      span.stars span {
+        background-position: 0 0;
+      }
+    }
+
+  }
+  .comment{
+    width: 80%;
+    border-top: solid 0.8px #dadada;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    .title{
+      font-size: 12px;
+      color: #4a4a4a;
+      margin-bottom: 10px;
+    }
+    .content{
+      position: relative;
+      left: 10px;
+    }
+  }
+}

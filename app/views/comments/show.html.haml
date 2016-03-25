@@ -1,2 +1,11 @@
-%h1 Comments#show
-%p Find me in app/views/comments/show.html.haml
+-if params['doctor_id']
+  - breadcrumb :doctorComment, @comment, @doctor, @division, @hospital
+-else
+  - breadcrumb :divisionComment, @comment, @division, @hospital
+
+= render 'partials/comment'
+
+-if params['doctor_id']
+  = render 'partials/commentLists', :title => "其他人對#{@doctor.name}醫師的評論", :comments => @comments, :commentType => 'doctor'
+- else
+  = render 'partials/commentLists', :title => '其他人對本科的評論', :comments => @comments, :commentType => 'division'
