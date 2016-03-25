@@ -2,6 +2,8 @@ class Comment < ActiveRecord::Base
   after_save :update_score
   after_destroy :update_score
 
+  default_scope { order('updated_at desc') }
+
   belongs_to :doctor
   belongs_to :hospital
   belongs_to :division
