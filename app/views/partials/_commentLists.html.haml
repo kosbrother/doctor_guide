@@ -1,0 +1,39 @@
+-# parameter: @title, @comments, @commentType
+.comment-lists
+  .comment-lists-title
+    = title
+  .row
+    .col-md-1.box
+    .col-md-10.box
+      .comment-lists-content
+        - comments.each do |comment|
+          - if commentType == 'division'
+            = link_to hospital_division_comment_path(comment.hospital, comment.division, comment ) do
+              .comment-lists-comment.row
+                .col-md-6
+                  %p 評論者: #{comment.commentor.name}
+                  %p 對象： #{comment.doctor.name}
+                  .comment-lists-rank
+                    %p 科別滿意度： #{comment.div_speciality}
+                    %p 醫師滿意度： #{comment.dr_speciality}
+                .col-md-6.comment-lists-comment-content
+                  科別評論：
+                  %br>/
+                  = truncate(comment.div_comment, length: 35)
+          - else
+            = link_to hospital_division_doctor_comment_path(comment.hospital, comment.division, comment.doctor, comment) do
+              .comment-lists-comment.row
+                .col-md-6
+                  %p 評論者: #{comment.commentor.name}
+                  %p 對象： #{comment.doctor.name}
+                  .comment-lists-rank
+                    %p 科別滿意度： #{comment.div_speciality}
+                    %p 醫師滿意度： #{comment.dr_speciality}
+                .col-md-6.comment-lists-comment-content
+                  醫師評論：
+                  %br>/
+                  = truncate(comment.dr_comment, length: 35)
+      .comment-lists-paginate
+        = pagination_links(@comments)
+    .col-md-1.box
+.col-md-8.col-md-offset-3.box
