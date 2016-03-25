@@ -8,7 +8,7 @@
         - hospitals.each do |hospital|
           .icons
             .icon
-              = image_tag("icon_hospital.png")
+              = image_tag("grade#{tellGrade(hospital.grade)}.png")
             .icon-content
               .icon-content-title
                 = hospital.name
