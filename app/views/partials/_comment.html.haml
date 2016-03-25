@@ -1,0 +1,82 @@
+.comment-box
+  .infoBox
+    .title
+      就診資訊
+    .info
+      .infoTitle
+        評論人
+      .infoText
+        = @comment.commentor.name
+    .info
+      .infoTitle
+        就診醫院
+      .infoText
+        = @comment.hospital.name + ' | ' + @comment.division.name
+    .info
+      .infoTitle
+        門診醫師
+      .infoText
+        = @comment.doctor.name + ' 醫師'
+    .info
+      .infoTitle
+        就醫時間
+      .infoText
+        = @comment.created_at.strftime('%Y/%m/%d')
+  .infoBox
+    .title
+      科別評論
+    .info
+      .infoTitle
+        環境衛生
+      .infoText
+        = @comment.div_environment.round(1)
+        %span.stars
+          = @comment.div_environment.round(1)
+    .info
+      .infoTitle
+        醫療設備
+      .infoText
+        = @comment.div_equipment.round(1)
+        %span.stars
+          = @comment.div_equipment.round(1)
+    .info
+      .infoTitle
+        醫護專業
+      .infoText
+        = @comment.div_speciality.round(1)
+        %span.stars
+          = @comment.div_speciality.round(1)
+    .info
+      .infoTitle
+        服務態度
+      .infoText
+        = @comment.div_friendly.round(1)
+        %span.stars
+          = @comment.div_friendly.round(1)
+  .comment
+    .title
+      評論內容
+    .content
+      = @comment.div_comment
+  .infoBox
+    .title
+      醫師評論
+    .info
+      .infoTitle
+        醫師態度
+      .infoText
+        = @comment.dr_speciality.round(1)
+        %span.stars
+          = @comment.dr_speciality.round(1)
+    .info
+      .infoTitle
+        醫師專業
+      .infoText
+        = @comment.dr_friendly.round(1)
+        %span.stars
+          = @comment.dr_friendly.round(1)
+  .comment
+    .title
+      評論內容
+    .content
+      = @comment.dr_comment

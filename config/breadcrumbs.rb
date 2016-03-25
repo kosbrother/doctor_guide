@@ -33,6 +33,16 @@ crumb :doctor do |doctor, division, hospital|
   parent :division, division, hospital
 end
 
+# comment crumb
+crumb :doctorComment do |comment, doctor, division, hospital|
+  link '醫師評論詳情', hospital_division_doctor_comment_path(comment, doctor, division, hospital)
+  parent :doctor, doctor, division, hospital
+end
+
+crumb :divisionComment do |comment, division, hospital|
+  link '科別評論詳情', hospital_division_comment_path(comment, division, hospital)
+  parent :division, division, hospital
+end
 # crumb :projects do
 #   link "Projects", projects_path
 # end
