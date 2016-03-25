@@ -1,2 +1,18 @@
 - breadcrumb :searchResult
-.search_result
+.search_result.row
+  .title
+    醫院
+  .resultList
+    - @hospitals.each_slice(5) do |hospitals|
+      .col-md-6
+        - hospitals.each do |hospital|
+          .icons
+            .icon
+              = image_tag("icon_hospital.png")
+            .icon-content
+              .icon-content-title
+                = hospital.name
+              .area
+                = hospital.area.name
+  .resultPagination
+    = pagination_links(@hospitals)

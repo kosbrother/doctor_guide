@@ -4,14 +4,12 @@ class SearchController < ApplicationController
 
   def search
     if request.post?
-      url = "/search?#{params['search']}"
+      url = "/search?search=#{params['search']}"
       encoded_url = URI.encode(url)
       redirect_to   URI.parse(encoded_url).to_s
     elsif request.get?
-      @h = Hospital.ransack(params['search'])
-      @d = Doctor.ransack(params['search'])
-      @hospitals = @h.result(distinct: true)
-      @doctors = @d.result(distinct: true)
+      @hospitals = Hospital.ransack(name_cont: params['search']).result.paginate(:page => params[:page]).per_page(10)
+      @doctors = Doctor.ransack(name_cont: params['search']).result.paginate(:page => params[:page]).per_page(10)
     end
   end
 
