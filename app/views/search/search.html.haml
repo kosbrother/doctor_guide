@@ -3,16 +3,36 @@
   .title
     醫院
   .resultList
-    - @hospitals.each_slice(5) do |hospitals|
-      .col-md-6
-        - hospitals.each do |hospital|
-          .icons
-            .icon
-              = image_tag("grade#{tellGrade(hospital.grade)}.png")
-            .icon-content
-              .icon-content-title
-                = hospital.name
-              .area
-                = hospital.area.name
-  .resultPagination
-    = pagination_links(@hospitals)
+    - if @hospitals.results.any?
+      - @hospitals.each_slice(5) do |hospitals|
+        .col-md-6
+          - hospitals.each do |hospital|
+            .icons
+              .icon
+                = image_tag("grade#{tellGrade(hospital.grade)}.png")
+              .icon-content
+                .icon-content-title
+                  = hospital.name
+                .area
+                  = hospital.area.name
+
+    - else
+      .noFound
+        找不到符合的結果
+.search_result.row.searchDoctors
+  .title
+    醫師
+  .resultList
+    - if @doctors.results.any?
+      - @doctors.each_slice(5) do |doctors|
+        .col-md-6
+          - doctors.each do |doctor|
+            .icons
+              .icon
+                = image_tag("mDoctor.png")
+              .icon-content
+                .icon-content-title
+                  = doctor.name
+    - else
+      .noFound
+        找不到符合的結果
