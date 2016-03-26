@@ -20,7 +20,7 @@ class SearchController < ApplicationController
       repository = Elasticsearch::Persistence::Repository.new
       repository.index = "doctors_index"
       repository.type = 'doctor'
-      @doctors = repository.search(query: { match: { name: params[:q] } })
+      @doctors = repository.search({query: { match: { name: params[:q] } }, size: 20})
     end
   end
   def search_hospitals
@@ -30,7 +30,7 @@ class SearchController < ApplicationController
       repository = Elasticsearch::Persistence::Repository.new
       repository.index = "hospitals_index"
       repository.type = 'hospital'
-      @hospitals = repository.search(query: { match: { name: params[:q] } })
+      @hospitals = repository.search({query: { match: { name: params[:q] } }, size: 20})
     end
   end
 

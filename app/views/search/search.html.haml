@@ -12,10 +12,9 @@
                 = image_tag("grade#{tellGrade(hospital.grade)}.png")
               .icon-content
                 .icon-content-title
-                  = hospital.name
+                  = link_to hospital.name, hospital_path(hospital)
                 .area
                   = hospital.area.name
-
     - else
       .noFound
         找不到符合的結果
