@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   root "index#index"
 
-  get '/hospitals/moreRecommend', to: 'hospitals#moreRecommend'
-  get '/hospitals/morePopular', to: 'hospitals#morePopular'
-  get '/doctors/moreRecommend', to: 'doctors#moreRecommend'
-  get '/doctors/morePopular', to: "doctors#morePopular"
+  get '/hospitals/recommend', to: 'hospitals#recommend'
+  get '/hospitals/popular', to: 'hospitals#popular'
+  get '/doctors/recommend', to: 'doctors#recommend'
+  get '/doctors/popular', to: "doctors#popular"
 
 
   resources :areas, only: [:show] do
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/search', to: 'search#search'
 
   get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
+  get '/areas/:id/hospitals/popular', to: 'hospitals#area_recommend'
   get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
   get '/areas/:area_id/categories/:id/doctors/recommend', to: 'doctors#area_categories_recommend'
   get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend'

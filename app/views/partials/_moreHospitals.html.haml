@@ -1,9 +1,9 @@
 .moreHospitals
   .switch
     -if type == 'recommend'
-      = link_to '查看熱門醫院', hospitals_morePopular_path
+      = link_to '查看熱門醫院', hospitals_popular_path
     -elsif type == 'popular'
-      = link_to '查看推薦醫院', hospitals_moreRecommend_path
+      = link_to '查看推薦醫院', hospitals_recommend_path
   - hospitals.each_with_index do |hospital, num|
     .list
       .rankNum

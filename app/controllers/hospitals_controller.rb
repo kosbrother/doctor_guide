@@ -11,14 +11,20 @@ class HospitalsController < ApplicationController
     @divisionComments = @hospital.comments.where.not(div_comment: nil).where.not(div_comment: "").paginate(:page => params[:page]).per_page(3)
   end
 
-  def moreRecommend
+  def recommend
     @hospitals = Hospital.order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
-  def morePopular
+  def popular
     @hospitals = Hospital.order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
-  def area_recommend
+  def area_moreRecommend
+    @hospitals = Hospital.where(area_id: params['id']).order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
+
+  def area_morePopular
+    @hospitals = Hospital.where(area_id: params['id']).order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+  end
+
 end

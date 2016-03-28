@@ -1,6 +1,9 @@
 .moreDoctors
   .switch
-    = link_to switch, switchPath
+    -if type == 'recommend'
+      = link_to '查看熱門醫師', doctors_popular_path
+    -elsif type == 'popular'
+      = link_to '查看推薦醫師', doctors_recommend_path
   - doctors.each_with_index do |doctor, num|
     .list
       .rankNum
@@ -8,9 +11,14 @@
           = ('0' +( num + 1).to_s)
         - else
           = 1 + doctors.offset + num
-      .glyph
-        = image_tag 'commentIcon.png'
-        = doctor.recommend_num
+      -if type == 'recommend'
+        .glyph
+          = image_tag 'recommendIcon.png'
+          = doctor.recommend_num
+      -elsif type == 'popular'
+        .glyph
+          = image_tag 'commentIcon.png'
+          = doctor.comment_num
       .doctorName
         = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
       .doctorDivision

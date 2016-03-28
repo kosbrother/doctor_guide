@@ -21,11 +21,11 @@ class DoctorsController < ApplicationController
     end
   end
 
-  def moreRecommend
+  def recommend
     @doctors = Doctor.order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
-  def morePopular
+  def popular
     @doctors = Doctor.order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 

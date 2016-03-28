@@ -50,19 +50,19 @@ end
 
 # recommend more
 crumb :recommendDoctors do
-  link '推薦醫師', doctors_moreRecommend_path
+  link '推薦醫師', doctors_recommend_path
 end
 
 crumb :popularDoctors do
-  link '熱門醫師', doctors_morePopular_path
+  link '熱門醫師', doctors_popular_path
 end
 
 crumb :recommendHospitals do
-  link '推薦醫院', hospitals_moreRecommend_path
+  link '推薦醫院', hospitals_recommend_path
 end
 
 crumb :popularHospitals do
-  link '熱門醫院', hospitals_morePopular_path
+  link '熱門醫院', hospitals_popular_path
 end
 
 # crumb :projects do
