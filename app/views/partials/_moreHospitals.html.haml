@@ -1,0 +1,27 @@
+.moreHospitals
+  .switch
+    -if type == 'recommend'
+      = link_to '查看熱門醫院', hospitals_morePopular_path
+    -elsif type == 'popular'
+      = link_to '查看推薦醫院', hospitals_moreRecommend_path
+  - hospitals.each_with_index do |hospital, num|
+    .list
+      .rankNum
+        - if hospitals.offset + num < 9
+          = ('0' +( num + 1).to_s)
+        - else
+          = 1 + hospitals.offset + num
+      -if type == 'recommend'
+        .glyph
+          = image_tag 'recommendIcon.png'
+          = hospital.recommend_num
+      -elsif type == 'popular'
+        .glyph
+          = image_tag 'commentIcon.png'
+          = hospital.comment_num
+      .hospitalName
+        = link_to hospital.name, hospital_path(hospital)
+      .area
+        = hospital.area.name
+  .lists-paginate
+    = pagination_links(hospitals)

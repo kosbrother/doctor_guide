@@ -1,0 +1,51 @@
+.moreHospitals{
+  border-top: solid 2px #f63f6d;
+  padding-left: 10px;
+  .switch{
+    width: 100px;
+    text-align: right;
+    position: relative;
+    top: -31px;
+    left: 500px;
+    a {
+      color: #FFA726;
+    }
+  }
+  .list {
+    line-height:4em;
+    .rankNum {
+      vertical-align: top;
+      font-size: 2em;
+      color: #f76489;
+      display: inline-block;
+      width: 50px;
+      text-align: right;
+    }
+    .glyph{
+      display: inline-block;
+      margin:0 30px;
+      img{
+        margin-right: 10px;
+      }
+    }
+    .hospitalName {
+      margin-left: 20px;
+      display: inline-block;
+    }
+    .area{
+      margin-left: 15px;
+      color: #4a4a4a;
+      display: inline-block;
+    }
+  }
+  .lists-paginate{
+    text-align: center;
+    .pagination > li a{
+      border-radius: 50%;
+      margin: 0 2px;
+    }
+    .current{
+      background-color: #8ad636;
+    }
+  }
+}
