@@ -31,7 +31,7 @@
                 = image_tag("mDoctor.png")
               .icon-content
                 .icon-content-title
-                  = doctor.name
+                  = link_to doctor.name,  hospital_division_doctor_path(doctor)
     - else
       .noFound
         找不到符合的結果
