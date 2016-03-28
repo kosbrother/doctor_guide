@@ -92,7 +92,7 @@
           該科別目前暫時沒有評論
         - else
           - @comments.each do |comment|
-            = link_to hospital_division_doctor_comment_path(comment.hospital_id, comment.division_id, comment.doctor_id, comment.id) do
+            = link_to hospital_division_doctor_comment_path(comment.hospital, comment.division, comment.doctor, comment) do
               .comment-lists-comment.row
                 .col-md-6
                   %p 評論者: #{comment.commentor.name}
