@@ -30,7 +30,11 @@ Rails.application.routes.draw do
   get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
   get '/areas/:id/doctors/popular', to: 'doctors#area_popular'
   get '/areas/:area_id/categories/:id/doctors/recommend', to: 'doctors#area_categories_recommend'
+  get '/areas/:area_id/categories/:id/doctors/popular', to: 'doctors#area_categories_popular'
+  get '/categories/:id/doctors/recommend', to: 'doctors#categories_recommend'
+  get '/categories/:id/doctors/popular', to: 'doctors#categories_popular'
   get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend'
+  get '/hospitals/:id/doctors/popular', to: 'doctors#hospital_popular'
 
   namespace :admin do
     get '/' => 'admin#index'

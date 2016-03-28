@@ -60,9 +60,9 @@
       = link_to "#{@areaName}#{@category.name}熱門醫生", '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
       - if params['area_id']
-        = link_to '觀看更多', "/areas/#{@area.id}/categories/#{@category.id}{/doctors/recommend"
+        = link_to '觀看更多', "/areas/#{params['area_id']}/categories/#{params['id']}/doctors/recommend"
       - else
-        = link_to '觀看更多', "/areas/#{@category.id}/doctors/recommend"
+        = link_to '觀看更多', "/categories/#{params['id']}/doctors/recommend"
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
       - @areaCateGoodDoctors.each_slice(5).with_index do |doctors, i|

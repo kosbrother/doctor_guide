@@ -37,10 +37,27 @@ class DoctorsController < ApplicationController
     @doctors = Doctor.where(area_id: params['id']).order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
-  def hospital_recommend
+  def area_categories_recommend
+    @doctors = Doctor.where(area_id: params['id']).order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
-  def area_categories_recommend
+  def area_categories_popular
+    @doctors = Doctor.where(area_id: params['id']).order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+  end
 
+  def categories_recommend
+    @doctors = Doctor.order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+  end
+
+  def categories_popular
+    @doctors = Doctor.order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+  end
+
+  def hospital_recommend
+    @doctors = Doctor.order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+  end
+
+  def hospital_popular
+    @doctors = Doctor.order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 end
