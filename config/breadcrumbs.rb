@@ -3,6 +3,10 @@ crumb :root do
   link "首頁", root_path
 end
 
+crumb :searchResult do
+  link '搜尋結果', search_path
+end
+
 # search crumb
 crumb :area do |area|
   link area.name, area_path(area.id)

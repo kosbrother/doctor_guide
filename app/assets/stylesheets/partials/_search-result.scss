@@ -1,0 +1,37 @@
+.search_result{
+  padding: 10px 20px;
+  .title{
+    border-bottom: solid 2px #7ed321;
+    font-size: 15px;
+    color: #329834;
+    padding: 10px 0;
+  }
+  .icons{
+    .icon-content{
+      .icon-content-title{
+        font-size: 14px;
+      }
+      .area{
+        font-size: 14px;
+        color: #4a4a4a;
+      }
+    }
+  }
+  .resultPagination{
+    text-align: center;
+    .pagination > li a{
+      border-radius: 50%;
+      margin: 0 2px;
+    }
+    .current{
+      background-color: #8ad636;
+    }
+  }
+}
+
+.searchDoctors{
+  .title{
+    color:  #f63f6d;
+    border-bottom: solid 2px #f63f6d;
+  }
+}

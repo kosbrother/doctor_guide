@@ -32,4 +32,18 @@ module ApplicationHelper
     result.division_id
   end
 
+  def tellGrade(grade)
+    case grade
+      when '診所'
+        1
+      when '地區醫院'
+        2
+      when '區域醫院'
+        3
+      when '醫學中心'
+        4
+      else
+        2
+    end
+  end
 end
