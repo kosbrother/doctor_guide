@@ -30,11 +30,14 @@ class DoctorsController < ApplicationController
   end
 
   def area_recommend
+    @doctors = Doctor.where(area_id: params['id']).order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+  end
 
+  def area_popular
+    @doctors = Doctor.where(area_id: params['id']).order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
   def hospital_recommend
-
   end
 
   def area_categories_recommend

@@ -4,6 +4,10 @@
       = link_to '查看熱門醫師', doctors_popular_path
     -elsif type == 'popular'
       = link_to '查看推薦醫師', doctors_recommend_path
+    -elsif type == 'areaRecommend'
+      = link_to "查看#{area}熱門醫師", "/areas/#{params['id']}/doctors/popular"
+    -elsif type == 'areaPopular'
+      = link_to "查看#{area}推薦醫師", "/areas/#{params['id']}/doctors/recommend"
   - doctors.each_with_index do |doctor, num|
     .list
       .rankNum
@@ -11,11 +15,11 @@
           = ('0' +( num + 1).to_s)
         - else
           = 1 + doctors.offset + num
-      -if type == 'recommend'
+      -if type == 'recommend' ||  type == 'areaRecommend'
         .glyph
           = image_tag 'recommendIcon.png'
           = doctor.recommend_num
-      -elsif type == 'popular'
+      -elsif type == 'popular' || type == 'areaPopular'
         .glyph
           = image_tag 'commentIcon.png'
           = doctor.comment_num

@@ -1,2 +1,2 @@
-%h1 Doctors#area_recommend
-%p Find me in app/views/doctors/area_recommend.html.haml
+- breadcrumb :recommendDoctors
+= render 'partials/moreDoctors', doctors: @doctors, type: 'areaRecommend', area: Area.find(params['id']).name
