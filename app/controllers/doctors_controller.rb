@@ -30,6 +30,7 @@ class DoctorsController < ApplicationController
   end
 
   def area_recommend
+
   end
 
   def hospital_recommend

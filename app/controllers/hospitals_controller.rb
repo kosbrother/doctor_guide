@@ -19,11 +19,11 @@ class HospitalsController < ApplicationController
     @hospitals = Hospital.order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
-  def area_moreRecommend
+  def area_recommend
     @hospitals = Hospital.where(area_id: params['id']).order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
-  def area_morePopular
+  def area_popular
     @hospitals = Hospital.where(area_id: params['id']).order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 

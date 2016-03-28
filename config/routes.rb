@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get '/search', to: 'search#search'
 
   get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
-  get '/areas/:id/hospitals/popular', to: 'hospitals#area_recommend'
+  get '/areas/:id/hospitals/popular', to: 'hospitals#area_popular'
   get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
   get '/areas/:area_id/categories/:id/doctors/recommend', to: 'doctors#area_categories_recommend'
   get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend'

@@ -21,8 +21,8 @@
       }
     }
     .recommend-lists-more{
-      position: relative;
-      left: 400px;
+      position: absolute;
+      right: 0px;
       a:focus{
         color: #000;
       }
