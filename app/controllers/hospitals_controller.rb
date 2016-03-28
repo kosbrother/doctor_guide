@@ -11,7 +11,11 @@ class HospitalsController < ApplicationController
     @divisionComments = @hospital.comments.where.not(div_comment: nil).where.not(div_comment: "").paginate(:page => params[:page]).per_page(3)
   end
 
-  def recommend
+  def moreRecommend
+
+  end
+
+  def morePopular
 
   end
 

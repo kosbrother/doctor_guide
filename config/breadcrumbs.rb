@@ -49,8 +49,12 @@ crumb :divisionComment do |comment, division, hospital|
 end
 
 # recommend more
-crumb :recommendDoctor do
-  link '推薦醫生', doctors_recommend_path
+crumb :recommendDoctors do
+  link '推薦醫師', doctors_moreRecommend_path
+end
+
+crumb :popularDoctors do
+  link '熱門醫師', doctors_morePopular_path
 end
 
 crumb :recommendHospital do

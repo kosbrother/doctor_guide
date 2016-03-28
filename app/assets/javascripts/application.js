@@ -41,7 +41,7 @@ ready = function() {
     //Recommend doctors tag
     $('.recommend-lists-tag').click(function (e) {
         e.preventDefault();
-        $(this).tab('show')
+        $(this).tab('show');
     });
 
     //Show rating star

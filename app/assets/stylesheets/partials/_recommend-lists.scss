@@ -1,5 +1,5 @@
 .recommend-lists{
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   .recommend-lists-title{
     color: #808080;
     border-bottom: solid 2px #75ce14;
@@ -21,8 +21,8 @@
       }
     }
     .recommend-lists-more{
-      position: absolute;
-      right: 0px;
+      position: relative;
+      left: 400px;
       a:focus{
         color: #000;
       }
@@ -38,6 +38,7 @@
       display: block;
     }
     .recommend-lists-content-list{
+      margin: 20px 0;
       .recommend-lists-ranknum{
         vertical-align: top;
         font-size: 2em;

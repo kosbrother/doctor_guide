@@ -2,8 +2,11 @@ Rails.application.routes.draw do
 
   root "index#index"
 
-  get '/hospitals/recommend', to: 'hospitals#recommend'
-  get '/doctors/recommend', to: 'doctors#recommend'
+  get '/hospitals/moreRecommend', to: 'hospitals#moreRecommend'
+  get '/hospitals/morePopular', to: 'hospitals#morePopular'
+  get '/doctors/moreRecommend', to: 'doctors#moreRecommend'
+  get '/doctors/morePopular', to: "doctors#morePopular"
+
 
   resources :areas, only: [:show] do
     resources :categories, only: [:show]
