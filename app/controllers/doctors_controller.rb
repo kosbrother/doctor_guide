@@ -22,7 +22,7 @@ class DoctorsController < ApplicationController
   end
 
   def recommend
-    @doctors = Doctor.order('recommend_num desc').limit(50)
+    @doctors = Doctor.order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
   def area_recommend

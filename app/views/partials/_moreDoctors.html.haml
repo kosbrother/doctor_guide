@@ -1,0 +1,19 @@
+.moreDoctors
+  .switch
+    = link_to '查看推薦醫師', ''
+  - doctors.each_with_index do |doctor, num|
+    .list
+      .rankNum
+        - if doctors.offset + num < 9
+          = ('0' +( num + 1).to_s)
+        - else
+          = 1 + doctors.offset + num
+      .glyph
+        = image_tag 'commentIcon.png'
+        = doctor.recommend_num
+      .doctorName
+        = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+      .doctorDivision
+        = link_to findDoctorDivName(doctor.id), hospital_division_path(findDocHospId(doctor.id),  findDocDivId(doctor.id))
+  .lists-paginate
+    = pagination_links(doctors)
