@@ -22,6 +22,7 @@ class DoctorsController < ApplicationController
   end
 
   def recommend
+    @doctors = Doctor.order('recommend_num desc').limit(50)
   end
 
   def area_recommend

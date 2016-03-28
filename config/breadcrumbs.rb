@@ -47,6 +47,16 @@ crumb :divisionComment do |comment, division, hospital|
   link '科別評論詳情', hospital_division_comment_path(comment, division, hospital)
   parent :division, division, hospital
 end
+
+# recommend more
+crumb :recommendDoctor do
+  link '推薦醫生', doctors_recommend_path
+end
+
+crumb :recommendHospital do
+  link '推薦醫院', hospitals_recommend_path
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
