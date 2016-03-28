@@ -9,7 +9,7 @@ class DoctorsController < ApplicationController
       @doctor = relation.doctor
       @hospital = relation.hospital
       @division = relation.division
-      @comments = Comment.where(doctor_id: params['doctor']).paginate(:page => params[:page]).per_page(3)
+      @comments = Comment.where(doctor_id: params['id']).paginate(:page => params[:page]).per_page(3)
       @drFriendly = @comments.average(:dr_friendly).to_f
       @drSpeciality = @comments.average(:dr_speciality).to_f
       @avgDocRate = ((@drFriendly + @drSpeciality) / 2).round(1)
