@@ -38,11 +38,11 @@ class DoctorsController < ApplicationController
   end
 
   def area_categories_recommend
-    @doctors = Doctor.where(area_id: params['id']).order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+    @doctors = Doctor.where(area_id: params['area_id']).order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
   def area_categories_popular
-    @doctors = Doctor.where(area_id: params['id']).order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+    @doctors = Doctor.where(area_id: params['area_id']).order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
   def categories_recommend
@@ -54,10 +54,10 @@ class DoctorsController < ApplicationController
   end
 
   def hospital_recommend
-    @doctors = Doctor.order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+    @doctors = Doctor.joins('INNER JOIN div_hosp_doc_ships ON doctors.id = div_hosp_doc_ships.`doctor_id`').where("div_hosp_doc_ships.hospital_id = #{params['id']}").order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 
   def hospital_popular
-    @doctors = Doctor.order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+    @doctors = Doctorjoins('INNER JOIN div_hosp_doc_ships ON doctors.id = div_hosp_doc_ships.`doctor_id`').where("div_hosp_doc_ships.hospital_id = #{params['id']}").order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
   end
 end
