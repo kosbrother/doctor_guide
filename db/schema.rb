@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324034050) do
+ActiveRecord::Schema.define(version: 20160329115637) do
 
   create_table "add_doctors", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -111,9 +111,9 @@ ActiveRecord::Schema.define(version: 20160324034050) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "subject",    limit: 255
-    t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "content",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -176,8 +176,10 @@ ActiveRecord::Schema.define(version: 20160324034050) do
     t.string   "pic_url",    limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "app_id",     limit: 255
   end
 
+  add_index "users", ["app_id"], name: "index_users_on_app_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
 end
