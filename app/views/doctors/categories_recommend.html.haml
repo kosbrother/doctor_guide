@@ -1,2 +1,2 @@
 - breadcrumb :recommendDoctors
-= render 'partials/moreDoctors', doctors: @doctors, type: 'cateRecommend', cate: Category.find(params['id']).name
+= render 'partials/moreDoctors', doctors: @doctors, type: 'cateRecommend', cate: @category.name

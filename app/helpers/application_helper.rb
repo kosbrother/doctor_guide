@@ -27,6 +27,8 @@ module ApplicationHelper
     result.hospital_id
   end
 
+
+
   def findDocDivId(dr_id)
     result = findDoctor(dr_id)
     result.division_id

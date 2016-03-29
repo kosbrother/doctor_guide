@@ -38,19 +38,29 @@ class DoctorsController < ApplicationController
   end
 
   def area_categories_recommend
-    @doctors = Doctor.where(area_id: params['area_id']).order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+    @doctors = Doctor.joins('INNER JOIN div_hosp_doc_ships ON doctors.id = div_hosp_doc_ships.`doctor_id` INNER JOIN divisions ON divisions.id = div_hosp_doc_ships.`division_id` INNER JOIN categories ON categories.id = divisions.category_id INNER JOIN hospitals ON hospitals.id = div_hosp_doc_ships.hospital_id')
+                   .where("categories.id = #{params['id']} AND hospitals.area_id = #{params['area_id']}").order('doctors.recommend_num desc').limit(100).paginate(page: params['page']).per_page(20)
+    @category = Category.find(params['id'])
+    @area = Area.find(params['area_id'])
   end
 
   def area_categories_popular
-    @doctors = Doctor.where(area_id: params['area_id']).order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+    @doctors = Doctor.joins('INNER JOIN div_hosp_doc_ships ON doctors.id = div_hosp_doc_ships.`doctor_id` INNER JOIN divisions ON divisions.id = div_hosp_doc_ships.`division_id` INNER JOIN categories ON categories.id = divisions.category_id INNER JOIN hospitals ON hospitals.id = div_hosp_doc_ships.hospital_id')
+                  .where("categories.id = #{params['id']} AND hospitals.area_id = #{params['area_id']}").order('doctors.recommend_num desc').limit(100).paginate(page: params['page']).per_page(20)
+    @category = Category.find(params['id'])
+    @area = Area.find(params['area_id'])
   end
 
   def categories_recommend
-    @doctors = Doctor.order('recommend_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+    @doctors = Doctor.joins('INNER JOIN div_hosp_doc_ships ON doctors.id = div_hosp_doc_ships.`doctor_id` INNER JOIN divisions ON divisions.id = div_hosp_doc_ships.`division_id` INNER JOIN categories ON categories.id = divisions.category_id')
+                  .where("categories.id = #{params['id']}").order('doctors.recommend_num desc').limit(100).paginate(page: params['page']).per_page(20)
+    @category = Category.find(params['id'])
   end
 
   def categories_popular
-    @doctors = Doctor.order('comment_num desc').paginate(page: params['page'], total_entries: 100).per_page(20)
+    @doctors = Doctor.joins('INNER JOIN div_hosp_doc_ships ON doctors.id = div_hosp_doc_ships.`doctor_id` INNER JOIN divisions ON divisions.id = div_hosp_doc_ships.`division_id` INNER JOIN categories ON categories.id = divisions.category_id')
+                   .where("categories.id = #{params['id']}").order('doctors.comment_num desc').limit(100).paginate(page: params['page']).per_page(20)
+    @category = Category.find(params['id'])
   end
 
   def hospital_recommend
