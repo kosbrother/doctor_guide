@@ -88,7 +88,7 @@
     .col-md-10.box
       .comment-lists-content
         - @divisionComments.each do |comment|
-          = link_to hospital_division_comment_path(comment.hospital_id, comment.division_id, comment.id ) do
+          = link_to hospital_division_comment_path(comment.hospital, comment.division, comment.doctor, comment) do
             .comment-lists-comment.row
               .col-md-6
                 %p 評論者: #{comment.commentor.name}
@@ -112,7 +112,7 @@
     .col-md-10
       .comment-lists-content
         - @doctorComments.each do |comment|
-          = link_to hospital_division_doctor_comment_path(comment.hospital_id, comment.division_id, comment.doctor_id, comment.id) do
+          = link_to hospital_division_doctor_comment_path(comment.hospital, comment.division, comment.doctor, comment) do
             .comment-lists-comment.row
               .col-md-6
                 %p 評論者: #{comment.commentor.name}
