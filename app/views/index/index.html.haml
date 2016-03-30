@@ -47,9 +47,9 @@
       = link_to '觀看更多', doctors_recommend_path, 'data-recommend' =>  doctors_recommend_path, 'data-popular' =>  doctors_popular_path
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
-      - @goodDoctors.each_slice(5).with_index do |lists, i|
+      - @goodDoctors.each_slice(5).with_index do |doctors, i|
         .col-md-6.box
-          - lists.each_with_index do |list, num|
+          - doctors.each_with_index do |doctor, num|
             .recommend-lists-content-list
               .recommend-lists-ranknum
                 - if (i*5)+ 1 + num < 10
@@ -57,16 +57,16 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-doctorName
-                = link_to list.doctor.name, hospital_division_doctor_path(list.hospital, list.division, list.doctor)
+                = link_to doctor.name, hospital_division_doctor_path(doctor.hospitals[0], doctor.divisions[0], doctor)
                 .recommend-lists-doctor-div
-                  = list.division.name
+                  = doctor.divisions[0].name
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
-                  = list.doctor.recommend_num
+                  = doctor.recommend_num
     #popDoctors.tab-pane
-      - @popDoctors.each_slice(5).with_index do |lists, i|
+      - @popDoctors.each_slice(5).with_index do |doctors, i|
         .col-md-6.box
-          - lists.each_with_index do |list, num|
+          - doctors.each_with_index do |doctor, num|
             .recommend-lists-content-list
               .recommend-lists-ranknum
                 - if (i*5)+ 1 + num < 10
@@ -74,12 +74,12 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-doctorName
-                = link_to list.doctor.name, hospital_division_doctor_path(list.hospital,list.division, list.doctor)
+                = link_to doctor.name, hospital_division_doctor_path(doctor.hospitals[0], doctor.divisions[0], doctor)
                 .recommend-lists-doctor-div
-                  = list.division.name
+                  = doctor.divisions[0].name
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
-                  = list.doctor.comment_num
+                  = doctor.comment_num
 .comment-lists
   .comment-lists-title
     最新科別評論
