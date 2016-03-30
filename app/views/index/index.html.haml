@@ -7,7 +7,7 @@
     .recommend-lists-tag{'data-type' => 'popular'}
       = link_to '熱門醫院', '#popHospitals', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多', hospitals_recommend_path, 'data-recommend' => 'hospitals/recommend', 'data-popular' => 'hospitals/popular'
+      = link_to '觀看更多', hospitals_recommend_path, 'data-recommend' => hospitals_recommend_path, 'data-popular' => hospitals_popular_path
   .recommend-lists-content.row
     #recommendHospitals.tab-pane.active
       - @goodHospitals.each_slice(5).with_index do |hospitals, i|
@@ -44,7 +44,7 @@
     .recommend-lists-tag{'data-type' => 'popular'}
       = link_to '熱門醫生', '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多', doctors_recommend_path, 'data-recommend' => 'doctors/recommend', 'data-popular' => 'doctors/popular'
+      = link_to '觀看更多', doctors_recommend_path, 'data-recommend' =>  doctors_recommend_path, 'data-popular' =>  doctors_popular_path
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
       - @goodDoctors.each_slice(5).with_index do |doctors, i|
