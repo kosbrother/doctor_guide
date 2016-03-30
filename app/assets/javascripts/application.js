@@ -36,12 +36,19 @@ ready = function() {
         $(this).addClass('active');
     };
 
-    $(".recommend-lists-tag").click(make_button_active);
+    var change_link = function(){
+      var a = $(this).parent().find('.recommend-lists-more > a').eq(0);
+        var type = $(this).data('type');
+        var value = a.data(type);
+        a.attr('href', value)
+    };
 
+    $(".recommend-lists-tag").click(make_button_active);
+    $(".recommend-lists-tag").click(change_link);
     //Recommend doctors tag
     $('.recommend-lists-tag').click(function (e) {
         e.preventDefault();
-        $(this).tab('show')
+        $(this).tab('show');
     });
 
     //Show rating star

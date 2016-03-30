@@ -1,0 +1,43 @@
+.moreDoctors
+  .switch
+    -if type == 'recommend'
+      = link_to '查看熱門醫師', doctors_popular_path
+    -elsif type == 'popular'
+      = link_to '查看推薦醫師', doctors_recommend_path
+    -elsif type == 'areaRecommend'
+      = link_to "查看#{area}熱門醫師", "/areas/#{params['id']}/doctors/popular"
+    -elsif type == 'areaPopular'
+      = link_to "查看#{area}推薦醫師", "/areas/#{params['id']}/doctors/recommend"
+    -elsif type == 'areaCateRecommend'
+      = link_to "查看#{area}#{cate}熱門醫師", "/areas/#{params['area_id']}/categories/#{params['id']}/doctors/popular"
+    -elsif type == 'areaCatePopular'
+      = link_to "查看#{area}#{cate}推薦醫師", "/areas/#{params['area_id']}/categories/#{params['id']}/doctors/recommend"
+    -elsif type == 'cateRecommend'
+      = link_to "查看#{cate}熱門醫師", "/categories/#{params['id']}/doctors/popular"
+    -elsif type == 'catePopular'
+      = link_to "查看#{cate}推薦醫師", "/categories/#{params['id']}/doctors/recommend"
+    -elsif type == 'hospRecommend'
+      = link_to "查看#{hospital}熱門醫師", "/hospitals/#{params['id']}/doctors/popular"
+    -elsif type == 'hospPopular'
+      = link_to "查看#{hospital}推薦醫師", "/hospitals/#{params['id']}/doctors/recommend"
+  - doctors.each_with_index do |doctor, num|
+    .list
+      .rankNum
+        - if doctors.offset + num < 9
+          = ('0' +( num + 1).to_s)
+        - else
+          = 1 + doctors.offset + num
+      -if type == 'recommend' ||  type == 'areaRecommend' || type == 'areaCateRecommend' || type == 'cateRecommend' || type == 'hospRecommend'
+        .glyph
+          = image_tag 'recommendIcon.png'
+          = doctor.recommend_num
+      -elsif type == 'popular' || type == 'areaPopular' || type == 'areaCatePopular' || type == 'catePopular' || type == 'hospPopular'
+        .glyph
+          = image_tag 'commentIcon.png'
+          = doctor.comment_num
+      .doctorName
+        = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+      .doctorDivision
+        = link_to findDoctorDivName(doctor.id), hospital_division_path(findDocHospId(doctor.id),  findDocDivId(doctor.id))
+  .lists-paginate
+    = pagination_links(doctors)

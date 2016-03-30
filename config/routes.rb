@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   root "index#index"
 
   get '/hospitals/recommend', to: 'hospitals#recommend'
+  get '/hospitals/popular', to: 'hospitals#popular'
   get '/doctors/recommend', to: 'doctors#recommend'
+  get '/doctors/popular', to: "doctors#popular"
+
 
   resources :areas, only: [:show] do
     resources :categories, only: [:show]
@@ -23,9 +26,15 @@ Rails.application.routes.draw do
   get '/search', to: 'search#search'
 
   get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
+  get '/areas/:id/hospitals/popular', to: 'hospitals#area_popular'
   get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
+  get '/areas/:id/doctors/popular', to: 'doctors#area_popular'
   get '/areas/:area_id/categories/:id/doctors/recommend', to: 'doctors#area_categories_recommend'
+  get '/areas/:area_id/categories/:id/doctors/popular', to: 'doctors#area_categories_popular'
+  get '/categories/:id/doctors/recommend', to: 'doctors#categories_recommend'
+  get '/categories/:id/doctors/popular', to: 'doctors#categories_popular'
   get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend'
+  get '/hospitals/:id/doctors/popular', to: 'doctors#hospital_popular'
 
   namespace :admin do
     get '/' => 'admin#index'
