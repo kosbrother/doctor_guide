@@ -114,7 +114,7 @@
     .recommend-lists-tag
       = link_to "#{@area.name}#{@division.name}熱門醫師", '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多', "/areas/#{@area.id}/divisions/#{@division.id}/doctors/recommend"
+      = link_to '觀看更多', area_category_doctors_recommend_path(@area, @division.category)
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
       - @goodDoctors.each_slice(5).with_index do |doctors, i|

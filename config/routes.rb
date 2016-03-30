@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :categories, only: [:show]
   end
   resources :categories, only: [:show]
-
   resources :hospitals, only: [:show] do
     resources :divisions, only: [:show] do
       resources :comments, only: [:show]
@@ -25,16 +24,16 @@ Rails.application.routes.draw do
   post 'search', to: 'search#search'
   get '/search', to: 'search#search'
 
-  get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend'
-  get '/areas/:id/hospitals/popular', to: 'hospitals#area_popular'
-  get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend'
-  get '/areas/:id/doctors/popular', to: 'doctors#area_popular'
-  get '/areas/:area_id/categories/:id/doctors/recommend', to: 'doctors#area_categories_recommend'
-  get '/areas/:area_id/categories/:id/doctors/popular', to: 'doctors#area_categories_popular'
-  get '/categories/:id/doctors/recommend', to: 'doctors#categories_recommend'
-  get '/categories/:id/doctors/popular', to: 'doctors#categories_popular'
-  get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend'
-  get '/hospitals/:id/doctors/popular', to: 'doctors#hospital_popular'
+  get '/areas/:id/hospitals/recommend', to: 'hospitals#area_recommend', as: 'area_hospitals_recommend'
+  get '/areas/:id/hospitals/popular', to: 'hospitals#area_popular', as: 'area_hospitals_popular'
+  get '/areas/:id/doctors/recommend', to: 'doctors#area_recommend', as: 'area_doctors_recommend'
+  get '/areas/:id/doctors/popular', to: 'doctors#area_popular', as: 'area_doctors_popular'
+  get '/areas/:area_id/categories/:id/doctors/recommend', to: 'doctors#area_categories_recommend', as: 'area_category_doctors_recommend'
+  get '/areas/:area_id/categories/:id/doctors/popular', to: 'doctors#area_categories_popular', as: 'area_category_doctors_popular'
+  get '/categories/:id/doctors/recommend', to: 'doctors#categories_recommend', as: 'category_doctors_recommend'
+  get '/categories/:id/doctors/popular', to: 'doctors#categories_popular', as: 'category_doctors_popular'
+  get '/hospitals/:id/doctors/recommend', to: 'doctors#hospital_recommend', as: 'hospital_doctors_recommend'
+  get '/hospitals/:id/doctors/popular', to: 'doctors#hospital_popular', as: 'hospital_doctors_popular'
 
   namespace :admin do
     get '/' => 'admin#index'

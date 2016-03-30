@@ -5,21 +5,21 @@
     -elsif type == 'popular'
       = link_to '查看推薦醫師', doctors_recommend_path
     -elsif type == 'areaRecommend'
-      = link_to "查看#{area}熱門醫師", "/areas/#{params['id']}/doctors/popular"
+      = link_to "查看#{area.name}熱門醫師", area_doctors_popular_path(area)
     -elsif type == 'areaPopular'
-      = link_to "查看#{area}推薦醫師", "/areas/#{params['id']}/doctors/recommend"
+      = link_to "查看#{area.name}推薦醫師", area_doctors_recommend_path(area)
     -elsif type == 'areaCateRecommend'
-      = link_to "查看#{area}#{cate}熱門醫師", "/areas/#{params['area_id']}/categories/#{params['id']}/doctors/popular"
+      = link_to "查看#{area.name}#{category.name}熱門醫師", area_category_doctors_popular_path(area, category)
     -elsif type == 'areaCatePopular'
-      = link_to "查看#{area}#{cate}推薦醫師", "/areas/#{params['area_id']}/categories/#{params['id']}/doctors/recommend"
+      = link_to "查看#{area.name}#{category.name}推薦醫師", area_category_doctors_recommend_path(area, category)
     -elsif type == 'cateRecommend'
-      = link_to "查看#{cate}熱門醫師", "/categories/#{params['id']}/doctors/popular"
+      = link_to "查看#{category.name}熱門醫師", category_doctors_popular_path(category)
     -elsif type == 'catePopular'
-      = link_to "查看#{cate}推薦醫師", "/categories/#{params['id']}/doctors/recommend"
+      = link_to "查看#{category.name}推薦醫師",  category_doctors_recommend_path(category)
     -elsif type == 'hospRecommend'
-      = link_to "查看#{hospital}熱門醫師", "/hospitals/#{params['id']}/doctors/popular"
+      = link_to "查看#{hospital.name}熱門醫師",hospital_doctors_popular_path(hospital)
     -elsif type == 'hospPopular'
-      = link_to "查看#{hospital}推薦醫師", "/hospitals/#{params['id']}/doctors/recommend"
+      = link_to "查看#{hospital.name}推薦醫師", hospital_doctors_recommend_path(hospital)
   - doctors.each_with_index do |doctor, num|
     .list
       .rankNum

@@ -28,7 +28,7 @@
     .recommend-lists-tag{ 'data-toggle' => "tab"}
       = link_to "#{@area.name}熱門醫院", '#popHospitals', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多', "/areas/#{@area.id}/hospitals/recommend"
+      = link_to '觀看更多', area_hospitals_recommend_path(@area)
   .recommend-lists-content.row
     #recommendHospitals.tab-pane.active
       - @areaGoodHospitals.each_slice(5).with_index do |hospitals, i|
@@ -65,7 +65,7 @@
     .recommend-lists-tag{ 'data-toggle' => "tab"}
       = link_to "#{@area.name}熱門醫生", '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多',  "/areas/#{@area.id}/doctors/recommend"
+      = link_to '觀看更多',  area_doctors_recommend_path(@area)
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
       - @areaGoodDoctors.each_slice(5).with_index do |doctors, i|

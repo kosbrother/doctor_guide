@@ -57,9 +57,9 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-doctorName
-                = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                = link_to doctor.name, hospital_division_doctor_path(doctor.hospitals[0], doctor.divisions[0], doctor)
                 .recommend-lists-doctor-div
-                  = findDoctorDivName(doctor.id)
+                  = doctor.divisions[0].name
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.recommend_num
@@ -74,12 +74,12 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-doctorName
-                = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                = link_to doctor.name, hospital_division_doctor_path(doctor.hospitals[0], doctor.divisions[0], doctor)
                 .recommend-lists-doctor-div
-                  = findDoctorDivName(doctor.id)
+                  = doctor.divisions[0].name
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
-                  = doctor.recommend_num
+                  = doctor.comment_num
 .comment-lists
   .comment-lists-title
     最新科別評論
@@ -88,7 +88,7 @@
     .col-md-10.box
       .comment-lists-content
         - @divisionComments.each do |comment|
-          = link_to hospital_division_comment_path(comment.hospital_id, comment.division_id, comment.id ) do
+          = link_to hospital_division_comment_path(comment.hospital, comment.division, comment.doctor, comment) do
             .comment-lists-comment.row
               .col-md-6
                 %p 評論者: #{comment.commentor.name}
@@ -112,7 +112,7 @@
     .col-md-10
       .comment-lists-content
         - @doctorComments.each do |comment|
-          = link_to hospital_division_doctor_comment_path(comment.hospital_id, comment.division_id, comment.doctor_id, comment.id) do
+          = link_to hospital_division_doctor_comment_path(comment.hospital, comment.division, comment.doctor, comment) do
             .comment-lists-comment.row
               .col-md-6
                 %p 評論者: #{comment.commentor.name}

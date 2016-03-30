@@ -5,9 +5,9 @@
     -elsif type == 'popular'
       = link_to '查看推薦醫院', hospitals_recommend_path
     -elsif type == 'areaRecommend'
-      = link_to "查看#{area}熱門醫院", "/areas/#{params['id']}/hospitals/popular"
+      = link_to "查看#{area.name}熱門醫院", area_hospitals_recommend_path(area)
     -elsif type == 'areaPopular'
-      = link_to "查看#{area}推薦醫院", "/areas/#{params['id']}/hospitals/recommend"
+      = link_to "查看#{area.name}推薦醫院", area_hospitals_popular_path(area)
   - hospitals.each_with_index do |hospital, num|
     .list
       .rankNum
