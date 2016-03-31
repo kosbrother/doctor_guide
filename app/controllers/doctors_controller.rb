@@ -3,7 +3,7 @@ class DoctorsController < ApplicationController
   end
 
   def show
-      @doctor = Doctor.find(params['id'])
+      @doctor = Doctor.friendly.find(params['id'])
       @hospital =  Hospital.friendly.find(params['hospital_id'])
       @division = Division.find(params['division_id'])
       @category = @division.category

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329115637) do
+ActiveRecord::Schema.define(version: 20160331114343) do
 
   create_table "add_doctors", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160329115637) do
     t.integer  "comment_num",   limit: 4
     t.integer  "recommend_num", limit: 4
     t.decimal  "avg",                         precision: 10, scale: 6
+    t.string   "slug",          limit: 255
   end
 
   add_index "doctors", ["area_id"], name: "index_doctors_on_area_id", using: :btree
@@ -108,12 +109,13 @@ ActiveRecord::Schema.define(version: 20160329115637) do
   add_index "doctors", ["longitude"], name: "index_doctors_on_longitude", using: :btree
   add_index "doctors", ["name"], name: "index_doctors_on_name", using: :btree
   add_index "doctors", ["recommend_num"], name: "index_doctors_on_recommend_num", using: :btree
+  add_index "doctors", ["slug"], name: "index_doctors_on_slug", unique: true, using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "subject",    limit: 255
-    t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "content",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
