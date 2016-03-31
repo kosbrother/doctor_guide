@@ -9,32 +9,40 @@ end
 
 # search crumb
 crumb :area do |area|
-  link area.name, area_path(area.id)
+  link area.name, area_path(area)
 end
 
 crumb :category do |category|
-  link category.name, category_path(category.id)
+  link category.name, category_path(category)
 end
 
 crumb :areaCategory do |category, area|
-  link category.name, category_path(category.id)
+  link category.name, category_path(category)
   parent :area, area
 end
 
 # information crumb
-crumb :hospital do |hospital|
-  link hospital.name, hospital_path(hospital.id)
-  parent :area, hospital.area
+crumb :hospital do |hospital, area|
+  link hospital.name, hospital_path(hospital)
+  if area
+    parent :area, area
+  else
+    parent :area, hospital.area
+  end
 end
 
-crumb :division do |division, hospital|
-  link division.name, hospital_division_path(hospital.id, division.id)
-  parent :hospital, hospital
+crumb :division do |division, hospital, area|
+  link division.name, hospital_division_path(hospital, division)
+  if area
+    parent :hospital, hospital, area
+  else
+    parent :hospital, hospital, hospital.area
+  end
 end
 
-crumb :doctor do |doctor, division, hospital|
-  link doctor.name, hospital_division_doctor_path(hospital.id, division.id, doctor.id)
-  parent :division, division, hospital
+crumb :doctor do |doctor, division, hospital, area|
+  link doctor.name, hospital_division_doctor_path(hospital, division, doctor)
+  parent :division, division, hospital, area
 end
 
 # comment crumb
