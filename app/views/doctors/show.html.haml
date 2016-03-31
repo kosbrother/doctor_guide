@@ -1,3 +1,6 @@
+- content_for :head do
+  %link{:href => "android-app://kosbrother.com.doctorguide/http/doctorguide.tw/hospitals/#{@hospital.slug}/divisions/#{@division.id}/doctors/#{@doctor.slug}", :rel => "alternate"}/
+
 - breadcrumb :doctor, @doctor, @division, @hospital, @area
 .information-boxes
   .information-boxes-title
