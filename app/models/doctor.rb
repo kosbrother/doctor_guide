@@ -4,6 +4,14 @@ class Doctor < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [
+      [:id, :name]
+    ]
+  end
+
   has_many :div_hosp_doc_ships
   has_many :hospitals, :through => :div_hosp_doc_ships
   has_many :divisions, :through => :div_hosp_doc_ships
@@ -34,6 +42,11 @@ class Doctor < ActiveRecord::Base
     scores = comments.select("AVG(dr_speciality) as avg_score")
     (scores[0].avg_score.nil?) ? 0 : scores[0].avg_score
   end
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize.to_s
+  end
+
 end
 
 #Doctor.import force: true

@@ -1,4 +1,7 @@
-- breadcrumb :doctor, @doctor, @division, @hospital
+- content_for :head do
+  %link{:href => "android-app://kosbrother.com.doctorguide/http/doctorguide.tw/hospitals/#{@hospital.slug}/divisions/#{@division.id}/doctors/#{@doctor.slug}", :rel => "alternate"}/
+
+- breadcrumb :doctor, @doctor, @division, @hospital, @area
 .information-boxes
   .information-boxes-title
     醫師資訊
@@ -20,29 +23,29 @@
           .icon-content-num
             %li.glyphicon.glyphicon-star
             %li
-              = @avgDocRate
+              = @doctor.avg
   .information-boxes-content.row
     .top-right-corner
       %li.glyphicon.glyphicon-user
-        = @comments.count
+        = @record[0].count
     .col-md-6
       .rating-box
         .rating-box-title
           醫師綜合滿意度 &nbsp;&nbsp;
-          = @avgDocRate
+          = @doctor.avg
         .rating-box-lists
           .rating-box-list
             醫師態度 &nbsp;&nbsp;
             %span
-              = @drFriendly
+              = @record[0].avg_friendly
             %span.stars
-              = @drFriendly
+              = @record[0].avg_friendly
           .rating-box-list
             醫師專業 &nbsp;&nbsp;
             %span
-              = @drSpeciality
+              = @record[0].avg_speciality
             %span.stars
-              = @drSpeciality
+              = @record[0].avg_speciality
     .col-md-6
   .information-boxes-content.row
     .col-md-6
@@ -54,9 +57,9 @@
             .icon-content-title
               服務醫院
             .icon-content-info
-              = link_to @hospital.name, hospital_path(@hospital.id)
+              = link_to @hospital.name, hospital_path(@hospital)
               %br>/
-              = link_to @division.name, hospital_division_path(@hospital.id, @division.id)
+              = link_to @division.name, hospital_division_path(@hospital, @division)
       .information-boxes-contact
         .icons
           .icon
@@ -68,7 +71,6 @@
               - @doctor.spe.split('、').each do |spe|
                 = spe
                 %br>/
-
       .information-boxes-contact
         .icons
           .icon
@@ -88,15 +90,13 @@
     .col-md-1.box
     .col-md-10
       .comment-lists-content
-        - if @comments.empty?
-          該科別目前暫時沒有評論
-        - else
-          - @comments.each do |comment|
-            = link_to hospital_division_doctor_comment_path(comment.hospital, comment.division, comment.doctor, comment) do
+        - @comments.each do |comment|
+          - if @comments.size > 0
+            = link_to hospital_division_doctor_comment_path(@hospital, comment.division, @doctor, comment) do
               .comment-lists-comment.row
                 .col-md-6
-                  %p 評論者: #{comment.commentor.name}
-                  %p 對象： #{comment.division.name}/#{comment.doctor.name}
+                  %p 評論者: #{comment.user_name}
+                  %p 對象： #{@division.name}/#{@doctor.name}
                   .comment-lists-rank
                     %p 科別滿意度： #{comment.div_speciality}
                     %p 醫師滿意度： #{comment.dr_speciality}
@@ -104,6 +104,8 @@
                   科別評論：
                   %br>/
                   = truncate(comment.dr_comment, length: 35)
+          - else
+            該科別目前暫時沒有評論
       .comment-lists-paginate
         = pagination_links(@comments)
     .col-md-1.box
@@ -114,7 +116,7 @@
     .recommend-lists-tag
       = link_to "#{@area.name}#{@division.name}熱門醫師", '#popDoctors', 'data-toggle' => "tab"
     .recommend-lists-more
-      = link_to '觀看更多', area_category_doctors_recommend_path(@area, @division.category)
+      = link_to '觀看更多', area_category_doctors_recommend_path(@area, @category)
   .recommend-lists-content.row
     #recommendDoctors.tab-pane.active
       - @goodDoctors.each_slice(5).with_index do |doctors, i|
@@ -127,9 +129,9 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-doctorName
-                = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                = link_to doctor.name, hospital_division_doctor_path(doctor.hospitals[0], @division, doctor)
                 .recommend-lists-doctor-div
-                  = findDoctorDivName(doctor.id)
+                  = @division.name
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.recommend_num
@@ -144,9 +146,9 @@
                 - else
                   = (i*5)+ 1 + num
               .recommend-lists-doctorName
-                = link_to doctor.name, hospital_division_doctor_path(findDocHospId(doctor.id), findDocDivId(doctor.id), doctor.id)
+                = link_to doctor.name, hospital_division_doctor_path(doctor.hospitals[0], @division, doctor)
                 .recommend-lists-doctor-div
-                  = findDoctorDivName(doctor.id)
+                  = @division.name
               .recommend-lists-glyph
                 %li.glyphicon.glyphicon-thumbs-up
                   = doctor.recommend_num
