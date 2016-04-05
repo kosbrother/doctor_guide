@@ -30,7 +30,12 @@ class Api::V1::CommentsController < Api::ApiController
       set_comment_params comment,params
 
       if comment.save
-        render :status=>200, :json => {"message" => "create comment success"}
+        if comment.doctor_id.nil?
+          path = hospital_division_comment_url(comment.hospital, comment.division, comment)
+        else
+          path = hospital_division_doctor_comment_url(comment.hospital, comment.division, comment.doctor, comment)
+        end
+        render :status=>200, :json => {"message" => "create comment success",url: path}
       else
         render :status=>404, :json => {"message" => "create comment fail"}
       end
