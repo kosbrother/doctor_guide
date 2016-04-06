@@ -11,12 +11,12 @@
       .infoTitle
         就診醫院
       .infoText
-        = @comment.hospital.name + ' | ' + @comment.division.name
+        = @hospital.name + ' | ' + @division.name
     .info
       .infoTitle
         門診醫師
       .infoText
-        = @comment.doctor.name + ' 醫師' if @comment.doctor
+        = @doctor.name + ' 醫師' if @doctor
     .info
       .infoTitle
         就醫時間
