@@ -1,64 +1,80 @@
 - breadcrumb :addComment, @area, @hospital, @division, @doctor
-.addComment
+.addComment.row
   = form_for :comment, url: {action: 'create'} do |f|
     = f.hidden_field :user_id, value: 1
     = field_set_tag '評論基本資訊' do
-      = f.label :hospital_id, '醫院名稱'
-      = f.select('hospital_id', [[@hospital.name, @hospital.id]])
-      = f.label :division_id, '科別名稱'
-      = f.select('division_id', [[@division.name, @division.id]])
-      = f.label :doctor_id, '醫師名稱'
-      - if @doctor
-        = f.select('doctor_id', [[@doctor.name, @doctor.id]])
-      - else
-        = f.select('doctor_id', @doctorList.collect {|doctor| [doctor.name, doctor.id]})
-      = f.label :date, '就診日期'
-      = f.date_field(:created_at, value: Time.now.strftime("%Y-%m-%d"))
+      .col-md-6
+        .field
+          = f.label :hospital_id, '醫院名稱'
+          = f.select('hospital_id', [[@hospital.name, @hospital.id]])
+        .field
+          = f.label :division_id, '科別名稱'
+          = f.select('division_id', [[@division.name, @division.id]])
+        .field
+          = f.label :doctor_id, '醫師名稱'
+          - if @doctor
+            = f.select('doctor_id', [[@doctor.name, @doctor.id]])
+          - else
+            = f.select('doctor_id', @doctorList.collect {|doctor| [doctor.name, doctor.id]})
+      .col-md-6
+        .field
+          = f.label :date, '就診日期'
+          = f.date_field(:created_at, value: Time.now.strftime("%Y-%m-%d"))
+    .divider
     = field_set_tag '科別滿意度' do
-      .ratingTitle 醫療設備
-      .stars
-        - (1..5).each do |i|
-          =f.radio_button(:div_equipment, i, class: "star-#{i}")
-          = f.label "div_equipment_#{i}", i, class: "star-#{i}"
-        %span
-      .ratingTitle 環境衛生
-      .stars
-        - (1..5).each do |i|
-          =f.radio_button(:div_environment, i, class: "star-#{i}")
-          = f.label "div_environment_#{i}", i, class: "star-#{i}"
-        %span
-      .ratingTitle 醫護專業
-      .stars
-        - (1..5).each do |i|
-          =f.radio_button(:div_speciality, i, class: "star-#{i}")
-          = f.label "div_speciality_#{i}", i, class: "star-#{i}"
-        %span
-      .ratingTitle 服務態度
-      .stars
-        - (1..5).each do |i|
-          =f.radio_button(:div_friendly, i, class: "star-#{i}")
-          = f.label "div_friendly_#{i}", i, class: "star-#{i}"
-        %span
+      .field
+        .ratingTitle 醫療設備
+        .stars
+          - (1..5).each do |i|
+            =f.radio_button(:div_equipment, i, class: "star-#{i}")
+            = f.label "div_equipment_#{i}", i, class: "star-#{i}"
+          %span
+      .field
+        .ratingTitle 環境衛生
+        .stars
+          - (1..5).each do |i|
+            =f.radio_button(:div_environment, i, class: "star-#{i}")
+            = f.label "div_environment_#{i}", i, class: "star-#{i}"
+          %span
+      .field
+        .ratingTitle 醫護專業
+        .stars
+          - (1..5).each do |i|
+            =f.radio_button(:div_speciality, i, class: "star-#{i}")
+            = f.label "div_speciality_#{i}", i, class: "star-#{i}"
+          %span
+      .field
+        .ratingTitle 服務態度
+        .stars
+          - (1..5).each do |i|
+            =f.radio_button(:div_friendly, i, class: "star-#{i}")
+            = f.label "div_friendly_#{i}", i, class: "star-#{i}"
+          %span
     = field_set_tag '科別評論' do
-      = f.text_area(:div_comment)
+      = f.text_area(:div_comment, rows: '6', cols: '40')
+    .divider
     = field_set_tag '醫師滿意度' do
-      .ratingTitle 醫師專業
-      .stars
-        - (1..5).each do |i|
-          =f.radio_button(:dr_speciality, i, class: "star-#{i}")
-          = f.label "dr_speciality_#{i}", i, class: "star-#{i}"
-        %span
-      .ratingTitle 醫師態度
-      .stars
-        - (1..5).each do |i|
-          =f.radio_button(:dr_friendly, i, class: "star-#{i}")
-          = f.label "dr_friendly_#{i}", i, class: "star-#{i}"
-        %span
-      = f.label :is_recommend,  '我想推薦醫師'
-      = f.radio_button(:is_recommend, '1', checked: true)
-      是
-      = f.radio_button(:is_recommend, '0')
-      否
+      .field
+        .ratingTitle 醫師專業
+        .stars
+          - (1..5).each do |i|
+            =f.radio_button(:dr_speciality, i, class: "star-#{i}")
+            = f.label "dr_speciality_#{i}", i, class: "star-#{i}"
+          %span
+      .field
+        .ratingTitle 醫師態度
+        .stars
+          - (1..5).each do |i|
+            =f.radio_button(:dr_friendly, i, class: "star-#{i}")
+            = f.label "dr_friendly_#{i}", i, class: "star-#{i}"
+          %span
+      .field
+        = f.label :is_recommend,  '我想推薦醫師'
+        = f.radio_button(:is_recommend, '1', checked: true)
+        是
+        = f.radio_button(:is_recommend, '0')
+        否
     = field_set_tag '醫師評論' do
-      = f.text_area(:dr_comment)
-    = f.button('送出評論')
+      = f.text_area(:dr_comment, rows: '6', cols: '40')
+    .submit
+      = f.button('送出評論')

@@ -1,5 +1,40 @@
 .addComment{
+  border: solid 2px #ec6b1b;
+  padding: 15px;
   form{
+    legend{
+      font-size: 15px;
+      color: #329834;
+      border-bottom: none;
+    }
+    label{
+      margin: 10px;
+    }
+    .ratingTitle{
+      margin-left: 10px;
+    }
+    .divider {
+      height: 2px;
+      width:100%;
+      display:block; /* for use on default inline elements like span */
+      margin: 9px 0;
+      overflow: hidden;
+      background-color: #ec6b1b;;
+    }
+    textarea{
+      border: solid 1px green;
+    }
+    .submit {
+      margin: 20px auto;
+      width: 300px;
+      button{
+        width: 296.2px;
+        height: 26px;
+        border-radius: 1.1px;
+        background-color: #66bb6a;
+        box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12);
+      }
+    }
     .ratingTitle{
       display: inline-block;
       line-height: 30px;
