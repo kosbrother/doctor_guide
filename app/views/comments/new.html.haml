@@ -19,35 +19,35 @@
       .col-md-6
         .field
           = f.label :date, '就診日期'
-          = f.date_field(:created_at, value: Time.now.strftime("%Y-%m-%d"))
+          = f.date_field(:created_at, value: Time.now.strftime("%Y-%m-%d"), required: true)
     .divider
     = field_set_tag '科別滿意度' do
       .field
         .ratingTitle 醫療設備
         .stars
           - (1..5).each do |i|
-            =f.radio_button(:div_equipment, i, class: "star-#{i}")
+            =f.radio_button(:div_equipment, i, class: "star-#{i}",required: true)
             = f.label "div_equipment_#{i}", i, class: "star-#{i}"
           %span
       .field
         .ratingTitle 環境衛生
         .stars
           - (1..5).each do |i|
-            =f.radio_button(:div_environment, i, class: "star-#{i}")
+            =f.radio_button(:div_environment, i, class: "star-#{i}", required: true)
             = f.label "div_environment_#{i}", i, class: "star-#{i}"
           %span
       .field
         .ratingTitle 醫護專業
         .stars
           - (1..5).each do |i|
-            =f.radio_button(:div_speciality, i, class: "star-#{i}")
+            =f.radio_button(:div_speciality, i, class: "star-#{i}", required: true)
             = f.label "div_speciality_#{i}", i, class: "star-#{i}"
           %span
       .field
         .ratingTitle 服務態度
         .stars
           - (1..5).each do |i|
-            =f.radio_button(:div_friendly, i, class: "star-#{i}")
+            =f.radio_button(:div_friendly, i, class: "star-#{i}", required: true)
             = f.label "div_friendly_#{i}", i, class: "star-#{i}"
           %span
     = field_set_tag '科別評論' do
@@ -58,14 +58,14 @@
         .ratingTitle 醫師專業
         .stars
           - (1..5).each do |i|
-            =f.radio_button(:dr_speciality, i, class: "star-#{i}")
+            =f.radio_button(:dr_speciality, i, class: "star-#{i}", required: true)
             = f.label "dr_speciality_#{i}", i, class: "star-#{i}"
           %span
       .field
         .ratingTitle 醫師態度
         .stars
           - (1..5).each do |i|
-            =f.radio_button(:dr_friendly, i, class: "star-#{i}")
+            =f.radio_button(:dr_friendly, i, class: "star-#{i}", required: true)
             = f.label "dr_friendly_#{i}", i, class: "star-#{i}"
           %span
       .field
