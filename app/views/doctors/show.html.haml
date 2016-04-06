@@ -24,7 +24,7 @@
             %li.glyphicon.glyphicon-star
             %li
               = @doctor.avg
-      = link_to '' do
+      = link_to  new_hospital_division_doctor_comment_path(@hospital, @division, @doctor) do
         .addComment
           我要評論
   .information-boxes-content.row

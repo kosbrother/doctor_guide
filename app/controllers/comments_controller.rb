@@ -12,4 +12,15 @@ class CommentsController < ApplicationController
     @division = Division.find(params['division_id'])
 
   end
+
+  def new
+    @hospital = Hospital.find(params['hospital_id'])
+    @area = @hospital.area
+    if params['division_id']
+      @division = Division.find(params['division_id'])
+    end
+    if params['doctor_id']
+      @doctor = Doctor.find(params['doctor_id'])
+    end
+  end
 end

@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   end
   resources :categories, only: [:show]
   resources :hospitals, only: [:show] do
+    resources :comments, only: [:new, :create]
     resources :divisions, only: [:show] do
-      resources :comments, only: [:show]
+      resources :comments, only: [:show, :new, :create]
       resources :doctors, only: [:show] do
-        resources :comments, only: [:show]
+        resources :comments, only: [:show, :new, :create]
       end
     end
   end
