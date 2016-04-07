@@ -2,6 +2,7 @@ class DivisionsController < ApplicationController
   def show
     @hospital = Hospital.find(params['hospital_id'])
     @division = @hospital.divisions.find(params['id'])
+    set_meta_tags title: @hospital.name + '-' + @division.name
 
     @otherDivisions = @hospital.divisions.where("div_hosp_doc_ships.doctor_id is not null and divisions.id != #{params['id']}").uniq{|x| x.id}
     if @otherDivisions.size == 0

@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   def show
     @category = Category.find(params['id'])
+    set_meta_tags title: @category.name + '推薦醫院 醫生'
+
     if params['area_id']
       @area = Area.find(params['area_id'])
       @areaName = @area.name
