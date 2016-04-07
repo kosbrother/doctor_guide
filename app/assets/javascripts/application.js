@@ -18,6 +18,8 @@
 
 var ready;
 ready = function() {
+
+
     //Attach events to menu
     var make_button_active = function()
     {
@@ -66,7 +68,33 @@ ready = function() {
     };
 
     $('span.stars').stars();
+   $('#comment_division_id').trigger('onchange');
 };
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+//    updateDoctor
+var update_doctor = function(division_id, hospital_id){
+    $.ajax({
+        url: '/update_doctor',
+        type: 'GET',
+        data: {division_id: division_id, hospital_id: hospital_id},
+        dataType: 'html',
+        success: function(data){
+            var list = Object.keys(JSON.parse(data)).map(function(k) { return JSON.parse(data)[k] });
+            $('#comment_doctor_id option').remove();
+            if (list.length > 0)
+                list.forEach(function(i){
+                     $('<option/>', {
+                        value: i[1],
+                        text: i[0]
+                    }).appendTo($('#comment_doctor_id'))
+                });
+            else
+                $('<option/>', {
+                    value: '',
+                    text: '暫無資料'
+                }).appendTo($('#comment_doctor_id'))
+        }
+    })
+}

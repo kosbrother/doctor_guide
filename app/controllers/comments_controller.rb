@@ -24,9 +24,17 @@ class CommentsController < ApplicationController
     unless @doctor
       if @division
         @doctorList = Doctor.joins(:divisions, :hospitals).where(divisions: {id: @division.id}, hospitals: {id: @hospital.id}).uniq{|x| x.id }
+      else
+        @divisionList = Division.joins(:hospitals).where(hospitals: {id: @hospital.id}).uniq{|x| x.id}
       end
     end
   end
+
+  def update_doctor
+    @doctorList = Doctor.joins(:divisions, :hospitals).where(divisions: {id: params['division_id']}, hospitals: {id: params['hospital_id']}).uniq{|x| x.id }.collect{|d| [d.name, d.id] }
+    render json: @doctorList
+  end
+
 
   def create
     @hospital = Hospital.find(params['hospital_id'])
@@ -39,6 +47,8 @@ class CommentsController < ApplicationController
     elsif params['division_id']
       @division = Division.find(params['division_id'])
       redirect_to hospital_division_comment_path(@hospital, @division, @comment)
+    else
+      redirect_to hospital_path(@hospital)
     end
   end
 

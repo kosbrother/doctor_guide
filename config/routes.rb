@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/hospitals/popular', to: 'hospitals#popular'
   get '/doctors/recommend', to: 'doctors#recommend'
   get '/doctors/popular', to: "doctors#popular"
-
+  get '/update_doctor', to: "comments#update_doctor"
 
   resources :areas, only: [:show] do
     resources :categories, only: [:show]

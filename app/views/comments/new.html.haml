@@ -9,13 +9,18 @@
           = f.select('hospital_id', [[@hospital.name, @hospital.id]])
         .field
           = f.label :division_id, '科別名稱'
-          = f.select('division_id', [[@division.name, @division.id]])
+          - if @division
+            = f.select('division_id', [[@division.name, @division.id]])
+          - else
+            = f.select('division_id', options_from_collection_for_select(@divisionList, 'id', 'name' ), {}, onchange: "update_doctor(this.value, #{@hospital.id})")
         .field
           = f.label :doctor_id, '醫師名稱'
           - if @doctor
             = f.select('doctor_id', [[@doctor.name, @doctor.id]])
+          - elsif @division
+            = f.select('doctor_id', options_from_collection_for_select(@doctorList, 'id', 'name'))
           - else
-            = f.select('doctor_id', @doctorList.collect {|doctor| [doctor.name, doctor.id]})
+            = f.select('doctor_id', [], {}, required: true)
       .col-md-6
         .field
           = f.label :date, '就診日期'
