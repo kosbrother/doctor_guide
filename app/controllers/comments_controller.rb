@@ -23,15 +23,15 @@ class CommentsController < ApplicationController
     end
     unless @doctor
       if @division
-        @doctorList = Doctor.joins(:divisions, :hospitals).where(divisions: {id: @division.id}, hospitals: {id: @hospital.id}).uniq{|x| x.id }
+        @doctorList = Doctor.joins(:divisions, :hospitals).where(divisions: {id: @division.id}, hospitals: {id: @hospital.id}).uniq{|x| x.id }.select('doctors.name, doctors.id')
       else
-        @divisionList = Division.joins(:hospitals).where(hospitals: {id: @hospital.id}).uniq{|x| x.id}
+        @divisionList = Division.joins(:hospitals).where(hospitals: {id: @hospital.id}).uniq{|x| x.id}.select('divisions.id, divisions.name')
       end
     end
   end
 
   def update_doctor
-    @doctorList = Doctor.joins(:divisions, :hospitals).where(divisions: {id: params['division_id']}, hospitals: {id: params['hospital_id']}).uniq{|x| x.id }.collect{|d| [d.name, d.id] }
+    @doctorList = Doctor.joins(:divisions, :hospitals).where(divisions: {id: params['division_id']}, hospitals: {id: params['hospital_id']}).uniq{|x| x.id }.select('doctors.name, doctors.id').collect{|dr| [dr.name, dr.id]}
     render json: @doctorList
   end
 
