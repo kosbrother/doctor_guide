@@ -2,8 +2,9 @@ class DivisionsController < ApplicationController
   def show
     @hospital = Hospital.includes(:area).find(params['hospital_id'])
     @division = @hospital.divisions.find(params['id'])
-    set_meta_tags title: @hospital.name + '-' + @division.name
-    set_meta_tags description: "#{@hospital.area.name} #{@hospital.name} #{@division.name} 的門診資訊，推薦醫師，網友就醫經驗分享與醫師評價"
+    set_meta_tags title:"#{@hospital.name} #{@division.name}",
+                  description: "#{@hospital.area.name} #{@hospital.name} #{@division.name} 的門診資訊，推薦醫師，網友就醫經驗分享與醫師評價",
+                  keywords: "#{@hospital.name},#{@division.name},門診資訊,評價,就醫心得"
     @otherDivisions = @hospital.divisions.where("div_hosp_doc_ships.doctor_id is not null and divisions.id != #{params['id']}").uniq{|x| x.id}
     if @otherDivisions.size == 0
       @otherDivisions = @hospital.divisions.where.not(id: params['id']).uniq{|x| x.id}

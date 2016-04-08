@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
   def show
-    @comment = Comment.includes(:commentor, :hospital, :division, :doctor).find(params['id'])
+    @comment = Comment.includes(:hospital, :division, :doctor).find(params['id'])
     @hospital = @comment.hospital
     @division = @comment.division
-    @doctor = @comment.doctor
+    @doctor =  @comment.doctor
     if params['doctor_id']
-      @comments = Comment.includes(:commentor).where(doctor_id: @comment.doctor_id).where("id != #{@comment.id}").paginate(:page => params[:page]).per_page(3)
+      @comments = Comment.where(doctor_id: @comment.doctor_id).where("id != #{@comment.id}").paginate(:page => params[:page]).per_page(3)
       set_meta_tags title: "#{@comment.hospital.name} - #{@comment.division.name} - #{@doctor.name} 醫師評論詳情",
                     description: "#{@comment.hospital.name} #{@comment.division.name} #{@doctor.name}  的就醫經驗分享",
                     keywords: "#{@doctor.name}醫師,#{@comment.hospital.name},#{@comment.division.name},就醫評價，評論，醫病心得"
@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
       set_meta_tags title: "#{@comment.hospital.name} - #{@comment.division.name}  評論詳情",
                     description: "#{@comment.hospital.name} #{@comment.division.name}  的就醫經驗分享",
                     keywords: "#{@comment.doctor.name}醫師,#{@comment.hospital.name},#{@comment.division.name},就醫評價，評論，醫病心得"
-
     end
   end
 
