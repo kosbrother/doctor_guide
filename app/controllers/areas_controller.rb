@@ -3,6 +3,7 @@ class AreasController < ApplicationController
     area_id = params['id']
     @area = Area.find(area_id)
     set_meta_tags title: @area.name + '推薦醫院 科別 醫生'
+    set_meta_tags description: "#就醫指南為您整理了 #{@area.name} 所有醫院，不同科別，醫生的完整資訊以及評價，讓您快速找到適合的醫生 "
     @areaHospitals = Hospital.where(area_id: area_id).paginate(:page => params[:page]).per_page(10)
     @areaGoodHospitals = Hospital.where(area_id: area_id).order(avg: :desc).limit(10)
     @areaPopHospitals = Hospital.where(area_id: area_id).order(avg: :desc).limit(10).offset(10)

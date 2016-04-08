@@ -3,6 +3,7 @@ class HospitalsController < ApplicationController
     hospital_id = params['id']
     @hospital = Hospital.friendly.find(hospital_id)
     set_meta_tags title: @hospital.name
+    set_meta_tags description: "#{@hospital.name}的門診列表，推薦您院內熱門科別及醫生，還可以參考最新的醫療評價，為您找到適合的醫師"
     @divisions = @hospital.divisions.uniq{|x| x.id}
     @goodDivisions =  @hospital.comments.select("divisions.id, name, category_id, sum(div_friendly) as total, comments.updated_at").joins('LEFT OUTER JOIN `divisions` ON `divisions`.`id` = `comments`.`division_id`').group('division_id').order('total desc').limit(10)
     @popDivisions =  @hospital.comments.select("divisions.id, name, category_id, count(div_comment) as total, comments.updated_at").joins('LEFT OUTER JOIN `divisions` ON `divisions`.`id` = `comments`.`division_id`').group('division_id').order('total desc').limit(10)

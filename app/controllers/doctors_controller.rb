@@ -11,6 +11,7 @@ class DoctorsController < ApplicationController
       @record =  Comment.select('AVG(`comments`.`dr_friendly`) AS avg_friendly, AVG(`comments`.`dr_speciality`) AS avg_speciality, COUNT(*) AS count').where(doctor_id: params['id'])
       @comments = Comment.includes(:division).joins(:commentor).select('comments.*, users.name AS user_name').where(doctor_id: params['id']).paginate(:page => params[:page], total_entries: @record[0].count).per_page(3)
       @area = @doctor.area
+      set_meta_tags description: "#{@area.name} #{@hospital.name} #{@division.name} #{@doctor.name} 醫師的門診資訊，網友就醫經驗分享與醫師評價"
       @goodDoctors = Doctor.joins(:divisions).includes(:hospitals).where(area_id: @area.id, divisions: {id: @division.id}).order('doctors.recommend_num desc').limit(10)
       @popDoctors = Doctor.joins(:divisions).includes(:hospitals).where(area_id: @area.id, divisions: {id: @division.id}).order('doctors.comment_num desc').limit(10)
   end
