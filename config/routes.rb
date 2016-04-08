@@ -6,17 +6,18 @@ Rails.application.routes.draw do
   get '/hospitals/popular', to: 'hospitals#popular'
   get '/doctors/recommend', to: 'doctors#recommend'
   get '/doctors/popular', to: "doctors#popular"
-
+  get '/update_doctor', to: "comments#update_doctor"
 
   resources :areas, only: [:show] do
     resources :categories, only: [:show]
   end
   resources :categories, only: [:show]
   resources :hospitals, only: [:show] do
+    resources :comments, only: [:new, :create]
     resources :divisions, only: [:show] do
-      resources :comments, only: [:show]
+      resources :comments, only: [:show, :new, :create]
       resources :doctors, only: [:show] do
-        resources :comments, only: [:show]
+        resources :comments, only: [:show, :new, :create]
       end
     end
   end

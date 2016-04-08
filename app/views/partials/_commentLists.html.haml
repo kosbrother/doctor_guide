@@ -8,11 +8,11 @@
       .comment-lists-content
         - comments.each do |comment|
           - if commentType == 'division'
-            = link_to hospital_division_comment_path(comment.hospital, comment.division, comment ) do
+            = link_to hospital_division_comment_path(@hospital, @division, comment ) do
               .comment-lists-comment.row
                 .col-md-6
                   %p 評論者: #{comment.commentor.name}
-                  %p 對象： #{comment.doctor.name}
+                  %p 對象： #{@doctor.name}
                   .comment-lists-rank
                     %p 科別滿意度： #{comment.div_speciality}
                     %p 醫師滿意度： #{comment.dr_speciality}
@@ -21,11 +21,11 @@
                   %br>/
                   = truncate(comment.div_comment, length: 35)
           - else
-            = link_to hospital_division_doctor_comment_path(comment.hospital, comment.division, comment.doctor, comment) do
+            = link_to hospital_division_doctor_comment_path(@hospital, @division, @doctor, comment) do
               .comment-lists-comment.row
                 .col-md-6
                   %p 評論者: #{comment.commentor.name}
-                  %p 對象： #{comment.doctor.name}
+                  %p 對象： #{@doctor.name}
                   .comment-lists-rank
                     %p 科別滿意度： #{comment.div_speciality}
                     %p 醫師滿意度： #{comment.dr_speciality}

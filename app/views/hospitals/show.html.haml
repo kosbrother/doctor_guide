@@ -20,6 +20,9 @@
             %li.glyphicon.glyphicon-comment
             %li
               = @hospital.comment_num
+      = link_to new_hospital_comment_path(@hospital) do
+        .addComment
+          我要評論
   .information-boxes-content.row
     .col-md-6
       .information-boxes-contact

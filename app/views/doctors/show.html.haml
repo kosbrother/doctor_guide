@@ -23,7 +23,10 @@
           .icon-content-num
             %li.glyphicon.glyphicon-star
             %li
-              = @doctor.avg
+              = @doctor.avg.round(1)
+      = link_to  new_hospital_division_doctor_comment_path(@hospital, @division, @doctor) do
+        .addComment
+          我要評論
   .information-boxes-content.row
     .top-right-corner
       %li.glyphicon.glyphicon-user
@@ -37,15 +40,15 @@
           .rating-box-list
             醫師態度 &nbsp;&nbsp;
             %span
-              = @record[0].avg_friendly
+              = @record[0].avg_friendly.round(1)
             %span.stars
-              = @record[0].avg_friendly
+              = @record[0].avg_friendly.round(1)
           .rating-box-list
             醫師專業 &nbsp;&nbsp;
             %span
-              = @record[0].avg_speciality
+              = @record[0].avg_speciality.round(1)
             %span.stars
-              = @record[0].avg_speciality
+              = @record[0].avg_speciality.round(1)
     .col-md-6
   .information-boxes-content.row
     .col-md-6

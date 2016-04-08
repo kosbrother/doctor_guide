@@ -10,9 +10,25 @@
     .information-boxes-title-content{
       margin: 30px 10px;
       .icons{
+        display: inline-block;
         .icon-content-subtitle > a{
           color: #ffa726;
         }
+      }
+      .addComment{
+        float: right;
+        border: solid 1px black;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        font-size: 12px;
+        text-align: center;
+        padding: 8px;
+        color: #000;
+        background-color: yellow;
+      }
+      .addComment:hover{
+        border: solid 1px #fff;
       }
     }
   }

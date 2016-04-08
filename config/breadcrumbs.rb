@@ -47,13 +47,26 @@ end
 
 # comment crumb
 crumb :doctorComment do |comment, doctor, division, hospital|
-  link '醫師評論詳情', hospital_division_doctor_comment_path(comment, doctor, division, hospital)
+  link '醫師評論詳情', hospital_division_doctor_comment_path(hospital, division, doctor, comment)
   parent :doctor, doctor, division, hospital
 end
 
 crumb :divisionComment do |comment, division, hospital|
-  link '科別評論詳情', hospital_division_comment_path(comment, division, hospital)
+  link '科別評論詳情', hospital_division_comment_path(hospital, division, comment)
   parent :division, division, hospital
+end
+
+crumb :addComment do | area, hospital, division, doctor |
+  if hospital && division && doctor
+    link '新增評論', new_hospital_division_doctor_comment_path(hospital, division, doctor)
+    parent :doctor, doctor, division, hospital, area
+  elsif hospital && division
+    link '新增評論', new_hospital_division_comment_path(hospital, division)
+    parent :division, division, hospital, area
+  else
+    link '新增評論', new_hospital_comment_path(hospital)
+    parent :hospital, hospital, area
+  end
 end
 
 # recommend more
